@@ -27,7 +27,117 @@ body {
 }
 
 @layer utilities {
+  .border-gradient {
+    border-bottom: 1px solid; 
+    border-image: linear-gradient(to right, transparent, rgba(243, 244, 246, 0.3), transparent) 1;
+  }
   .text-balance {
     text-wrap: balance;
+    color: #010d08;
+    color: #23548c;
+    color: rgb(60, 147, 255);
+    color: rgb(243, 244, 246); 
+  }
+
+  .glassMorphism {
+    background: rgba(255,255,255,0.05);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    /* border: 1px solid rgba(255,255,255,0.25); */
+  }
+
+  .blurMorphism {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+}
+
+@layer base {
+  @font-face {
+    font-family: SatoshiBold;
+    font-weight: 400;
+    src: url(/fonts/Satoshi-Bold.otf);
+  }
+
+  @font-face {
+    font-family: SatoshiBlack;
+    font-weight: 400;
+    src: url(/fonts/Satoshi-Black.otf);
+  }
+
+  @font-face {
+    font-family: SatoshiBold;
+    font-weight: 400;
+    src: url(/fonts/Satoshi-Bold.otf);
+  }
+
+  @font-face {
+    font-family: SatoshiMedium;
+    font-weight: 400;
+    src: url(/fonts/Satoshi-Medium.otf);
+  }
+
+  @font-face {
+    font-family: SatoshiRegular;
+    font-weight: 400;
+    src: url(/fonts/Satoshi-Regular.otf);
+  }
+
+  @font-face {
+    font-family: SatoshiLight;
+    font-weight: 400;
+    src: url(/fonts/Satoshi-Light.otf);
+  }
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  @font-face {
+    font-family: PoppinsBold;
+    font-weight: 400;
+    src: url(/fonts/Poppins-Bold.ttf);
+  }
+
+  @font-face {
+    font-family: PoppinsBlack;
+    font-weight: 400;
+    src: url(/fonts/Poppins-Black.ttf);
+  }
+
+  @font-face {
+    font-family: PoppinsSemiBold;
+    font-weight: 400;
+    src: url(/fonts/Poppins-SemiBold.ttf);
+  }
+
+  @font-face {
+    font-family: PoppinsMedium;
+    font-weight: 400;
+    src: url(/fonts/Poppins-Medium.ttf);
+  }
+
+  @font-face {
+    font-family: PoppinsRegular;
+    font-weight: 400;
+    src: url(/fonts/Poppins-Regular.ttf);
+  }
+
+  @font-face {
+    font-family: PoppinsLight;
+    font-weight: 400;
+    src: url(/fonts/Poppins-Light.ttf);
   }
 }
