@@ -40,7 +40,7 @@ const page = () => {
 
           <div>
             <h4 className='font-[SatoshiMedium] text-xs'>{ blog.authorName }</h4>
-            <p className='font-[SatoshiLight] text-[10px]'>{ blog.createdAt }</p>
+            <p className='font-[SatoshiLight] text-[10p+x]'>{ blog.createdAt }</p>
           </div>
         </div>
 
