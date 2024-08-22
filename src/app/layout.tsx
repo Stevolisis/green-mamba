@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-bgPrimary h-auto">
         <ReactProvider>
-          {/* <CompleteProfile/> */}
+          <CompleteProfile/>
           <Header/>
             <main className="pt-24">
               {children}

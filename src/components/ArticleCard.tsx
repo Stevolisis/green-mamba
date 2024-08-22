@@ -10,7 +10,7 @@ import { IBlog } from '@/dummy_data';
 
 const ArticleCard = ({ blog }:any ) => {
   return (
-    <Link href={"/article/" + blog.slug} className="z-1 p-4 sm:p-6 md:p-8 glassMorphism rounded-lg w-[45%] hover:border hover:border-[#ffffff1a] min-w-[250px] flex-1 sm:flex-auto">
+    <Link href={"/article/" + blog.slug} className=" !z-1 p-4 sm:p-6 md:p-8 glassMorphism rounded-lg w-[45%] hover:border hover:border-[#ffffff1a] min-w-[250px] flex-1 sm:flex-auto">
 
     <div className="">
       <Image

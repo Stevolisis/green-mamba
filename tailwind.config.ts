@@ -17,7 +17,8 @@ const config: Config = {
         bgPrimary: "#010d08",
         bgSecondary: "#00ff95",
         grBlue: "#1f4f7d",
-        grGreen: "#02462d"
+        grGreen: "#02462d",
+        slideUp: "#02130c"
       }
     },
   },
