@@ -11,7 +11,7 @@ import { formatDate } from '@/utils/fomateDate';
 
 const ArticleCard = ({ blog }:any ) => {
   return (
-    <Link href={"/article/" + blog.slug} className=" max-w-[45%] min-w-[250px] p-4 sm:p-6 md:p-8 glassMorphism rounded-lg hover:border hover:border-[#ffffff1a] flex-1 sm:flex-auto">
+    <Link href={"/article/" + blog.slug} className="md:max-w-[45%] min-w-[250px] p-4 sm:p-6 md:p-8 glassMorphism rounded-lg hover:border hover:border-[#ffffff1a] flex-1 sm:flex-auto">
 
     <div className="">
       <Image
