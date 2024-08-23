@@ -1,8 +1,7 @@
 "use client"
 import { Logo } from "@/assets";
 import { useAppDispatch } from "@/redux/hooks";
-import { showSlide } from "@/redux/slices/profile";
-import { AppDispatch } from "@/redux/store";
+import { setType, showSlide } from "@/redux/slices/profile";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -13,6 +12,11 @@ type Props = {}
 const Header = (props: Props) => {
   const [active, setActive]= useState(1);
   const dispatch = useAppDispatch();
+
+  function handleClick(){
+    dispatch(showSlide());
+    dispatch(setType({type:"complete_profile"}));
+  }
   
   return (
     <header className="blurMorphism z-50 flex justify-between items-center border-gradient w-full py-7 px-4 sm:px-16 fixed">
@@ -35,7 +39,7 @@ const Header = (props: Props) => {
       </div>
 
       <div className="font-[SatoshiMedium] pl-3">
-        <button onClick={()=>dispatch(showSlide())} className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
+        <button onClick={()=> handleClick()} className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
           <FaWallet className="text-lg" />
           <p className="border-l border-l-bgPrimary pl-2">Connect Wallet</p>
         </button>
