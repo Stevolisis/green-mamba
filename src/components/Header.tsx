@@ -1,7 +1,7 @@
 "use client"
 import { Logo } from "@/assets";
-import { useAppDispatch } from "@/redux/hooks";
-import { setType, showSlide } from "@/redux/slices/profile";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { setAddress, setType, showSlide } from "@/redux/slices/profile";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -11,11 +11,13 @@ type Props = {}
 
 const Header = (props: Props) => {
   const [active, setActive]= useState(1);
+  const address:string = useAppSelector((state)=>state.profile.address);
   const dispatch = useAppDispatch();
 
   function handleClick(){
     dispatch(showSlide());
     dispatch(setType({type:"complete_profile"}));
+    dispatch(setAddress("0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2"));
   }
   
   return (
@@ -39,9 +41,9 @@ const Header = (props: Props) => {
       </div>
 
       <div className="font-[SatoshiMedium] pl-3">
-        <button onClick={()=> handleClick()} className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
+        <button onClick={()=> handleClick()} className="max-w-[166px] line-clamp-1 flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
           <FaWallet className="text-lg" />
-          <p className="border-l border-l-bgPrimary pl-2">Connect Wallet</p>
+          <p className="border-l border-l-bgPrimary pl-2">{address ? address : "Connect Wallet"}</p>
         </button>
       </div>
     </header>

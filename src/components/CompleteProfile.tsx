@@ -26,9 +26,9 @@ const CompleteProfile = () => {
                     focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5' maxLength={123} placeholder="Description e.g I am a software Engineer with over 6 years experience..." 
                     value={formData.description} onChange={(e)=> setFormData({...formData, description:e.target.value})}/>
 
-                <button className="font-[SatoshiMedium] flex gap-2 justify-center items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
-                    <FaUser className="text-lg" />
-                    <p className="border-l border-l-bgPrimary pl-2">Complete Profile</p>
+                <button className="w-full font-[SatoshiMedium] flex gap-2 justify-center items-center text-base text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
+                    {/* <FaUser className="text-lg" /> */}
+                    <p className="pl-2">Complete Profile</p>
                 </button>
             </form>
 
