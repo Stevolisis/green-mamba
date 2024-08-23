@@ -12,7 +12,8 @@ const CompleteProfile = () => {
   
     return (
         <>
-            <form className='w-full sm:w-[55vw] pt-20 pb-5 px-4 flex flex-col justify-start items-center'>
+            <form className='w-full sm:w-[55vw] pt-16 pb-5 px-4 flex flex-col justify-start items-center'>
+                <h1 className='mb-5 font-[SatoshiMedium] text-3xl'>Complete Profile</h1>
                 <input className='mb-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary 
                     focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5' type="text" placeholder="Name e.g John Doe" 
                     value={formData.name} onChange={(e)=> setFormData({...formData, name:e.target.value})}/>
