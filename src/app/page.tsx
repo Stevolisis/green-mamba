@@ -6,9 +6,6 @@ import ArticleCard from "@/components/ArticleCard";
 
 export default function Home() {
 
-  function formatTime(time:number): string {
-    return "ghg"
-  }
 
   return (
     <main className="px-4 sm:px-16 py-12">

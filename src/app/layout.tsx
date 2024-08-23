@@ -3,7 +3,7 @@ import "./globals.css";
 import ReactProvider from "@/redux/AppProvider";
 import Footer from "../components/Footer";
 import Header from "@/components/Header";
-import CompleteProfile from "@/components/CompleteProfile";
+import Slider from "@/components/Slider";
 
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-bgPrimary h-auto">
         <ReactProvider>
-          <CompleteProfile/>
+          <Slider/>
           <Header/>
             <main className="pt-24">
               {children}
