@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { FaWallet } from "react-icons/fa";
+import { useRouter } from 'next/navigation';
 
 type Props = {}
 
@@ -13,11 +14,17 @@ const Header = (props: Props) => {
   const [active, setActive]= useState(1);
   const address:string = useAppSelector((state)=>state.profile.address);
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   function handleClick(){
     dispatch(showSlide());
     dispatch(setType({type:"complete_profile"}));
     dispatch(setAddress("0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2"));
+  }
+
+  function handleClick2(){
+    dispatch(showSlide());
+    router.push("/dashboard");
   }
   
   return (
@@ -41,10 +48,18 @@ const Header = (props: Props) => {
       </div>
 
       <div className="font-[SatoshiMedium] pl-3">
-        <button onClick={()=> handleClick()} className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
-          <FaWallet className="text-lg" />
-          <p className="border-l border-l-bgPrimary pl-2">{address ? address.slice(0,11) + "..." : "Connect Wallet"}</p>
-        </button>
+        {
+          address ? 
+            <button onClick={()=> handleClick2()} className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
+              <FaWallet className="text-lg" />
+              <p className="border-l border-l-bgPrimary pl-2">{address ? address.slice(0,11) + "..." : "Connect Wallet"}</p>
+            </button>
+          :
+            <button onClick={()=> handleClick()} className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
+              <FaWallet className="text-lg" />
+              <p className="border-l border-l-bgPrimary pl-2">{address ? address.slice(0,11) + "..." : "Connect Wallet"}</p>
+            </button>
+        }
       </div>
     </header>
   )
