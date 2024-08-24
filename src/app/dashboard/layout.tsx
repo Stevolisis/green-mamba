@@ -1,3 +1,4 @@
+import Menu from '@/components/Menu'
 import React, { ReactNode } from 'react'
 
 type Props = {
@@ -8,6 +9,7 @@ const layout = ({ children }:Readonly<Props>) => {
   return (
     <div>
         { children }
+        <Menu/>
     </div>
   )
 }
