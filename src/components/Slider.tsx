@@ -15,7 +15,7 @@ const Slider = () => {
       ${
         slideUp ? "transform translate-y-0" : "transform translate-y-full"
       } 
-      overflow-auto overscroll-none !z-[49] flex flex-col justify-start items-center w-full fixed h-[75vh] bottom-0 rounded-tr-[28px] 
+      overflow-auto overscroll-none scrollbar-none sm:scrollbar-thin scroll !z-[49] flex flex-col justify-start items-center w-full fixed h-[75vh] bottom-0 rounded-tr-[28px] 
       rounded-tl-[28px] bg-slideUp`}
       >
         {

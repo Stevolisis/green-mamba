@@ -41,9 +41,9 @@ const Header = (props: Props) => {
       </div>
 
       <div className="font-[SatoshiMedium] pl-3">
-        <button onClick={()=> handleClick()} className="max-w-[166px] line-clamp-1 flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
+        <button onClick={()=> handleClick()} className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
           <FaWallet className="text-lg" />
-          <p className="border-l border-l-bgPrimary pl-2">{address ? address : "Connect Wallet"}</p>
+          <p className="border-l border-l-bgPrimary pl-2">{address ? address.slice(0,11) + "..." : "Connect Wallet"}</p>
         </button>
       </div>
     </header>
