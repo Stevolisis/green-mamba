@@ -1,22 +1,22 @@
 "use client";
 import React, { useState } from "react";
-import { FaGift, FaTimes, FaUser } from "react-icons/fa";
+import { FaGift, FaTimes, FaUser, FaUserAlt } from "react-icons/fa";
 import { IoMdNotifications } from "react-icons/io";
-import { IoLogOut } from "react-icons/io5";
+import { IoLogOut, IoNotifications } from "react-icons/io5";
 import { MdArticle } from "react-icons/md";
 import { PiDotsThreeOutlineVerticalFill } from "react-icons/pi";
-import { RiEditFill } from "react-icons/ri";
+import { RiEditFill, RiLogoutBoxRFill } from "react-icons/ri";
 
 const Menu = () => {
   const [active, setActive] = useState<boolean>(false);
 
   const menuItems = [
-    { name: "Dashboard", icon: <FaUser className="text-[20px] text-bgPrimary" />, active: false },
+    { name: "Dashboard", icon: <FaUserAlt className="text-[20px] text-bgPrimary" />, active: false },
     { name: "Articles", icon: <MdArticle className="text-[20px] text-bgPrimary" />, active: false },
     { name: "Add Article", icon: <RiEditFill className="text-[20px] text-bgPrimary" />, active: false },
     { name: "Gifts", icon: <FaGift className="text-[20px] text-bgPrimary" />, active: false },
-    { name: "Notification", icon: <IoMdNotifications className="text-[20px] text-bgPrimary" />, active: false },
-    { name: "Logout", icon: <IoLogOut className="text-[20px] text-bgPrimary" />, active: false },
+    { name: "Notification", icon: <IoNotifications className="text-[20px] text-bgPrimary" />, active: false },
+    { name: "Logout", icon: <RiLogoutBoxRFill className="text-[20px] text-bgPrimary" />, active: false },
     // { name: "Help", icon: <FaUser className="text-[20px] text-bgPrimary" />, active: false },
     // { name: "Contact", icon: <FaUser className="text-[20px] text-bgPrimary" />, active: false },
     // { name: "About", icon: <FaUser className="text-[20px] text-bgPrimary" />, active: false },
