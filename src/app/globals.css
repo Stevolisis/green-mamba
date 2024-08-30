@@ -34,7 +34,7 @@ body {
   .text-balance {
     text-wrap: balance;
     color: #01140d;
-    color: #02130c;
+    color: hwb(0 100% 0%);
     color: rgb(60, 147, 255);
     color: rgb(243, 244, 246); 
   }
@@ -63,12 +63,6 @@ body {
     font-family: SatoshiBlack;
     font-weight: 400;
     src: url(/fonts/Satoshi-Black.otf);
-  }
-
-  @font-face {
-    font-family: SatoshiBold;
-    font-weight: 400;
-    src: url(/fonts/Satoshi-Bold.otf);
   }
 
   @font-face {
