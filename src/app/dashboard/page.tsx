@@ -41,7 +41,7 @@ const page = (props: Props) => {
           </div>
         </div>
 
-        <div className='w-full p-7 rounded-lg shadow-lg bg-gradient-to-r from-[#E27C39] to-[#E3FF73] to-90% glassMorphism border border-[#ffffff1a] flex flex-col gap-y-14'>
+        <div className='w-full p-7 rounded-lg shadow-lg glassMorphism border border-[#ffffff1a] flex flex-col gap-y-14'>
           <div className='flex justify-between items-center'>
             
             <div className='rounded-md p-3 glassMorphism'>
@@ -49,14 +49,14 @@ const page = (props: Props) => {
             </div>
 
             <div>
-              <Link href="/articles" className="text-sm underline">View all</Link>
+              <Link href="/articles" className="text-sm underline text-gray-400">View all</Link>
             </div>
           </div>
 
           <div className='flex justify-between items-baseline'>
             
             <div>
-              <p className="text-sm mb-2">
+              <p className="text-sm mb-2 text-gray-400">
                 Number Of Articles
               </p>
               <h2 className="text-3xl font-[SatoshiBold]">
@@ -70,7 +70,7 @@ const page = (props: Props) => {
           </div>
         </div>
 
-        <div className='w-full p-7 rounded-lg shadow-lg bg-gradient-to-r from-[#71244e] to-[#ff4a64] to-90% glassMorphism border border-[#ffffff1a] flex flex-col gap-y-14'>
+        <div className='w-full p-7 rounded-lg shadow-lg glassMorphism border border-[#ffffff1a] flex flex-col gap-y-14'>
           <div className='flex justify-between items-center'>
             
             <div className='rounded-md p-3 glassMorphism'>
@@ -78,14 +78,14 @@ const page = (props: Props) => {
             </div>
 
             <div>
-              <Link href="/articles" className="text-sm underline">View all</Link>
+              <Link href="/articles" className="text-sm underline text-gray-400">View all</Link>
             </div>
           </div>
 
           <div className='flex justify-between items-baseline'>
             
             <div>
-              <p className="text-sm mb-2">
+              <p className="text-sm mb-2 text-gray-400">
                 Recent Notification
               </p>
               <h2 className="text-3xl font-[SatoshiBold]">
