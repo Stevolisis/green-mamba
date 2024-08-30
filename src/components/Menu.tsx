@@ -1,8 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { FaGift, FaTimes, FaUser, FaUserAlt } from "react-icons/fa";
-import { IoMdNotifications } from "react-icons/io";
-import { IoLogOut, IoNotifications } from "react-icons/io5";
+import { FaGift, FaTimes, FaUserAlt } from "react-icons/fa";
+import { IoNotifications } from "react-icons/io5";
 import { MdArticle } from "react-icons/md";
 import { PiDotsThreeOutlineVerticalFill } from "react-icons/pi";
 import { RiEditFill, RiLogoutBoxRFill } from "react-icons/ri";
@@ -53,7 +52,7 @@ const Menu = () => {
               <button className="bg-bgSecondary text-slideUp rounded-full w-[70px] h-[70px] flex justify-center items-center mb-2">
                 {item.icon}
               </button>
-              <p className="text-white text-xs">{item.name}</p>
+              <p className="text-white text-xs font-[SatoshiRegular]">{item.name}</p>
             </div>
           ))}
         </div>
