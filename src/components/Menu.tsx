@@ -1,22 +1,25 @@
 "use client";
 import React, { useState } from "react";
-import { FaPlus, FaTimes, FaUser } from "react-icons/fa";
-import { HiDotsVertical } from "react-icons/hi";
+import { FaGift, FaTimes, FaUser } from "react-icons/fa";
+import { IoMdNotifications } from "react-icons/io";
+import { IoLogOut } from "react-icons/io5";
+import { MdArticle } from "react-icons/md";
 import { PiDotsThreeOutlineVerticalFill } from "react-icons/pi";
+import { RiEditFill } from "react-icons/ri";
 
 const Menu = () => {
   const [active, setActive] = useState<boolean>(false);
 
   const menuItems = [
-    { name: "Dashboard", icon: <FaUser className="text-[14px] text-bgPrimary" />, active: false },
-    { name: "Settings", icon: <FaUser className="text-[14px] text-bgPrimary" />, active: false },
-    { name: "Profile", icon: <FaUser className="text-[14px] text-bgPrimary" />, active: false },
-    { name: "Messages", icon: <FaUser className="text-[14px] text-bgPrimary" />, active: false },
-    { name: "Notifications", icon: <FaUser className="text-[14px] text-bgPrimary" />, active: false },
-    { name: "Logout", icon: <FaUser className="text-[14px] text-bgPrimary" />, active: false },
-    { name: "Help", icon: <FaUser className="text-[14px] text-bgPrimary" />, active: false },
-    { name: "Contact", icon: <FaUser className="text-[14px] text-bgPrimary" />, active: false },
-    { name: "About", icon: <FaUser className="text-[14px] text-bgPrimary" />, active: false },
+    { name: "Dashboard", icon: <FaUser className="text-[20px] text-bgPrimary" />, active: false },
+    { name: "Articles", icon: <MdArticle className="text-[20px] text-bgPrimary" />, active: false },
+    { name: "Add Article", icon: <RiEditFill className="text-[20px] text-bgPrimary" />, active: false },
+    { name: "Gifts", icon: <FaGift className="text-[20px] text-bgPrimary" />, active: false },
+    { name: "Notification", icon: <IoMdNotifications className="text-[20px] text-bgPrimary" />, active: false },
+    { name: "Logout", icon: <IoLogOut className="text-[20px] text-bgPrimary" />, active: false },
+    // { name: "Help", icon: <FaUser className="text-[20px] text-bgPrimary" />, active: false },
+    // { name: "Contact", icon: <FaUser className="text-[20px] text-bgPrimary" />, active: false },
+    // { name: "About", icon: <FaUser className="text-[20px] text-bgPrimary" />, active: false },
   ];
 
   return (
@@ -47,7 +50,7 @@ const Menu = () => {
               }`}
 
             >
-              <button className="bg-bgSecondary text-slideUp rounded-full w-12 h-12 flex justify-center items-center mb-2">
+              <button className="bg-bgSecondary text-slideUp rounded-full w-[70px] h-[70px] flex justify-center items-center mb-2">
                 {item.icon}
               </button>
               <p className="text-white text-xs">{item.name}</p>
