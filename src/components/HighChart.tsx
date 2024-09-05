@@ -8,7 +8,7 @@ import { selectChartByName } from '@/redux/slices/chart';
 const HighChart = () => {
     const chart = useAppSelector(state => selectChartByName(state.charts, "dashboard"));
     const { months, years, currentMonth, currentYear} =useAppSelector(state => state.charts);
-    const options  = {
+    const options2  = {
         title: {
             text: '',
         },
@@ -49,11 +49,6 @@ const HighChart = () => {
         series: [
             {
                 name:'Gifts',
-                labels: {
-                    style: {
-                        color: '#fff'
-                    }
-                },
                 data: chart?.rows
             }
         ],
@@ -68,6 +63,77 @@ const HighChart = () => {
         credits:false
     }
 
+    const options = {
+        title: {
+          text: '',
+        },
+        chart: {
+          type: 'column',
+          backgroundColor: 'transparent'
+        },
+        xAxis: {
+          title: {
+            text: "Weeks"
+          },
+          categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4'], // X-axis categories
+          labels: {
+            style: {
+              color: '#fff' // X-axis labels color
+            }
+          },
+          gridLineColor: '#555'
+        },
+        yAxis: {
+          title: {
+            text: ''
+          },
+          labels: {
+            style: {
+              color: '#fff' // Y-axis labels color
+            }
+          },
+          gridLineColor: '#555'
+        },
+        plotOptions: {
+          column: {
+            borderRadius: 100,
+            dataLabels: {
+              enabled: true,
+              style: {
+                color: '#fff' // Color of the labels on top of the columns
+              }
+            },
+            grouping: true // Ensures columns are grouped
+          }
+        },
+        series: [
+          {
+            name: 'Gifts', // First column for each category
+            data: [30, 40, 50, 60], // Sample data for Type A
+            color: '#00ff95' // Custom color for this series
+          },
+        //   {
+        //     name: 'Gifts Type B', // Second column for each category
+        //     data: [20, 30, 40, 50], // Sample data for Type B
+        //     color: '#ff0095' // Custom color for this series
+        //   },
+          {
+            name: 'No of Articles', // Third column for each category
+            data: [10, 20, 30, 40], // Sample data for Type C
+            color: '#0095ff' // Custom color for this series
+          }
+        ],
+        legend: {
+          itemStyle: {
+            color: '#fff' // Color for the series text in the legend
+          }
+        },
+        accessibility: {
+          enabled: true
+        },
+        credits: false // Disable the Highcharts credits text
+      };
+      
 
   return (
     <div className='rounded-md my-7 glassMorphism border border-[#ffffff1a] p-5 sm:p-9'>
