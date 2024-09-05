@@ -10,12 +10,16 @@ type chartItem = {
 
 interface IInitialstate{
     charts: chartItem[];
+    currentMonth: number;
+    currentYear: number;
+    months: string[];
+    years: number[];
 } 
 const initialState:IInitialstate = {
     charts : [
         { 
             name: "dashboard", 
-            title:"September gift Report", 
+            title:"Finance Report", 
             columns:[
                 1,2,3,4
             ], 
@@ -24,7 +28,14 @@ const initialState:IInitialstate = {
             ], 
             date:1723905599
         }
-    ]
+    ],
+    currentMonth: new Date().getMonth(),
+    currentYear: new Date().getFullYear(),
+    months :[
+        "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December"
+    ],
+    years : Array.from({ length: new Date().getFullYear() - 1990 + 1 }, (v, i) => i + 1990)
 }
 
 export const chartSlice = createSlice({
