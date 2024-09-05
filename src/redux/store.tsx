@@ -3,6 +3,7 @@ import storage from 'redux-persist/lib/storage';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } from 'redux-persist';
 import profileSlice from './slices/profile';
 import counterSlice from './slices/counter';
+import chart from './slices/chart';
 
 
 const persistConfig = {
@@ -14,7 +15,8 @@ const persistConfig = {
 
 const combinedReducers=combineReducers({
   counter: counterSlice,
-  profile: profileSlice
+  profile: profileSlice,
+  charts: chart,
 });
 
 

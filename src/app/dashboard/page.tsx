@@ -1,8 +1,9 @@
 "use client"
+import HighChart from '@/components/HighChart'
 import Link from 'next/link'
 import React from 'react'
 import { BsBank2 } from 'react-icons/bs'
-import { IoNotifications, IoStatsChartSharp } from 'react-icons/io5'
+import { IoNotifications } from 'react-icons/io5'
 import { MdArticle } from 'react-icons/md'
 
 type Props = {}
@@ -99,6 +100,8 @@ const page = (props: Props) => {
           </div>
         </div>
       </div>
+
+      <HighChart/>
     </div>
   )
 }
