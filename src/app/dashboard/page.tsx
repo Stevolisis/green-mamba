@@ -1,6 +1,6 @@
 "use client"
 import HighChart from '@/components/HighChart'
-import { dummy_gifts } from '@/dummy_data'
+import { dummy_data, dummy_gifts } from '@/dummy_data'
 import { useAppDispatch } from '@/redux/hooks'
 import { addChart } from '@/redux/slices/chart'
 import Link from 'next/link'
@@ -13,7 +13,8 @@ import { MdArticle } from 'react-icons/md'
 const page = () => {
   const dispatch = useAppDispatch();
   useEffect(()=>{
-    dispatch(addChart({name:"dashboard",title:"Finance Report",data:dummy_gifts}));
+    dispatch(addChart({name:"Gifts",title:"Finance Report",data:dummy_gifts}));
+    dispatch(addChart({name:"Gifters",title:"Finance Report",data:dummy_data}));
   },[]);
 
   return (
@@ -108,7 +109,7 @@ const page = () => {
         </div>
       </div>
 
-      <HighChart name="dashboard"/>
+      <HighChart name="Gifts"/>
     </div>
   )
 }

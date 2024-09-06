@@ -1,17 +1,21 @@
-import { RootState, store } from "@/redux/store";
 
+function getWeekOfMonthFromTimestamp(timestamp:number) {
+  // Convert Unix timestamp (which is in seconds) to milliseconds and create a Date object
+  const date = new Date(timestamp * 1000);
+  const year = date.getFullYear();
+  const month = date.getMonth();
 
-export function getWeekOfMonth(date:any) {
-  const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1); // 1st day of the month
-  const dayOfMonth = date.getDate(); // Get the day of the month
-  
-  // Get the day of the week for the 1st day (0 is Sunday, 6 is Saturday)
-  const firstDayWeekDay = firstDayOfMonth.getDay(); 
-  
-  // Calculate the week number by dividing the difference in days by 7 and rounding up
-  return Math.ceil((dayOfMonth + firstDayWeekDay) / 7);
+  const firstDayOfMonth = new Date(year, month, 1);
+  const firstDayOfWeek = firstDayOfMonth.getDay(); // 0 = Sunday, 6 = Saturday
+
+  // Get the day of the month for the given timestamp date
+  const currentDate = date.getDate();
+
+  // Calculate the week of the month
+  const weekOfMonth = Math.ceil((firstDayOfWeek + currentDate) / 7);
+
+  return weekOfMonth;
 }
-
 
 
 export function getChartColumns(month:number, year:number):number[]{
@@ -36,15 +40,22 @@ export function getChartColumns(month:number, year:number):number[]{
 }
 
 
-type WithCreatedAt = { createdAt: number };
+type WithCreatedAt = { createdAt: number; amount?: number };
+
 export function getChartRows<T extends WithCreatedAt>(month:number, year:number, data:T[]):number[] {
   const number_of_weeks:number[] = getChartColumns(month, year);
 
-  const rowArr:number[] = new Array(number_of_weeks.length).fill(4);
+  const rowArr:number[] = new Array(number_of_weeks.length + 1).fill(0);
 
-  data.map((item, i) => {
-
-  })
-
+  data.map((item,i) => {
+    const week: number = getWeekOfMonthFromTimestamp(item.createdAt);
+    if (item.amount !== undefined) {
+      rowArr[week] = rowArr[week] + item.amount;
+    }else{
+      rowArr[week] = rowArr[week] + 1;
+    }
+  });
+  rowArr.shift();
+  
   return rowArr;
 }

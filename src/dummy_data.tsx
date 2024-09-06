@@ -33,7 +33,7 @@ export const dummy_data: IBlog[] = [
         tags: ["Finance", "Web3", "Stock Market"],
         gifts: 43,
         content: "Aliquet urna dictum metus eu velit lobortis elit quam donec sociosqu blandit est praesent molestie euismod eleifend sapien augue montes commodo morbi rhoncus neque orci bibendum elementum si duis primis inceptos sit nam fusce nunc tellus",
-        createdAt: 1723906838
+        createdAt: 1690896000
     },
     {
         image: Blog3,
@@ -55,7 +55,7 @@ export const dummy_data: IBlog[] = [
         tags: ["Bitcoin", "Blockchain", "Binance"],
         gifts: 43,
         content: "Aliquet urna dictum metus eu velit lobortis elit quam donec sociosqu blandit est praesent molestie euismod eleifend sapien augue montes commodo morbi rhoncus neque orci bibendum elementum si duis primis inceptos sit nam fusce nunc tellus",
-        createdAt: 1723905599
+        createdAt: 1693315200
     },
 ];
 
@@ -79,14 +79,14 @@ export const dummy_gifts: IDummyGift[] = [
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "What-Is-Bitcoin-Mining-And-Why-Is-It-Necessary",
         amount: 10,
-        createdAt: 1723905599,  
+        createdAt: 1690896000,  
     },
     {
         userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "What-Is-Bitcoin-Mining-And-Why-Is-It-Necessary",
         amount: 10,
-        createdAt: 1723905599,  
+        createdAt: 1690896000,  
     },
     {
         userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
@@ -135,21 +135,21 @@ export const dummy_gifts: IDummyGift[] = [
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "5-Tips-for-Beginner-Cryptocurrency-Traders",
         amount: 10,
-        createdAt: 1723905599,  
+        createdAt: 1692710400,  
     },
     {
         userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "5-Tips-for-Beginner-Cryptocurrency-Traders",
         amount: 10,
-        createdAt: 1723905599,  
+        createdAt: 1692710400,  
     },
     {
         userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "5-Tips-for-Beginner-Cryptocurrency-Traders",
         amount: 10,
-        createdAt: 1723905599,  
+        createdAt: 1692710400,  
     },
     {
         userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
@@ -163,6 +163,6 @@ export const dummy_gifts: IDummyGift[] = [
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "The-Next-Generation-Of-Collectibles-Non-Fungible-Tokens",
         amount: 10,
-        createdAt: 1723905599,  
+        createdAt: 1693315200,  
     },
 ]

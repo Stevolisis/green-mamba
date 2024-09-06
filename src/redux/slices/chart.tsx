@@ -34,7 +34,7 @@ export const chartSlice = createSlice({
     initialState,
     reducers:{
         addChart: (state, { payload}):void=>{
-            const { name, title, data} = payload as { name: string; title: string; data: IDummyGift[] };;
+            const { name, title, data} = payload as { name: string; title: string; data: IDummyGift[] };
             const getColumn:number[] = getChartColumns(state.currentMonth, state.currentYear);
             const getRows:number[] = getChartRows(state.currentMonth, state.currentYear, data); 
             const newArr = state.charts.filter(chart=> chart.name !== name);

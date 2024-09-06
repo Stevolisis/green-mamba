@@ -9,6 +9,7 @@ interface IProps{
 }
 const HighChart = (props:IProps) => {
   const chart = useAppSelector(state => selectChartByName(state.charts, props.name));
+  const chart2 = props.name === "Gifts" && useAppSelector(state => selectChartByName(state.charts, "Gifters"));
   const { months, years, currentMonth, currentYear} =useAppSelector(state => state.charts);
 
   const options = {
@@ -45,24 +46,24 @@ const HighChart = (props:IProps) => {
       plotOptions: {
         column: {
           borderRadius: 100,
-          dataLabels: {
-            enabled: true,
-            style: {
-              color: '#fff'
-            }
-          },
+          // dataLabels: {
+          //   enabled: true,
+          //   style: {
+          //     color: '#fff'
+          //   }
+          // },
           grouping: true
         }
       },
       series: [
         {
-          name: 'Gifts',
+          name: chart?.name,
           data: chart?.rows,
           color: '#00ff95'
         },
         {
-          name: 'No of Articles',
-          data: [10, 20, 30, 40],
+          name: chart2 && chart2.name,
+          data: chart2 && chart2.rows,
           color: '#0095ff'
         }
       ],
