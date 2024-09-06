@@ -1,3 +1,4 @@
+import { RootState, store } from "@/redux/store";
 
 
 export function getWeekOfMonth(date:any) {
@@ -12,6 +13,38 @@ export function getWeekOfMonth(date:any) {
 }
 
 
-export function setChartColumns(){
+
+export function getChartColumns(month:number, year:number):number[]{
+  const firstDayOfMonth:Date = new Date(year, month, 1);
+	const lastDayOfMonth:Date = new Date(year, month + 1, 0); 
   
+	const firstDayOfWeek:number = firstDayOfMonth.getDay();
+	const lastDayOfMonthDate:number = lastDayOfMonth.getDate();
+	
+	const totalDays:number = firstDayOfWeek + lastDayOfMonthDate; 
+	const totalWeeks:number = Math.ceil(totalDays / 7);
+
+  const column = [];
+  let index:number = 1;
+
+  while(index < totalWeeks + 1){
+    column.push(index);
+    index ++;
+  }
+  
+  return column;
+}
+
+
+type WithCreatedAt = { createdAt: number };
+export function getChartRows<T extends WithCreatedAt>(month:number, year:number, data:T[]):number[] {
+  const number_of_weeks:number[] = getChartColumns(month, year);
+
+  const rowArr:number[] = new Array(number_of_weeks.length).fill(4);
+
+  data.map((item, i) => {
+
+  })
+
+  return rowArr;
 }

@@ -4,135 +4,78 @@ import HighchartsReact from 'highcharts-react-official';
 import { useAppSelector } from '@/redux/hooks';
 import { selectChartByName } from '@/redux/slices/chart';
 
+interface IProps{
+  name:string
+}
+const HighChart = (props:IProps) => {
+  const chart = useAppSelector(state => selectChartByName(state.charts, props.name));
+  const { months, years, currentMonth, currentYear} =useAppSelector(state => state.charts);
 
-const HighChart = () => {
-    const chart = useAppSelector(state => selectChartByName(state.charts, "dashboard"));
-    const { months, years, currentMonth, currentYear} =useAppSelector(state => state.charts);
-    const options2  = {
+  const options = {
+      title: {
+        text: '',
+      },
+      chart: {
+        type: 'column',
+        backgroundColor: 'transparent'
+      },
+      xAxis: {
         title: {
-            text: '',
+          text: "Weeks"
         },
-        chart:{
-            type:'column',
-            backgroundColor: 'transparent'
+        categories: chart?.columns,
+        labels: {
+          style: {
+            color: '#fff'
+          }
         },
-        xAxis:{
-            title:{
-                text: "Weeks"
-            },
-            categories: chart?.columns,
-            labels: {
-                style: {
-                    color: '#fff'
-                }
-            },
-            gridLineColor: '#555'
-        },
-        yAxis:{
-            title:{
-                text:''
-            },
-            labels: {
-                style: {
-                    color: '#fff'
-                }
-            },
-            gridLineColor: '#555'
-        },
-        plotOptions:{
-            column:{
-                borderRadius: 100,
-                color:"#00ff95",
-                borderColor:"#00ff95"
-            }
-        },
-        series: [
-            {
-                name:'Gifts',
-                data: chart?.rows
-            }
-        ],
-        legend: {
-            itemStyle: {
-              color: '#fff' // Color for the series text in the legend
-            }
-        },
-        accessibility:{
-            enabled:true
-        },
-        credits:false
-    }
-
-    const options = {
+        gridLineColor: '#555'
+      },
+      yAxis: {
         title: {
-          text: '',
+          text: ''
         },
-        chart: {
-          type: 'column',
-          backgroundColor: 'transparent'
+        labels: {
+          style: {
+            color: '#fff'
+          }
         },
-        xAxis: {
-          title: {
-            text: "Weeks"
-          },
-          categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4'], // X-axis categories
-          labels: {
+        gridLineColor: '#555'
+      },
+      plotOptions: {
+        column: {
+          borderRadius: 100,
+          dataLabels: {
+            enabled: true,
             style: {
-              color: '#fff' // X-axis labels color
+              color: '#fff'
             }
           },
-          gridLineColor: '#555'
+          grouping: true
+        }
+      },
+      series: [
+        {
+          name: 'Gifts',
+          data: chart?.rows,
+          color: '#00ff95'
         },
-        yAxis: {
-          title: {
-            text: ''
-          },
-          labels: {
-            style: {
-              color: '#fff' // Y-axis labels color
-            }
-          },
-          gridLineColor: '#555'
-        },
-        plotOptions: {
-          column: {
-            borderRadius: 100,
-            dataLabels: {
-              enabled: true,
-              style: {
-                color: '#fff' // Color of the labels on top of the columns
-              }
-            },
-            grouping: true // Ensures columns are grouped
-          }
-        },
-        series: [
-          {
-            name: 'Gifts', // First column for each category
-            data: [30, 40, 50, 60], // Sample data for Type A
-            color: '#00ff95' // Custom color for this series
-          },
-        //   {
-        //     name: 'Gifts Type B', // Second column for each category
-        //     data: [20, 30, 40, 50], // Sample data for Type B
-        //     color: '#ff0095' // Custom color for this series
-        //   },
-          {
-            name: 'No of Articles', // Third column for each category
-            data: [10, 20, 30, 40], // Sample data for Type C
-            color: '#0095ff' // Custom color for this series
-          }
-        ],
-        legend: {
-          itemStyle: {
-            color: '#fff' // Color for the series text in the legend
-          }
-        },
-        accessibility: {
-          enabled: true
-        },
-        credits: false // Disable the Highcharts credits text
-      };
+        {
+          name: 'No of Articles',
+          data: [10, 20, 30, 40],
+          color: '#0095ff'
+        }
+      ],
+      legend: {
+        itemStyle: {
+          color: '#fff'
+        }
+      },
+      accessibility: {
+        enabled: true
+      },
+      credits: false 
+  };
       
 
   return (

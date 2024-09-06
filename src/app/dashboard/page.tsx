@@ -1,14 +1,21 @@
 "use client"
 import HighChart from '@/components/HighChart'
+import { dummy_gifts } from '@/dummy_data'
+import { useAppDispatch } from '@/redux/hooks'
+import { addChart } from '@/redux/slices/chart'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BsBank2 } from 'react-icons/bs'
 import { IoNotifications } from 'react-icons/io5'
 import { MdArticle } from 'react-icons/md'
 
-type Props = {}
 
-const page = (props: Props) => {
+const page = () => {
+  const dispatch = useAppDispatch();
+  useEffect(()=>{
+    dispatch(addChart({name:"dashboard",title:"Finance Report",data:dummy_gifts}));
+  },[]);
+
   return (
     <div className="px-4 sm:px-16 py-12 font-[SatoshiRegular]">
       <div className='flex justify-between gap-3 flex-wrap sm:flex-nowrap'>
@@ -101,7 +108,7 @@ const page = (props: Props) => {
         </div>
       </div>
 
-      <HighChart/>
+      <HighChart name="dashboard"/>
     </div>
   )
 }

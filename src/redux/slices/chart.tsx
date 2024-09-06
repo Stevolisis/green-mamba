@@ -1,11 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { IBlog, IDummyGift } from "../../dummy_data";
+import { getChartColumns, getChartRows } from "@/utils/chart-utils";
 
 type chartItem = {
     name: string;
     title: string;
     columns: number[];
     rows: number[];
-    date: number;
 }
 
 interface IInitialstate{
@@ -15,35 +16,36 @@ interface IInitialstate{
     months: string[];
     years: number[];
 } 
+
 const initialState:IInitialstate = {
-    charts : [
-        { 
-            name: "dashboard", 
-            title:"Finance Report", 
-            columns:[
-                1,2,3,4
-            ], 
-            rows:[
-                12,8,44,20
-            ], 
-            date:1723905599
-        }
-    ],
+    charts : [],
     currentMonth: new Date().getMonth(),
     currentYear: new Date().getFullYear(),
-    months :[
-        "January", "February", "March", "April", "May", "June", 
-        "July", "August", "September", "October", "November", "December"
-    ],
+    months :["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     years : Array.from({ length: new Date().getFullYear() - 1990 + 1 }, (v, i) => i + 1990)
 }
+
+
+
+
 
 export const chartSlice = createSlice({
     name: "chart",
     initialState,
     reducers:{
-        addChart: (state,{payload}):void=>{
-            state.charts = [...state.charts, payload];
+        addChart: (state, { payload}):void=>{
+            const { name, title, data} = payload as { name: string; title: string; data: IDummyGift[] };;
+            const getColumn:number[] = getChartColumns(state.currentMonth, state.currentYear);
+            const getRows:number[] = getChartRows(state.currentMonth, state.currentYear, data); 
+            const newArr = state.charts.filter(chart=> chart.name !== name);
+            const newChart = {
+                name: name,
+                title: title,
+                columns: getColumn,
+                rows: getRows,
+            };
+            newArr.push(newChart);
+            state.charts = newArr;
         },
 
     }

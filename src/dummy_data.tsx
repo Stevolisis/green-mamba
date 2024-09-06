@@ -57,4 +57,112 @@ export const dummy_data: IBlog[] = [
         content: "Aliquet urna dictum metus eu velit lobortis elit quam donec sociosqu blandit est praesent molestie euismod eleifend sapien augue montes commodo morbi rhoncus neque orci bibendum elementum si duis primis inceptos sit nam fusce nunc tellus",
         createdAt: 1723905599
     },
+];
+
+
+
+
+
+
+
+export interface IDummyGift {
+    userAddress: string;
+    authorAddress: string;
+    articleSlug: string;
+    amount: number;
+    createdAt: number;
+};
+
+export const dummy_gifts: IDummyGift[] = [
+    {
+        userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+        authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
+        articleSlug: "What-Is-Bitcoin-Mining-And-Why-Is-It-Necessary",
+        amount: 10,
+        createdAt: 1723905599,  
+    },
+    {
+        userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+        authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
+        articleSlug: "What-Is-Bitcoin-Mining-And-Why-Is-It-Necessary",
+        amount: 10,
+        createdAt: 1723905599,  
+    },
+    {
+        userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+        authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
+        articleSlug: "What-Is-Bitcoin-Mining-And-Why-Is-It-Necessary",
+        amount: 10,
+        createdAt: 1723905599,  
+    },
+    {
+        userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+        authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
+        articleSlug: "What-Investors-Should-Know-About-Crypto",
+        amount: 10,
+        createdAt: 1723905599,  
+    },
+    {
+        userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+        authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
+        articleSlug: "What-Investors-Should-Know-About-Crypto",
+        amount: 10,
+        createdAt: 1723905599,  
+    },
+    {
+        userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+        authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
+        articleSlug: "5-Tips-for-Beginner-Cryptocurrency-Traders",
+        amount: 10,
+        createdAt: 1723905599,  
+    },
+    {
+        userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+        authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
+        articleSlug: "5-Tips-for-Beginner-Cryptocurrency-Traders",
+        amount: 10,
+        createdAt: 1723905599,  
+    },
+    {
+        userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+        authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
+        articleSlug: "5-Tips-for-Beginner-Cryptocurrency-Traders",
+        amount: 10,
+        createdAt: 1723905599,  
+    },
+    {
+        userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+        authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
+        articleSlug: "5-Tips-for-Beginner-Cryptocurrency-Traders",
+        amount: 10,
+        createdAt: 1723905599,  
+    },
+    {
+        userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+        authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
+        articleSlug: "5-Tips-for-Beginner-Cryptocurrency-Traders",
+        amount: 10,
+        createdAt: 1723905599,  
+    },
+    {
+        userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+        authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
+        articleSlug: "5-Tips-for-Beginner-Cryptocurrency-Traders",
+        amount: 10,
+        createdAt: 1723905599,  
+    },
+    {
+        userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+        authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
+        articleSlug: "5-Tips-for-Beginner-Cryptocurrency-Traders",
+        amount: 10,
+        createdAt: 1723905599,  
+    },
+    {
+        userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+        authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
+        articleSlug: "The-Next-Generation-Of-Collectibles-Non-Fungible-Tokens",
+        amount: 10,
+        createdAt: 1723905599,  
+    },
 ]
