@@ -1,7 +1,7 @@
 "use client"
 import HighChart from '@/components/HighChart'
 import { dummy_data, dummy_gifts } from '@/dummy_data'
-import { useAppDispatch } from '@/redux/hooks'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { addChart } from '@/redux/slices/chart'
 import Link from 'next/link'
 import React, { useEffect } from 'react'
@@ -12,10 +12,12 @@ import { MdArticle } from 'react-icons/md'
 
 const page = () => {
   const dispatch = useAppDispatch();
+  const { currentMonth, currentYear} =useAppSelector(state => state.charts);
+
   useEffect(()=>{
     dispatch(addChart({name:"Gifts",title:"Finance Report",data:dummy_gifts}));
     dispatch(addChart({name:"Gifters",title:"Finance Report",data:dummy_data}));
-  },[]);
+  },[dispatch, currentMonth, currentYear]);
 
   return (
     <div className="px-4 sm:px-16 py-12 font-[SatoshiRegular]">

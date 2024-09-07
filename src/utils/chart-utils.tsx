@@ -28,6 +28,7 @@ export function getChartColumns(month:number, year:number):number[]{
 	const totalDays:number = firstDayOfWeek + lastDayOfMonthDate; 
 	const totalWeeks:number = Math.ceil(totalDays / 7);
 
+  // console.log("month: ", month, year, totalDays);
   const column = [];
   let index:number = 1;
 
@@ -55,7 +56,9 @@ export function getChartRows<T extends WithCreatedAt>(month:number, year:number,
       rowArr[week] = rowArr[week] + 1;
     }
   });
+
   rowArr.shift();
-  
+  // console.log("Year: ", month, year, rowArr);
+
   return rowArr;
 }

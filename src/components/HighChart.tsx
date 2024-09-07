@@ -1,8 +1,8 @@
 import React from 'react'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official';
-import { useAppSelector } from '@/redux/hooks';
-import { selectChartByName } from '@/redux/slices/chart';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { selectChartByName, setCurrentMonth, setCurrentYear } from '@/redux/slices/chart';
 
 interface IProps{
   name:string
@@ -11,6 +11,7 @@ const HighChart = (props:IProps) => {
   const chart = useAppSelector(state => selectChartByName(state.charts, props.name));
   const chart2 = props.name === "Gifts" && useAppSelector(state => selectChartByName(state.charts, "Gifters"));
   const { months, years, currentMonth, currentYear} =useAppSelector(state => state.charts);
+  const dispatch = useAppDispatch();
 
   const options = {
       title: {
@@ -77,7 +78,7 @@ const HighChart = (props:IProps) => {
       },
       credits: false 
   };
-      
+
 
   return (
     <div className='rounded-md my-7 glassMorphism border border-[#ffffff1a] p-5 sm:p-9'>
@@ -87,7 +88,7 @@ const HighChart = (props:IProps) => {
             </div>
 
             <div className="flex flex-grow sm:flex-initial items-center gap-3 flex-wrap md:flex-nowrap">
-                <select className='flex-1 justify-stretch focus:outline-bgSecondary focus:border-bgSecondary text-white glassMorphism py-2 px-4 rounded-full' defaultValue={currentMonth}>
+                <select onChange={(e)=> dispatch(setCurrentMonth(parseInt(e.target.value)))} className='flex-1 justify-stretch focus:outline-bgSecondary focus:border-bgSecondary text-white glassMorphism py-2 px-4 rounded-full' defaultValue={currentMonth}>
                     {
                         months.map((month,i)=>(
                             <option key={i} className='bg-bgPrimary' value={i}>{month}</option>
@@ -95,7 +96,7 @@ const HighChart = (props:IProps) => {
                     }
                 </select>
 
-                <select className='flex-1 justify-stretch focus:outline-bgSecondary focus:border-bgSecondary text-white glassMorphism py-2 px-4 rounded-full' defaultValue={currentYear}>
+                <select onChange={(e)=> dispatch(setCurrentYear(parseInt(e.target.value)))} className='flex-1 justify-stretch focus:outline-bgSecondary focus:border-bgSecondary text-white glassMorphism py-2 px-4 rounded-full' defaultValue={currentYear}>
                     {
                         years.map((year,i)=>(
                             <option key={i} className='bg-bgPrimary' value={year}>{year}</option>

@@ -47,7 +47,12 @@ export const chartSlice = createSlice({
             newArr.push(newChart);
             state.charts = newArr;
         },
-
+        setCurrentMonth: (state, { payload }):void=>{
+            state.currentMonth = payload;
+        },
+        setCurrentYear: (state, { payload }):void=>{
+            state.currentYear = payload;
+        },
     }
 });
 
@@ -56,5 +61,5 @@ export const selectChartByName = (state: IInitialstate, name: string): chartItem
     return chart || null;  // Return null if no chart is found
 };
 
-export const { addChart } = chartSlice.actions;
+export const { addChart, setCurrentMonth, setCurrentYear } = chartSlice.actions;
 export default chartSlice.reducer;
