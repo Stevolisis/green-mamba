@@ -11,22 +11,22 @@ const TableContainer = (props: Props) => {
             <h1 className='text-2xl md:text-3xl font-[SatoshiBold]'>Finance History</h1>
         </div>
 
-        <div className='flex justify-between items-center text-xs font-[SatoshiRegular] py-3 text-gray-400'>
-            <div>
+        <div className='flex justify-between md:justify-center items-center flex-col md:flex-row text-xs font-[SatoshiRegular] py-3 text-gray-400'>
+            <div className='hidden md:block'>
                 <p>In The Last 24 Hours</p>
             </div>
 
             <div className='flex gap-3 items-center border border-gray-400 rounded-full'>
                 {
                     ["1W","1M","3M","1Y","ALL"].map((item,i)=>(
-                        <button className='w-[70px] py-2 px-5 rounded-3xl hover:bg-bgSecondary hover:text-bgPrimary transition-colors ease-in delay-75' key={i}>{item}</button> 
+                        <button className='w-auto md:w-[70px] py-2 px-5 rounded-3xl hover:bg-bgSecondary hover:text-bgPrimary transition-colors ease-in delay-75' key={i}>{item}</button> 
                     ))
                 }
             </div>
         </div>
 
-        <div>
-            <table className='w-full overscroll-none md:overflow-y-auto font-[SatoshiRegular] border-collapse'>
+        <div className='overflow-x-auto md:overflow-x-scroll'>
+            <table className='w-full md:overflow-y-auto font-[SatoshiRegular] border-collapse'>
                 <thead className='mb4'>
                     <tr className=' text-gray-400 text-sm'>
                         <td className='py-4 px-4 rounded-s-2xl glassMorphism'>#</td>
