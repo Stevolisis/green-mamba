@@ -8,6 +8,7 @@ import React, { useEffect } from 'react'
 import { BsBank2 } from 'react-icons/bs'
 import { IoNotifications } from 'react-icons/io5'
 import { MdArticle } from 'react-icons/md'
+import TableContainer from '../../components/Table/Container'
 
 
 const page = () => {
@@ -112,6 +113,8 @@ const page = () => {
       </div>
 
       <HighChart name="Gifts"/>
+
+      <TableContainer/>
     </div>
   )
 }
