@@ -4,6 +4,7 @@ import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } fro
 import profileSlice from './slices/profile';
 import counterSlice from './slices/counter';
 import chart from './slices/chart';
+import table from './slices/table';
 
 
 const persistConfig = {
@@ -13,10 +14,11 @@ const persistConfig = {
   whitelist: ["counter"]
 }
 
-const combinedReducers=combineReducers({
+const combinedReducers = combineReducers({
   counter: counterSlice,
   profile: profileSlice,
   charts: chart,
+  table: table,
 });
 
 

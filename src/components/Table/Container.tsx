@@ -44,57 +44,58 @@ const TableContainer = (props: Props) => {
                 }
             </div>
         </div>
+        
         <div className='overflow-x-auto overflow-y-hidden md:overflow-x-visible'>
-    <table className='w-full font-[SatoshiRegular] border-collapse'>
-        <thead>
-            <tr className='text-gray-400 text-sm'>
-                <td className='py-4 px-4 rounded-s-2xl glassMorphism'>#</td>
-                <td className='glassMorphism whitespace-normal break-words min-w-[250px]'>Market</td>
-                <td className='glassMorphism'>Index price</td>
-                <td className='glassMorphism'>Change</td>
-                <td className='glassMorphism'>Market Cap</td>
-                <td className='px-4 pl-0 rounded-r-2xl glassMorphism'></td>
-            </tr>
-        </thead>
-
-        <tbody>
-            {
-                dummy_data.map((data, i) => (
-                    <tr key={i}>
-                        <td className='text-gray-400 py-4 text-xs pl-3'>{(i + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}</td>
-                        <td className='pr-4 py-4 text-sm'>{data.title}</td>
-                        <td className='pr-4 py-4 text-sm'>{data.createdAt}</td>
-                        <td className='pr-4 py-4 text-sm whitespace-nowrap'>{data.authorName}</td>
-                        <td className='py-4 pr-0 text-sm'>{data.createdAt}</td>
-                        <td className='pl-2 py-4 pr-3 text-sm relative'>
-                            <div className='flex justify-end'>
-                                <PiDotsThreeOutlineVerticalFill onClick={() => setActive(active === i ? -1 : i)} className='cursor-pointer' size={20} />
-                            </div>
-                            {
-                                active === i && (
-                                    <div 
-                                        ref={dropdownRef}
-                                        className={`absolute ${
-                                            i >= dummy_data.length - 2 ? '-top-[80px]' : 'top-full'
-                                        } right-0 mt-2 w-40 bg-gray-900 rounded-lg shadow-lg z-10`}>
-                                        <button className='w-full rounded-tr-lg rounded-tl-lg border-b border-b-gray-800 px-5 py-4 hover:bg-blue-600 hover:text-white flex items-center text-blue-600'>
-                                            <BiEdit size={16} />
-                                            <p className='text-xs ml-2'>EDIT</p>
-                                        </button>
-                                        <button className='w-full rounded-br-lg rounded-bl-lg px-5 py-4 hover:bg-red-600 hover:text-white flex items-center text-red-600'>
-                                            <MdDelete size={16} />
-                                            <p className='text-xs ml-2'>DELETE</p>
-                                        </button>
-                                    </div>
-                                )
-                            }
-                        </td>
+            <table className='w-full font-[SatoshiRegular] border-collapse'>
+                <thead>
+                    <tr className='text-gray-400 rounded-2xl text-sm'>
+                        <td className='py-4 px-4 rounded-s-2xl glassMorphism'>#</td>
+                        <td className='glassMorphism whitespace-normal break-words min-w-[250px]'>Market</td>
+                        <td className='glassMorphism'>Index price</td>
+                        <td className='glassMorphism'>Change</td>
+                        <td className='glassMorphism'>Market Cap</td>
+                        <td className='px-4 pl-0 rounded-r-2xl glassMorphism'></td>
                     </tr>
-                ))
-            }
-        </tbody>
-    </table>
-</div>
+                </thead>
+
+                <tbody>
+                    {
+                        dummy_data.map((data, i) => (
+                            <tr key={i}>
+                                <td className='text-gray-400 py-4 text-xs pl-3'>{(i + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}</td>
+                                <td className='pr-4 py-4 text-sm'>{data.title}</td>
+                                <td className='pr-4 py-4 text-sm'>{data.createdAt}</td>
+                                <td className='pr-4 py-4 text-sm whitespace-nowrap'>{data.authorName}</td>
+                                <td className='py-4 pr-0 text-sm'>{data.createdAt}</td>
+                                <td className='pl-2 py-4 pr-3 text-sm relative'>
+                                    <div className='flex justify-end'>
+                                        <PiDotsThreeOutlineVerticalFill onClick={() => setActive(active === i ? -1 : i)} className='cursor-pointer' size={20} />
+                                    </div>
+                                    {
+                                        active === i && (
+                                            <div 
+                                                ref={dropdownRef}
+                                                className={`absolute ${
+                                                    i >= dummy_data.length - 2 ? '-top-[80px]' : 'top-full'
+                                                } right-0 mt-2 w-40 bg-gray-900 rounded-lg shadow-lg z-10`}>
+                                                <button className='w-full rounded-tr-lg rounded-tl-lg border-b border-b-gray-800 px-5 py-4 hover:bg-blue-600 hover:text-white flex items-center text-blue-600'>
+                                                    <BiEdit size={16} />
+                                                    <p className='text-xs ml-2'>EDIT</p>
+                                                </button>
+                                                <button className='w-full rounded-br-lg rounded-bl-lg px-5 py-4 hover:bg-red-600 hover:text-white flex items-center text-red-600'>
+                                                    <MdDelete size={16} />
+                                                    <p className='text-xs ml-2'>DELETE</p>
+                                                </button>
+                                            </div>
+                                        )
+                                    }
+                                </td>
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </table>
+        </div>
 
 
     </div>
