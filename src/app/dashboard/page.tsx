@@ -29,12 +29,12 @@ const page = () => {
       timeUpdateFunc: (e)=> dispatch(setTimeOption(e)),
       headings: ["#", "Sender", "Amount", "Blockchain", "Blog Title", "Date"],
       dataKeys: [
-        { key:"id" }, 
-        { key:"userAddress", address:false }, 
+        { key:"id", autoIndex: true }, 
+        { key:"userAddress", address:true }, 
         { key:"amount" },
         { key: "chain" }, 
-        { key:"articleSlug", longText:false }, 
-        { key:"createdAt", time:false }
+        { key:"articleSlug", longText:true }, 
+        { key:"createdAt", time:true }
       ],
       data: dummy_gifts,
       actionBtn: true,

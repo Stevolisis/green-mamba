@@ -5,6 +5,7 @@ type dataKey = {
     time?: boolean,
     address?: boolean,
     longText?: boolean,
+    autoIndex?: boolean
 }
 
 type DataObject = {

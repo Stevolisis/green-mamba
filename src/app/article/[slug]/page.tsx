@@ -4,7 +4,6 @@ import { dummy_data, IBlog } from '@/dummy_data';
 import { useParams } from 'next/navigation';
 import Image from "next/image";
 import { FaGift, FaUserCircle } from "react-icons/fa";
-import { User } from '@/assets';
 import { formatDate } from '@/utils/fomateDate';
 
 type ISlug = {
@@ -41,7 +40,7 @@ const page = () => {
 
           <div>
             <h4 className='font-[SatoshiMedium] text-xs'>{ blog.authorName }</h4>
-            <p className='font-[SatoshiLight] text-[10px]'>{ formatDate(blog.createdAt) }</p>
+            <p className='font-[SatoshiLight] text-[10px]'>{ formatDate(blog.createdAt, false) }</p>
           </div>
         </div>
 
