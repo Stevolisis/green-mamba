@@ -8,17 +8,44 @@ import React, { useEffect } from 'react'
 import { BsBank2 } from 'react-icons/bs'
 import { IoNotifications } from 'react-icons/io5'
 import { MdArticle } from 'react-icons/md'
-import TableContainer from '../../components/Table/Container'
+import TableList from '../../components/Table/TableList'
+import { deleteListItem, setTable, setTimeOption } from '@/redux/slices/table'
 
 
 const page = () => {
   const dispatch = useAppDispatch();
-  const { currentMonth, currentYear} =useAppSelector(state => state.charts);
+  const { currentMonth, currentYear} = useAppSelector(state => state.charts);
 
   useEffect(()=>{
     dispatch(addChart({name:"Gifts",title:"Finance Report",data:dummy_gifts}));
     dispatch(addChart({name:"Gifters",title:"Finance Report",data:dummy_data}));
   },[dispatch, currentMonth, currentYear]);
+
+  useEffect(()=>{
+    dispatch(setTable({
+      title: "Financial History",
+      timeOptions: ["1D","1M","3M","1Y","ALL"],
+      currentTimeOption: "1M",
+      timeUpdateFunc: (e)=> dispatch(setTimeOption(e)),
+      headings: ["#", "Sender", "Amount", "Blockchain", "Blog Title", "Date"],
+      dataKeys: [
+        { key:"id" }, 
+        { key:"userAddress", address:false }, 
+        { key:"amount" },
+        { key: "chain" }, 
+        { key:"articleSlug", longText:false }, 
+        { key:"createdAt", time:false }
+      ],
+      data: dummy_gifts,
+      actionBtn: true,
+      actionFunc:{
+        edit: ()=> dispatch(deleteListItem(2)),
+        delete: (id:number)=> dispatch(deleteListItem(id)),
+      }
+    }));
+  },[]);
+
+
 
   return (
     <div className="px-4 sm:px-16 py-12 font-[SatoshiRegular]">
@@ -114,7 +141,7 @@ const page = () => {
 
       <HighChart name="Gifts"/>
 
-      <TableContainer/>
+      <TableList/>
     </div>
   )
 }

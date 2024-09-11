@@ -66,103 +66,131 @@ export const dummy_data: IBlog[] = [
 
 
 export interface IDummyGift {
+    id: number,
     userAddress: string;
     authorAddress: string;
     articleSlug: string;
     amount: number;
+    chain: string;
     createdAt: number;
 };
 
 export const dummy_gifts: IDummyGift[] = [
     {
+        id: 0,
         userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "What-Is-Bitcoin-Mining-And-Why-Is-It-Necessary",
         amount: 10,
+        chain: "ETH",
         createdAt: 1690896000,  
     },
     {
+        id: 1,
         userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "What-Is-Bitcoin-Mining-And-Why-Is-It-Necessary",
         amount: 10,
+        chain: "ETH",
         createdAt: 1690896000,  
     },
     {
+        id: 2,
         userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "What-Is-Bitcoin-Mining-And-Why-Is-It-Necessary",
         amount: 10,
+        chain: "ETH",
         createdAt: 1723905599,  
     },
     {
+        id: 3,
         userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "What-Investors-Should-Know-About-Crypto",
         amount: 10,
+        chain: "ETH",
         createdAt: 1723905599,  
     },
     {
+        id: 4,
         userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "What-Investors-Should-Know-About-Crypto",
         amount: 10,
+        chain: "ETH",
         createdAt: 1723905599,  
     },
     {
+        id: 5,
         userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "5-Tips-for-Beginner-Cryptocurrency-Traders",
         amount: 10,
+        chain: "ETH",
         createdAt: 1723905599,  
     },
     {
+        id: 6,
         userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "5-Tips-for-Beginner-Cryptocurrency-Traders",
         amount: 10,
+        chain: "ETH",
         createdAt: 1723905599,  
     },
     {
+        id: 7,
         userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "5-Tips-for-Beginner-Cryptocurrency-Traders",
         amount: 10,
+        chain: "ETH",
         createdAt: 1723905599,  
     },
     {
+        id: 8,
         userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "5-Tips-for-Beginner-Cryptocurrency-Traders",
         amount: 10,
+        chain: "ETH",
         createdAt: 1692710400,  
     },
     {
+        id: 9,
         userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "5-Tips-for-Beginner-Cryptocurrency-Traders",
         amount: 10,
+        chain: "ETH",
         createdAt: 1692710400,  
     },
     {
+        id: 10,
         userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "5-Tips-for-Beginner-Cryptocurrency-Traders",
         amount: 10,
+        chain: "ETH",
         createdAt: 1692710400,  
     },
     {
+        id: 11,
         userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "5-Tips-for-Beginner-Cryptocurrency-Traders",
         amount: 10,
+        chain: "ETH",
         createdAt: 1723905599,  
     },
     {
+        id: 12,
         userAddress: "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
         authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         articleSlug: "The-Next-Generation-Of-Collectibles-Non-Fungible-Tokens",
         amount: 10,
+        chain: "ETH",
         createdAt: 1693315200,  
     },
 ]
