@@ -37,11 +37,11 @@ const page = () => {
         { key:"createdAt", time:true }
       ],
       data: dummy_gifts,
-      actionBtn: true,
-      actionFunc:{
-        edit: ()=> dispatch(deleteListItem(2)),
-        delete: (id:number)=> dispatch(deleteListItem(id)),
-      }
+      actionBtn: false,
+      // actionFunc:{
+      //   edit: ()=> dispatch(deleteListItem(22)),
+      //   delete: (id:number)=> dispatch(deleteListItem(id)),
+      // }
     }));
   },[]);
 

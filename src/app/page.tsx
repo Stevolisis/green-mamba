@@ -39,8 +39,8 @@ export default function Home() {
 
       <div className="py-12 flex flex-wrap justify-center gap-12 sm:gap-7">
         {
-          dummy_data.map((blog:IBlog,i:number)=>(
-            <ArticleCard blog={blog}/>
+          dummy_data.map((blog:IBlog, i:number)=>(
+            <ArticleCard blog={blog} key={i} />
           ))
         }
       </div>

@@ -45,7 +45,7 @@ const DropDown = (props: Props) => {
                           <BiEdit size={16} />
                           <p className='text-xs ml-2'>EDIT</p>
                       </button>
-                      <button onClick={()=>actionFunc.delete(props.index)} className='w-full rounded-br-lg rounded-bl-lg px-5 py-4 hover:bg-red-600 hover:text-white flex items-center text-red-600'>
+                      <button onClick={()=> actionFunc.delete(props.index)} className='w-full rounded-br-lg rounded-bl-lg px-5 py-4 hover:bg-red-600 hover:text-white flex items-center text-red-600'>
                           <MdDelete size={16} />
                           <p className='text-xs ml-2'>DELETE</p>
                       </button>

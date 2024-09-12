@@ -13,8 +13,7 @@ type ISlug = {
 const page = () => {
   const { slug }:ISlug = useParams();
   const blog: IBlog = dummy_data.filter((blog: IBlog )=> blog.slug === slug )[0];
-  console.log(blog);
-  
+
   return (
     <div>
       <div className='pt-12 pb-6 sm:pb-4 px-4 sm:px-20'>

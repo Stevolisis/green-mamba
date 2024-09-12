@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from 'next/navigation';
 import { FaGift, FaTimes, FaUserAlt } from "react-icons/fa";
 import { IoNotifications } from "react-icons/io5";
 import { MdArticle } from "react-icons/md";
@@ -8,22 +9,25 @@ import { RiEditFill, RiLogoutBoxRFill } from "react-icons/ri";
 
 const Menu = () => {
   const [active, setActive] = useState<boolean>(false);
+  const router = useRouter();
 
-  const menuItems = [
-    { name: "Dashboard", icon: <FaUserAlt className="text-[20px] text-bgPrimary" />, active: false },
-    { name: "Articles", icon: <MdArticle className="text-[20px] text-bgPrimary" />, active: false },
-    { name: "Add Article", icon: <RiEditFill className="text-[20px] text-bgPrimary" />, active: false },
-    { name: "Gifts", icon: <FaGift className="text-[20px] text-bgPrimary" />, active: false },
-    { name: "Notification", icon: <IoNotifications className="text-[20px] text-bgPrimary" />, active: false },
-    { name: "Logout", icon: <RiLogoutBoxRFill className="text-[20px] text-bgPrimary" />, active: false },
-    // { name: "Help", icon: <FaUser className="text-[20px] text-bgPrimary" />, active: false },
-    // { name: "Contact", icon: <FaUser className="text-[20px] text-bgPrimary" />, active: false },
-    // { name: "About", icon: <FaUser className="text-[20px] text-bgPrimary" />, active: false },
+  interface IMenuItems{
+    name: string;
+    func: ()=> void;
+    icon: React.ReactNode;
+    active: boolean;
+  }
+  const menuItems:IMenuItems[] = [
+    { name: "Dashboard", func :()=>{ router.push("/dashboard"); setActive(false)}, icon: <FaUserAlt className="text-[20px] text-bgPrimary" />, active: false },
+    { name: "Articles", func :()=>{ router.push("/dashboard/articles"); setActive(false)}, icon: <MdArticle className="text-[20px] text-bgPrimary" />, active: false },
+    { name: "Add Article", func :()=>{ router.push("/gifts"); setActive(false)}, icon: <RiEditFill className="text-[20px] text-bgPrimary" />, active: false },
+    { name: "Gifts", func :()=>{ router.push("/dashboard/gifts"); setActive(false)}, icon: <FaGift className="text-[20px] text-bgPrimary" />, active: false },
+    { name: "Notification", func :()=>{ router.push("/dashboard/notifications"); setActive(false)}, icon: <IoNotifications className="text-[20px] text-bgPrimary" />, active: false },
+    { name: "Logout", func :()=>{ router.push("/gifts"); setActive(false)}, icon: <RiLogoutBoxRFill className="text-[20px] text-bgPrimary" />, active: false },
   ];
 
   return (
     <>
-      {/* Blur background when active */}
       <div
         className={`${
           active ? "glassMorphism !flex" : "hidden"
@@ -49,7 +53,7 @@ const Menu = () => {
               }`}
 
             >
-              <button className="bg-bgSecondary text-slideUp rounded-full w-[70px] h-[70px] flex justify-center items-center mb-2">
+              <button onClick={item.func} className="bg-bgSecondary text-slideUp rounded-full w-[70px] h-[70px] flex justify-center items-center mb-2">
                 {item.icon}
               </button>
               <p className="text-white text-xs font-[SatoshiRegular]">{item.name}</p>

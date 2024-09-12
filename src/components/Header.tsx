@@ -8,9 +8,8 @@ import { useState } from "react";
 import { FaWallet } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
 
-type Props = {}
 
-const Header = (props: Props) => {
+const Header = () => {
   const [active, setActive]= useState(1);
   const address:string = useAppSelector((state)=>state.profile.address);
   const dispatch = useAppDispatch();

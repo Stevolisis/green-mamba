@@ -2,56 +2,67 @@ import { Blog1, Blog2, Blog3, Blog4 } from "@/assets";
 import { StaticImageData } from 'next/image';
 
 export interface IBlog{
+    id: number,
     image: StaticImageData;
     title: string;
     slug: string;
     description: string;
     tags ?: string[],
     authorName: string;
+    authorAddress: string;
     gifts: number;
     content: string;
     createdAt: number;
 }
+
 export const dummy_data: IBlog[] = [
     {
+        id: 0,
         image: Blog1,
         title: "5 Tips for Beginner Cryptocurrency Traders",
         slug: "5-Tips-for-Beginner-Cryptocurrency-Traders",
         description: "5 things to know to get started in crypto trading",
         authorName: "Steven Joseph",
+        authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         tags: ["Crypto", "Finance", "Stocks"],
         gifts: 43,
         content: "Aliquet urna dictum metus eu velit lobortis elit quam donec sociosqu blandit est praesent molestie euismod eleifend sapien augue montes commodo morbi rhoncus neque orci bibendum elementum si duis primis inceptos sit nam fusce nunc tellus",
         createdAt: 1723905599
     },
     {
+        id: 1,
         image: Blog2,
         title: "What Investors Should Know About Crypto",
         slug: "What-Investors-Should-Know-About-Crypto",
         description: "The essentials of understanding digital assets as a novel asset class",
         authorName: "Lydia Samson",
+        authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         tags: ["Finance", "Web3", "Stock Market"],
         gifts: 43,
         content: "Aliquet urna dictum metus eu velit lobortis elit quam donec sociosqu blandit est praesent molestie euismod eleifend sapien augue montes commodo morbi rhoncus neque orci bibendum elementum si duis primis inceptos sit nam fusce nunc tellus",
         createdAt: 1690896000
     },
     {
+        id: 2,
         image: Blog3,
         title: "The Next Generation Of Collectibles: Non-Fungible Tokens",
         slug: "The-Next-Generation-Of-Collectibles-Non-Fungible-Tokens",
         description: "What are NFTs and why have they become so popular so quickly?",
         authorName: "Adams Shaw",
+        authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         tags: ["Crypto", "Web3", "NFTs"],
         gifts: 43,
         content: "Aliquet urna dictum metus eu velit lobortis elit quam donec sociosqu blandit est praesent molestie euismod eleifend sapien augue montes commodo morbi rhoncus neque orci bibendum elementum si duis primis inceptos sit nam fusce nunc tellus",
         createdAt: 1723905599
     },
     {
+        id: 3,
         image: Blog4,
         title: "What Is Bitcoin Mining And Why Is It Necessary?",
         slug: "What-Is-Bitcoin-Mining-And-Why-Is-It-Necessary",
         description: "How are transaction processed and where do new coins come from?",
         authorName: "Michael Randy",
+        authorAddress: "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         tags: ["Bitcoin", "Blockchain", "Binance"],
         gifts: 43,
         content: "Aliquet urna dictum metus eu velit lobortis elit quam donec sociosqu blandit est praesent molestie euismod eleifend sapien augue montes commodo morbi rhoncus neque orci bibendum elementum si duis primis inceptos sit nam fusce nunc tellus",
