@@ -27,7 +27,7 @@ const TableList = () => {
                       <DataList/>
                     </>
                   : 
-                  <div className='flex items-center justify-center text-gray-400 gap-2 font-[SatoshiRegular]'>
+                  <div className='flex items-center justify-center md:mt-5 text-gray-400 gap-2 font-[SatoshiRegular]'>
                     <FaHistory />
                     <h2>No Recent History</h2>
                   </div>

@@ -1,9 +1,5 @@
-import { dummy_data } from '@/dummy_data'
 import { useAppSelector } from '@/redux/hooks'
-import React, { useEffect, useRef, useState } from 'react'
-import { BiEdit } from 'react-icons/bi'
-import { MdDelete } from 'react-icons/md'
-import { PiDotsThreeOutlineVerticalFill } from 'react-icons/pi'
+import React from 'react'
 import DropDown from './DropDown'
 import { formatDate } from '@/utils/fomateDate'
 import { minifyAddress } from '@/utils/minifyAddress'
@@ -36,7 +32,7 @@ const DataList = () => {
                             </td>
                         ))
                     }
-                    {actionBtn && <DropDown i={i} />}
+                    {actionBtn && <DropDown index={data[i].id} />}
                 </tr>
             ))
         }

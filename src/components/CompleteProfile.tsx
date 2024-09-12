@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { FaUser } from 'react-icons/fa'
 
 export interface IFormData {
     name:string;
