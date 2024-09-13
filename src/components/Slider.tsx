@@ -3,11 +3,12 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import React from 'react'
 import CompleteProfile from './CompleteProfile';
 import { FaTimesCircle } from 'react-icons/fa';
-import { showSlide } from '@/redux/slices/profile';
+import { showSlide } from '@/redux/slices/slider';
+import EditArticle from './EditArticle';
 
 
 const Slider = () => {
-  const { slideUp, type } = useAppSelector((state)=> state.profile);
+  const { slideUp, type } = useAppSelector((state)=> state.slider);
   const dispatch = useAppDispatch();
 
   return (
@@ -27,7 +28,9 @@ const Slider = () => {
         {
           type === "complete_profile" ? 
             <CompleteProfile/>
-          : ""
+          : type === "edit_article" ? 
+            <EditArticle/>
+        : ""
         }
       </div>
     </>

@@ -13,15 +13,15 @@ const initialState:IInitialstate = {
   address:""
 }
 
-export const profileSlice = createSlice({
-  name: 'profile',
+export const sliderSlice = createSlice({
+  name: 'slider',
   initialState,
   reducers: {
     showSlide: (state) => {
       state.slideUp = !state.slideUp;
     },
     setType: (state, {payload})=>{
-      state.type = payload.type;
+      state.type = payload;
     },
     setAddress: (state, {payload})=>{
       state.address = payload;
@@ -30,6 +30,6 @@ export const profileSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { showSlide, setType, setAddress } = profileSlice.actions
+export const { showSlide, setType, setAddress } = sliderSlice.actions
 
-export default profileSlice.reducer // EXPORT Slice reducer
+export default sliderSlice.reducer // EXPORT Slice reducer

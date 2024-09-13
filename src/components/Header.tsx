@@ -1,7 +1,7 @@
 "use client"
 import { Logo } from "@/assets";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { setAddress, setType, showSlide } from "@/redux/slices/profile";
+import { setAddress, setType, showSlide } from "@/redux/slices/slider";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -11,13 +11,13 @@ import { useRouter } from 'next/navigation';
 
 const Header = () => {
   const [active, setActive]= useState(1);
-  const address:string = useAppSelector((state)=>state.profile.address);
+  const address:string = useAppSelector((state)=>state.slider.address);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
   function handleClick(){
     dispatch(showSlide());
-    dispatch(setType({type:"complete_profile"}));
+    dispatch(setType("complete_profile"));
     dispatch(setAddress("0x5B38Da6a701c568545dCfcB03FcB875f56beddC4"));
   }
 

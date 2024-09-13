@@ -32,7 +32,7 @@ const DataList = () => {
                             </td>
                         ))
                     }
-                    {actionBtn && <DropDown index={data[i].id} />}
+                    {actionBtn && <DropDown id={data[i].id} />}
                 </tr>
             ))
         }

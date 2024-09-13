@@ -11,7 +11,7 @@ const Headers = (props: Props) => {
         <tr className='text-gray-400 rounded-2xl text-sm'>
             {
               headings.map((heading, i)=>(
-                <td className={`glassMorphism   
+                <td key={i} className={`glassMorphism   
                   ${
                     i === 0 ? "py-4 px-4 rounded-s-2xl " :   
                     !actionBtn && i === headings.length - 1 ? "px-4 pl-0 rounded-r-2xl " 

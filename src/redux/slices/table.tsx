@@ -8,7 +8,7 @@ type dataKey = {
     autoIndex?: boolean
 }
 
-type DataObject = {
+export type DataObject = {
     id: number;
     [key: string]: any; // This allows for additional fields of any type
 };
@@ -25,7 +25,7 @@ interface IInitialState{
     data: DataObject[];
     actionBtn: boolean;
     actionFunc?: {
-        "edit": (id:number)=> void;
+        "edit": (data: DataObject[], id:number)=> void;
         "delete": (id:number)=> void;
     }
 }

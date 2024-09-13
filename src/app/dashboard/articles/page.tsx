@@ -1,8 +1,10 @@
 "use client"
 import TableList from '@/components/Table/TableList';
 import { dummy_data, dummy_gifts } from '@/dummy_data';
-import { useAppDispatch } from '@/redux/hooks';
-import { deleteListItem, setTable, setTimeOption } from '@/redux/slices/table';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { setArticle } from '@/redux/slices/article';
+import { setType, showSlide } from '@/redux/slices/slider';
+import { DataObject, deleteListItem, setTable, setTimeOption } from '@/redux/slices/table';
 import React, { useEffect } from 'react'
 
 type Props = {}
@@ -27,12 +29,17 @@ const page = (props: Props) => {
           data: dummy_data,
           actionBtn: true,
           actionFunc:{
-            edit: ()=> dispatch(deleteListItem(22)),
+            edit: (data: DataObject[], id: number)=> {
+              dispatch(setArticle({data: data, id: id}));
+              dispatch(showSlide());
+              dispatch(setType("edit_article"));
+            },
             delete: (id:number)=> dispatch(deleteListItem(id)),
           }
         }));
     },[]);
-    
+
+
   return (
     <div className='px-4 sm:px-16 py-12 pt-0 font-[SatoshiRegular]'>
         <TableList/>

@@ -1,10 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } from 'redux-persist';
-import profileSlice from './slices/profile';
+import sliderSlice from './slices/slider';
 import counterSlice from './slices/counter';
 import chart from './slices/chart';
 import table from './slices/table';
+import article from './slices/article';
 
 
 const persistConfig = {
@@ -16,9 +17,10 @@ const persistConfig = {
 
 const combinedReducers = combineReducers({
   counter: counterSlice,
-  profile: profileSlice,
+  slider: sliderSlice,
   charts: chart,
   table: table,
+  article: article,
 });
 
 
