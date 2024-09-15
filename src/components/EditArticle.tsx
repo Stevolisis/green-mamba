@@ -1,41 +1,107 @@
 import { useAppSelector } from '@/redux/hooks';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import Multiselect from 'multiselect-react-dropdown';
+import CustomMultiselect from './CustomMultiselect';
+import CustomTextEditor from './CustomTextEditor';
 
 export interface IFormData {
-    name:string;
-    title:string;
-    description:string
+    title: string;
+    image: File | null;
+    description: string;
+    tags: string[];
+    content: string;
 }
 
 const EditArticle = () => {
-    const [formData, setFormData] = useState<IFormData>({ name:"", title:"", description:"" });
-    const { article } = useAppSelector(state => state.article);
+    const { article, keyWords } = useAppSelector(state => state.article);
+    const [formData, setFormData] = useState<IFormData>({
+        title: "",
+        image: null,
+        description: "",
+        tags: [],
+        content: ""
+    });
+
+    const handleTagSelect = (selectedList: any, selectedItem: any) => {
+        const selectedTags = selectedList.map((item: any) => item);
+        setFormData({ ...formData, tags: selectedTags });
+    };
+
+    const handleTagRemove = (selectedList: any, removedItem: any) => {
+        const remainingTags = selectedList.map((item: any) => item);
+        setFormData({ ...formData, tags: remainingTags });
+    };
+
+    const onEDTChange = (e: any) => {
+        setFormData({ ...formData, content: e });
+    };
+
+    console.log(formData)
+    
+    useEffect(() => {
+        if (article) {
+            setFormData({
+                ...formData,
+                title: article.title,
+                description: article.description,
+                tags: article.tags || [],
+                content: article.content
+            });
+        }
+    }, [article]);
+
 
     return (
         <>
-            <form className='w-full sm:w-[55vw] pt-16 pb-5 px-4 flex flex-col justify-start items-center'>
-                <h1 className='mb-5 font-[SatoshiMedium] text-3xl'>Edit Article</h1>
-                
-                <input className='mb-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary 
-                    focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5' type="text" placeholder="Title e.g Introduction to AI" 
-                    value={article?.title} onChange={(e)=> setFormData({...formData, name:e.target.value})}/>
+            <form className="w-full sm:w-[55vw] pt-16 pb-5 px-4 flex flex-col justify-start items-center">
+                <h1 className="mb-5 font-[SatoshiMedium] text-3xl">Edit Article</h1>
 
-                <textarea className='h-[250px] my-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary 
-                    focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5' maxLength={123} placeholder="Description e.g AI is the future and everybody loves it..." 
-                    value={article?.description} onChange={(e)=> setFormData({...formData, description:e.target.value})}/>
+                <input
+                    className="mb-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
+                    type="text"
+                    placeholder="Title e.g Introduction to AI"
+                    value={formData.title}
+                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                />
 
-                <textarea className='h-[250px] my-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary 
-                    focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5' maxLength={123} placeholder="Content e.g AI has taken over humans, many have integrated AI in their daily life activity..." 
-                    value={article?.content} onChange={(e)=> setFormData({...formData, description:e.target.value})}/>
+                <textarea
+                    className="h-[250px] my-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
+                    maxLength={80}
+                    placeholder="Description e.g AI is the future and everybody loves it..."
+                    value={formData.description}
+                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                />
+
+                <CustomTextEditor 
+                    value = { formData.content }
+                    onEDTChange={ onEDTChange }
+                    placeholder= 'please type here...'
+                />
+
+
+                <CustomMultiselect 
+                    options={keyWords} 
+                    onSelect={handleTagSelect} 
+                    onRemove={handleTagRemove} 
+                    placeholder='Select Keywords'
+                />
+
+                <div className='my-5 w-full'>
+                    <p className=' mb-1 text-sm'>Image</p>
+                    <input
+                        className="font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
+                        placeholder="Content e.g AI has taken over humans, many have integrated AI in their daily life activity..."
+                        type='file'
+                        onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                    />
+                </div>
 
                 <button className="w-full font-[SatoshiMedium] flex gap-2 justify-center items-center text-base text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
-                    {/* <FaUser className="text-lg" /> */}
-                    <p className="pl-2">Complete Profile</p>
+                    <p className="pl-2">Update Article</p>
                 </button>
             </form>
-
         </>
-    )
-}
+    );
+};
 
-export default EditArticle
+export default EditArticle;

@@ -83,13 +83,15 @@ body {
     src: url(/fonts/Satoshi-Light.otf);
   }
 
-  
 
+.sun-editor{
+  border-radius: 0.5rem !important;
+}
 
-
-
-
-
+.option:hover{
+  background-color: #02462d !important;
+  color: white !important;
+}
 
 
 

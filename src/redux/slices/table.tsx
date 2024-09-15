@@ -1,3 +1,4 @@
+import { IBlog } from "@/dummy_data";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 type dataKey = {
@@ -25,7 +26,7 @@ interface IInitialState{
     data: DataObject[];
     actionBtn: boolean;
     actionFunc?: {
-        "edit": (data: DataObject[], id:number)=> void;
+        "edit": (data: IBlog[], id:number)=> void;
         "delete": (id:number)=> void;
     }
 }

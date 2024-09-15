@@ -7,7 +7,7 @@ export interface IBlog{
     title: string;
     slug: string;
     description: string;
-    tags ?: string[],
+    tags: string[],
     authorName: string;
     authorAddress: string;
     gifts: number;

@@ -1,6 +1,6 @@
 "use client"
 import TableList from '@/components/Table/TableList';
-import { dummy_data, dummy_gifts } from '@/dummy_data';
+import { IBlog, dummy_data, dummy_gifts } from '@/dummy_data';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { setArticle } from '@/redux/slices/article';
 import { setType, showSlide } from '@/redux/slices/slider';
@@ -29,7 +29,7 @@ const page = (props: Props) => {
           data: dummy_data,
           actionBtn: true,
           actionFunc:{
-            edit: (data: DataObject[], id: number)=> {
+            edit: (data: IBlog[], id: number)=> {
               dispatch(setArticle({data: data, id: id}));
               dispatch(showSlide());
               dispatch(setType("edit_article"));
