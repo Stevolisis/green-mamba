@@ -56,21 +56,29 @@ const EditArticle = () => {
             <form className="w-full sm:w-[55vw] pt-16 pb-5 px-4 flex flex-col justify-start items-center">
                 <h1 className="mb-5 font-[SatoshiMedium] text-3xl">Edit Article</h1>
 
-                <input
-                    className="mb-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
-                    type="text"
-                    placeholder="Title e.g Introduction to AI"
-                    value={formData.title}
-                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                />
+                <div className='my-5 w-full'>
+                    <p className=' ml-1 mb-1 text-sm'>Title</p>
+                    <input
+                        className="mb-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
+                        type="text"
+                        placeholder="Title e.g Introduction to AI"
+                        value={formData.title}
+                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                    />
+                </div>
 
-                <textarea
-                    className="h-[250px] my-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
-                    maxLength={80}
-                    placeholder="Description e.g AI is the future and everybody loves it..."
-                    value={formData.description}
-                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                />
+
+                <div className='my-5 w-full'>
+                    <p className='ml-1 mb-1 text-sm'>Description</p>
+                    <textarea
+                        className="h-[250px] mb-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
+                        maxLength={80}
+                        placeholder="Description e.g AI is the future and everybody loves it..."
+                        value={formData.description}
+                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    />
+                </div>
+
 
                 <CustomTextEditor 
                     value = { formData.content }
@@ -78,16 +86,19 @@ const EditArticle = () => {
                     placeholder= 'please type here...'
                 />
 
+                <div className='my-5 w-full'>
+                    <p className=' ml-1 mb-1 text-sm'>Keywords</p>
+                    <CustomMultiselect 
+                        options={keyWords} 
+                        onSelect={handleTagSelect} 
+                        onRemove={handleTagRemove} 
+                        placeholder='Select Keywords'
+                    />
+                </div>
 
-                <CustomMultiselect 
-                    options={keyWords} 
-                    onSelect={handleTagSelect} 
-                    onRemove={handleTagRemove} 
-                    placeholder='Select Keywords'
-                />
 
                 <div className='my-5 w-full'>
-                    <p className=' mb-1 text-sm'>Image</p>
+                    <p className=' ml-1 mb-1 text-sm'>Image</p>
                     <input
                         className="font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
                         placeholder="Content e.g AI has taken over humans, many have integrated AI in their daily life activity..."
