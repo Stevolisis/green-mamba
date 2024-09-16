@@ -27,8 +27,6 @@ const initialState:IInitialState = {
     ],
 }
 
-type UpdatableBlogKeys = 'title' | 'description' | 'content' | 'image' | 'tags';
-type UpdatableBlogValue = string | string[] | StaticImageData;
 
 export const articleSlice = createSlice({
     name: "article",

@@ -1,8 +1,9 @@
-import { useAppSelector } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import React, { useEffect, useState } from 'react';
 import Multiselect from 'multiselect-react-dropdown';
 import CustomMultiselect from './CustomMultiselect';
 import CustomTextEditor from './CustomTextEditor';
+import { showNotification } from '@/redux/slices/notification';
 
 export interface IFormData {
     title: string;
@@ -21,6 +22,7 @@ const EditArticle = () => {
         tags: [],
         content: ""
     });
+    const dispatch = useAppDispatch();
 
     const handleTagSelect = (selectedList: any, selectedItem: any) => {
         const selectedTags = selectedList.map((item: any) => item);
@@ -36,24 +38,27 @@ const EditArticle = () => {
         setFormData({ ...formData, content: e });
     };
 
-    console.log(formData)
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        dispatch(showNotification({ message: 'Article updated successfully', type: 'success' }));
+    };
     
     useEffect(() => {
-        if (article) {
+        if (article && formData.title === "") { 
             setFormData({
-                ...formData,
-                title: article.title,
-                description: article.description,
+                title: article.title || "",
+                image: null, 
+                description: article.description || "",
                 tags: article.tags || [],
-                content: article.content
+                content: article.content || ""
             });
         }
-    }, [article]);
+    }, [article, formData.title]);
 
 
     return (
         <>
-            <form className="w-full sm:w-[55vw] pt-16 pb-5 px-4 flex flex-col justify-start items-center">
+            <form onSubmit={(e)=>handleSubmit(e)} className="w-full sm:w-[55vw] pt-16 pb-5 px-4 flex flex-col justify-start items-center">
                 <h1 className="mb-5 font-[SatoshiMedium] text-3xl">Edit Article</h1>
 
                 <div className='my-5 w-full'>

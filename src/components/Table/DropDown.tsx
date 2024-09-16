@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { BiEdit } from 'react-icons/bi'
 import { MdDelete } from 'react-icons/md'
 import { PiDotsThreeOutlineVerticalFill } from 'react-icons/pi'
+import { IBlog } from "@/dummy_data";
 
 type Props = {
   id:number
@@ -12,7 +13,28 @@ const DropDown = (props: Props) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<number>(-1)
   const { data, actionFunc } = useAppSelector(state => state.table);
+  const isIBlogArray = (arr: any[]): arr is IBlog[] => {
+    return arr.every(item => 
+      'id' in item &&
+      'image' in item &&
+      'title' in item &&
+      'slug' in item &&
+      'description' in item &&
+      'tags' in item &&
+      'authorName' in item &&
+      'authorAddress' in item &&
+      'gifts' in item &&
+      'content' in item &&
+      'createdAt' in item
+    );
+  };
 
+  let blogs: IBlog[] = [];
+
+  // Only assign `data` to `blogs` if it passes the type guard
+  if (isIBlogArray(data)) {
+    blogs = data;
+  }
   
   useEffect(() => {
     const handleClickOutside = (event:MouseEvent) => {
@@ -41,7 +63,7 @@ const DropDown = (props: Props) => {
                       className={`absolute ${
                           props.id >= data.length - 2 ? '-top-[80px]' : 'top-full'
                       } right-0 mt-2 w-40 bg-gray-900 rounded-lg shadow-lg z-10`}>
-                      <button onClick={()=> actionFunc.edit(data, props.id)} className='w-full rounded-tr-lg rounded-tl-lg border-b border-b-gray-800 px-5 py-4 hover:bg-blue-600 hover:text-white flex items-center text-blue-600'>
+                      <button onClick={()=> actionFunc.edit(blogs, props.id)} className='w-full rounded-tr-lg rounded-tl-lg border-b border-b-gray-800 px-5 py-4 hover:bg-blue-600 hover:text-white flex items-center text-blue-600'>
                           <BiEdit size={16} />
                           <p className='text-xs ml-2'>EDIT</p>
                       </button>

@@ -23,7 +23,7 @@ interface IInitialState{
     timeUpdateFunc?: (e:string)=> void,
     headings: string[];
     dataKeys: dataKey[];
-    data: DataObject[];
+    data: DataObject[] | IBlog[];
     actionBtn: boolean;
     actionFunc?: {
         "edit": (data: IBlog[], id:number)=> void;
