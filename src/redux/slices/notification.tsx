@@ -3,13 +3,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface NotificationState {
   message: string;
   type: 'success' | 'error' | 'info';
-  visible: boolean;
 }
 
 const initialState: NotificationState = {
   message: '',
   type: 'info',
-  visible: false,
 };
 
 const notificationSlice = createSlice({
@@ -19,10 +17,10 @@ const notificationSlice = createSlice({
     showNotification: (state, action: PayloadAction<{ message: string; type: 'success' | 'error' | 'info' }>) => {
       state.message = action.payload.message;
       state.type = action.payload.type;
-      state.visible = true;
     },
     hideNotification: (state) => {
-      state.visible = false;
+        state.message = "";
+        state.type = "info";    
     },
   },
 });

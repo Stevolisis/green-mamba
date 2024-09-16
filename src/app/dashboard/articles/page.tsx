@@ -3,6 +3,7 @@ import TableList from '@/components/Table/TableList';
 import { IBlog, dummy_data, dummy_gifts } from '@/dummy_data';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import article, { setArticle } from '@/redux/slices/article';
+import { showNotification } from '@/redux/slices/notification';
 import { setType, showSlide } from '@/redux/slices/slider';
 import { DataObject, deleteListItem, setTable, setTimeOption } from '@/redux/slices/table';
 import React, { useEffect } from 'react'
@@ -34,7 +35,10 @@ const page = (props: Props) => {
               dispatch(showSlide());
               dispatch(setType("edit_article"));
             },
-            delete: (id:number)=> dispatch(deleteListItem(id)),
+            delete: (id:number)=> {
+              dispatch(deleteListItem(id));
+              dispatch(showNotification({ message: 'Article deleted successfully', type: 'error' }));
+            },
           }
         }));
     },[article]);
