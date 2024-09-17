@@ -19,7 +19,7 @@ const Slider = () => {
         ${
           slideUp ? "transform translate-y-0" : "transform translate-y-full"
         } 
-        overflow-auto scrollbar-none sm:scrollbar-thin !z-[52] flex flex-col justify-start items-center w-full fixed h-[75vh] sm:h-[96vh] bottom-0 rounded-tr-[28px] 
+        overflow-auto scrollbar-none sm:scrollbar-thin !z-[52] flex flex-col justify-start items-center w-full fixed h-[85vh] sm:h-[96vh] bottom-0 rounded-tr-[28px] 
         rounded-tl-[28px] bg-slideUp`}
       >
         <button className='absolute right-6 top-6' onClick={()=> dispatch(showSlide())}>
@@ -30,7 +30,7 @@ const Slider = () => {
             <CompleteProfile/>
           : type === "edit_article" ? 
             <EditArticle/>
-        : ""
+          : ""
         }
       </div>
     </>

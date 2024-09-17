@@ -1,9 +1,9 @@
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import React, { useEffect, useState } from 'react';
-import Multiselect from 'multiselect-react-dropdown';
 import CustomMultiselect from './CustomMultiselect';
 import CustomTextEditor from './CustomTextEditor';
 import { showNotification } from '@/redux/slices/notification';
+import Loader from './Loader';
 
 export interface IFormData {
     title: string;
@@ -15,6 +15,7 @@ export interface IFormData {
 
 const EditArticle = () => {
     const { article, keyWords } = useAppSelector(state => state.article);
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
     const [formData, setFormData] = useState<IFormData>({
         title: "",
         image: null,
@@ -40,6 +41,7 @@ const EditArticle = () => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
+        setIsLoading(!isLoading);
         dispatch(showNotification({ message: 'Article updated successfully', type: 'success' }));
     };
     
@@ -116,7 +118,11 @@ const EditArticle = () => {
                 </div>
 
                 <button className="w-full font-[SatoshiMedium] flex gap-2 justify-center items-center text-base text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
-                    <p className="pl-2">Update Article</p>
+                    {
+                        isLoading ? 
+                            <Loader size={20} color='#01140d' /> :
+                            <p className="pl-2">Update Article</p>
+                    }
                 </button>
             </form>
         </>
