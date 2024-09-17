@@ -5,6 +5,7 @@ import CompleteProfile from './CompleteProfile';
 import { FaTimesCircle } from 'react-icons/fa';
 import { showSlide } from '@/redux/slices/slider';
 import EditArticle from './EditArticle';
+import AddArticle from './AddArticle';
 
 
 const Slider = () => {
@@ -19,8 +20,8 @@ const Slider = () => {
         ${
           slideUp ? "transform translate-y-0" : "transform translate-y-full"
         } 
-        overflow-auto scrollbar-none sm:scrollbar-thin !z-[52] flex flex-col justify-start items-center w-full fixed h-[85vh] sm:h-[96vh] bottom-0 rounded-tr-[28px] 
-        rounded-tl-[28px] bg-slideUp`}
+        overflow-auto scrollbar-none sm:scrollbar-thin !z-[52] flex flex-col justify-start items-center w-full fixed h-[83vh] sm:h-[96vh] bottom-0 rounded-tr-[40px] 
+        rounded-tl-[40px] bg-slideUp`}
       >
         <button className='absolute right-6 top-6' onClick={()=> dispatch(showSlide())}>
           <FaTimesCircle size={26} className='text-bgSecondary'/>
@@ -28,8 +29,10 @@ const Slider = () => {
         {
           type === "complete_profile" ? 
             <CompleteProfile/>
-          : type === "edit_article" ? 
+          : type === "edit_article" ?
             <EditArticle/>
+          : type === "add_article" ? 
+            <AddArticle/>
           : ""
         }
       </div>

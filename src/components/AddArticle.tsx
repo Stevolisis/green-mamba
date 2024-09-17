@@ -13,8 +13,8 @@ export interface IFormData {
     content: string;
 }
 
-const EditArticle = () => {
-    const { article, keyWords } = useAppSelector(state => state.article);
+const AddArticle = () => {
+    const { keyWords } = useAppSelector(state => state.article);
     const [ isLoading, setIsLoading ] = useState<boolean>(false);
     const [formData, setFormData] = useState<IFormData>({
         title: "",
@@ -42,28 +42,14 @@ const EditArticle = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         setIsLoading(!isLoading);
-        dispatch(showNotification({ message: 'Article updated successfully', type: 'success' }));
+        dispatch(showNotification({ message: 'Article created successfully', type: 'success' }));
     };
     
-    useEffect(() => {
-        if (article && (formData.title !== article.title)) { 
-            setFormData({
-                title: article.title || "",
-                image: null, 
-                description: article.description || "",
-                tags: article.tags || [],
-                content: article.content || ""
-            });
-        }
-
-    }, [article, formData.title]);
-
-    console.log("form.. ",formData.image)
 
     return (
         <>
             <form onSubmit={(e)=>handleSubmit(e)} className="w-full sm:w-[55vw] pt-16 pb-5 px-4 flex flex-col justify-start items-center">
-                <h1 className="mb-5 font-[SatoshiMedium] text-3xl">Edit Article</h1>
+                <h1 className="mb-5 font-[SatoshiMedium] text-3xl">Add Article</h1>
 
                 <div className='my-5 w-full'>
                     <p className=' ml-1 mb-1 text-sm'>Title</p>
@@ -121,7 +107,7 @@ const EditArticle = () => {
                     {
                         isLoading ? 
                             <Loader size={24} color='#01140d' /> :
-                            <p className="pl-2">Update Article</p>
+                            <p className="pl-2">Add Article</p>
                     }
                 </button>
             </form>
@@ -129,4 +115,4 @@ const EditArticle = () => {
     );
 };
 
-export default EditArticle;
+export default AddArticle;

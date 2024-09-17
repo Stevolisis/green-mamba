@@ -6,10 +6,14 @@ import { IoNotifications } from "react-icons/io5";
 import { MdArticle } from "react-icons/md";
 import { PiDotsThreeOutlineVerticalFill } from "react-icons/pi";
 import { RiEditFill, RiLogoutBoxRFill } from "react-icons/ri";
+import { useAppDispatch } from "@/redux/hooks";
+import { setType, showSlide } from "@/redux/slices/slider";
+import { showNotification } from "@/redux/slices/notification";
 
 const Menu = () => {
   const [active, setActive] = useState<boolean>(false);
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   interface IMenuItems{
     name: string;
@@ -20,10 +24,10 @@ const Menu = () => {
   const menuItems:IMenuItems[] = [
     { name: "Dashboard", func :()=>{ router.push("/dashboard"); setActive(false)}, icon: <FaUserAlt className="text-[20px] text-bgPrimary" />, active: false },
     { name: "Articles", func :()=>{ router.push("/dashboard/articles"); setActive(false)}, icon: <MdArticle className="text-[20px] text-bgPrimary" />, active: false },
-    { name: "Add Article", func :()=>{ router.push("/gifts"); setActive(false)}, icon: <RiEditFill className="text-[20px] text-bgPrimary" />, active: false },
+    { name: "Add Article", func :()=>{ dispatch(showSlide()); dispatch(setType("add_article")); setActive(false)}, icon: <RiEditFill className="text-[20px] text-bgPrimary" />, active: false },
     { name: "Gifts", func :()=>{ router.push("/dashboard/gifts"); setActive(false)}, icon: <FaGift className="text-[20px] text-bgPrimary" />, active: false },
     { name: "Notification", func :()=>{ router.push("/dashboard/notifications"); setActive(false)}, icon: <IoNotifications className="text-[20px] text-bgPrimary" />, active: false },
-    { name: "Logout", func :()=>{ router.push("/gifts"); setActive(false)}, icon: <RiLogoutBoxRFill className="text-[20px] text-bgPrimary" />, active: false },
+    { name: "Logout", func :()=>{ router.push("/"); dispatch(showNotification({ message: 'Logged Out Successfully', type: 'success' })); setActive(false)}, icon: <RiLogoutBoxRFill className="text-[20px] text-bgPrimary" />, active: false },
   ];
 
   return (
