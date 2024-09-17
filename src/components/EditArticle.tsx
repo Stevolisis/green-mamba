@@ -56,6 +56,7 @@ const EditArticle = () => {
 
     }, [article, formData.title]);
 
+    console.log("form.. ",formData.image)
 
     return (
         <>
@@ -110,7 +111,7 @@ const EditArticle = () => {
                         className="font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
                         placeholder="Content e.g AI has taken over humans, many have integrated AI in their daily life activity..."
                         type='file'
-                        onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                        onChange={(e) => setFormData({ ...formData, image: e.target.files?.[0] || null })}
                     />
                 </div>
 

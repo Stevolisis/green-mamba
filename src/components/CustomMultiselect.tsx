@@ -43,8 +43,8 @@ const CustomMultiselect: React.FC<CustomMultiselectProps> = ({
                     },
                     
                     chips: {
-                        backgroundColor: '#00ff95',
-                        color: '#01140d',
+                        backgroundColor: '#36454F',
+                        color: 'white',
                         fontWeight: '500',
                         padding: '0.25rem 0.75rem',
                         borderRadius: '0.5rem',
