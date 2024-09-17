@@ -3,6 +3,7 @@ import Multiselect from 'multiselect-react-dropdown';
 
 interface CustomMultiselectProps {
     options: string[];
+    defaultVal?: string[];
     onSelect: (selectedList: any, selectedItem: any) => void;
     onRemove: (selectedList: any, removedItem: any) => void;
     placeholder: string;
@@ -10,6 +11,7 @@ interface CustomMultiselectProps {
 
 const CustomMultiselect: React.FC<CustomMultiselectProps> = ({
     options,
+    defaultVal,
     onSelect,
     onRemove,
     placeholder
@@ -18,6 +20,7 @@ const CustomMultiselect: React.FC<CustomMultiselectProps> = ({
         <div className='w-full'>
             <Multiselect
                 options={options}
+                selectedValues={defaultVal}
                 onSelect={onSelect}
                 onRemove={onRemove}
                 isObject={false}

@@ -5,48 +5,49 @@ import { useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 const Notification = () => {
-  const { message, type } = useAppSelector((state) => state.notification);
-  const dispatch = useAppDispatch();
-  const successToastStyle= {
-    border: '1px solid #00ff95',
-    borderRadius: '10px',
-    background: '#01140d',
-    color: '#fff',
-}
-const errorToastStyle= {
-    border: '1px solid red',
-    borderRadius: '10px',
-    background: '#01140d',
-    color: '#fff',
-}
-
-  useEffect(() => {
-    if (type) {
-        switch (type) {
-            case "success":{
-                toast.success(message,{
-                    style: successToastStyle,
-                });
-                break;
-            }   
-            case "error":{
-                toast.error(message,{
-                    style: errorToastStyle,
-                });
-                break;
-            }        
-            default:{
-                break;
-            }
-                
-        }
-
-        const timer = setTimeout(() => {
-            dispatch(hideNotification());
-        }, 3000);
-        return () => clearTimeout(timer);
+    const { message, type } = useAppSelector((state) => state.notification);
+    const dispatch = useAppDispatch();
+    const successToastStyle= {
+        border: '1px solid #00ff95',
+        borderRadius: '10px',
+        background: '#01140d',
+        color: '#fff',
     }
-  }, [type, dispatch]);
+
+    const errorToastStyle= {
+        border: '1px solid red',
+        borderRadius: '10px',
+        background: '#01140d',
+        color: '#fff',
+    }
+
+    useEffect(() => {
+        if (type) {
+            switch (type) {
+                case "success":{
+                    toast.success(message,{
+                        style: successToastStyle,
+                    });
+                    break;
+                }   
+                case "error":{
+                    toast.error(message,{
+                        style: errorToastStyle,
+                    });
+                    break;
+                }        
+                default:{
+                    break;
+                }
+                    
+            }
+
+            const timer = setTimeout(() => {
+                dispatch(hideNotification());
+            }, 2500);
+            return () => clearTimeout(timer);
+        }
+    }, [type, dispatch]);
 
 
   return (

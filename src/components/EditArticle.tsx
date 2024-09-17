@@ -44,7 +44,7 @@ const EditArticle = () => {
     };
     
     useEffect(() => {
-        if (article && formData.title === "") { 
+        if (article && (formData.title !== article.title)) { 
             setFormData({
                 title: article.title || "",
                 image: null, 
@@ -53,6 +53,7 @@ const EditArticle = () => {
                 content: article.content || ""
             });
         }
+
     }, [article, formData.title]);
 
 
@@ -95,6 +96,7 @@ const EditArticle = () => {
                     <p className=' ml-1 mb-1 text-sm'>Keywords</p>
                     <CustomMultiselect 
                         options={keyWords} 
+                        defaultVal={formData.tags}
                         onSelect={handleTagSelect} 
                         onRemove={handleTagRemove} 
                         placeholder='Select Keywords'
