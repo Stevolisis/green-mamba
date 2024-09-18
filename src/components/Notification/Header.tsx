@@ -12,7 +12,7 @@ const Header = (props: Props) => {
   return (
     <div className=' w-full px-4 py-6 sm:py-4 flex justify-between items-center  rounded-none md:rounded-tr-xl md:rounded-tl-xl bg-bgSecondary text-bgPrimary'>
         <div>
-            <h3 className='font-[SatoshiBold]'>{ unReadNotifications ? `Notifications (${unReadNotifications})` : 'Notifications' } </h3>
+            <h3 className='font-[SatoshiBold] text-xl sm:text-lg'>{ unReadNotifications ? `Notifications (${unReadNotifications})` : 'Notifications' } </h3>
         </div>
 
         <div>

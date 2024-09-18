@@ -18,13 +18,13 @@ const NotificationItem = (props: Props) => {
               {
                 item.type==='message' ? <FaEnvelope size={12} className='text-bgSecondary' /> :
                 item.type==='gift' ? <FaGift size={12} className='text-bgSecondary' /> :
-                item.type==='announcement' ? <HiSpeakerphone size={12} className='text-bgSecondary' /> : ""
+                item.type==='announcement' ? <HiSpeakerphone size={14} className='text-bgSecondary' /> : ""
               }
             </div>
             <div>
               <p className='font-[SatoshiBold] text'>{ item.heading } </p>
               <p className='font-[SatoshiRegular] text-sm'>{ item.message } </p>
-              <p className='font-[SatoshiLight] text-[10px] text-gray-400 mt-1'>{ formatDate(item.createdAt, true) } </p>
+              <p className='font-[SatoshiRegular] text-[10px] text-gray-400 mt-1'>{ formatDate(item.createdAt, true) } </p>
             </div>
           </div>
         ))
