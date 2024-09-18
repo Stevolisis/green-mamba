@@ -52,7 +52,7 @@ const AddArticle = () => {
                 <h1 className="mb-5 font-[SatoshiMedium] text-3xl">Add Article</h1>
 
                 <div className='my-5 w-full'>
-                    <p className=' ml-1 mb-1 text-sm'>Title</p>
+                    <p className=' ml-1 mb-1 text-sm font-[SatoshiMedium]'>Title</p>
                     <input
                         className="mb-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
                         type="text"
@@ -64,7 +64,7 @@ const AddArticle = () => {
 
 
                 <div className='my-5 w-full'>
-                    <p className='ml-1 mb-1 text-sm'>Description</p>
+                    <p className='ml-1 mb-1 text-sm font-[SatoshiMedium]'>Description</p>
                     <textarea
                         className="h-[250px] mb-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
                         maxLength={80}
@@ -82,7 +82,7 @@ const AddArticle = () => {
                 />
 
                 <div className='my-5 w-full'>
-                    <p className=' ml-1 mb-1 text-sm'>Keywords</p>
+                    <p className=' ml-1 mb-1 text-sm font-[SatoshiMedium]'>Keywords</p>
                     <CustomMultiselect 
                         options={keyWords} 
                         defaultVal={formData.tags}
@@ -94,7 +94,7 @@ const AddArticle = () => {
 
 
                 <div className='my-5 w-full'>
-                    <p className=' ml-1 mb-1 text-sm'>Image</p>
+                    <p className=' ml-1 mb-1 text-sm font-[SatoshiMedium]'>Image</p>
                     <input
                         className="font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
                         placeholder="Content e.g AI has taken over humans, many have integrated AI in their daily life activity..."

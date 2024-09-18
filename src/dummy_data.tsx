@@ -1,5 +1,6 @@
 import { Blog1, Blog2, Blog3, Blog4 } from "@/assets";
 import { StaticImageData } from 'next/image';
+import { notificationItem } from "./redux/slices/notification";
 
 export interface IBlog{
     id: number,
@@ -205,3 +206,98 @@ export const dummy_gifts: IDummyGift[] = [
         createdAt: 1693315200,  
     },
 ]
+
+
+
+export const dummy_notifications: notificationItem[] = [
+    {
+        heading: "New Message",
+        type: "message",
+        message: "You have received a new message from Alice.",
+        read: false,
+        createdAt: 1690896000,  
+    },
+    {
+        heading: "Platform Update",
+        type: "announcement",
+        message: "The platform update will be rolling out next Monday.",
+        read: true,
+        createdAt: 1690896000,  
+
+    },
+    {
+        heading: "Gift Received",
+        type: "gift",
+        message: "John has gifted you 0.02 ETH for your recent article.",
+        read: false,
+        createdAt: 1690896000,  
+    },
+    {
+        heading: "New Feature",
+        type: "announcement",
+        message: "A new commenting feature is now live!",
+        read: true,
+        createdAt: 1690896000,  
+
+    },
+    {
+        heading: "Gift Received",
+        type: "gift",
+        message: "Anna has gifted you 0.03 ETH.",
+        read: true,
+        createdAt: 1690896000,  
+
+    },
+    {
+        heading: "New Message",
+        type: "message",
+        message: "You received a message from Bob.",
+        read: false,
+        createdAt: 1690896000,  
+    },
+    {
+        heading: "System Maintenance",
+        type: "announcement",
+        message: "Scheduled maintenance will occur on Friday.",
+        read: false,
+        createdAt: 1690896000,  
+    },
+    {
+        heading: "Gift Received",
+        type: "gift",
+        message: "You received 0.05 ETH as a gift from Michael.",
+        read: true,
+        createdAt: 1690896000,  
+
+    },
+    {
+        heading: "Security Notice",
+        type: "announcement",
+        message: "Please update your password for enhanced security.",
+        read: false,
+        createdAt: 1690896000,  
+    },
+    {
+        heading: "New Message",
+        type: "message",
+        message: "Charlie has sent you a new message.",
+        read: false,
+        createdAt: 1690896000,  
+    },
+    {
+        heading: "Weekly Recap",
+        type: "announcement",
+        message: "Check out what happened this week on our platform.",
+        read: true,
+        createdAt: 1690896000,  
+
+    },
+    {
+        heading: "Gift Received",
+        type: "gift",
+        message: "David has gifted you 0.01 ETH for your latest post.",
+        read: false,
+        createdAt: 1690896000,  
+    }
+  ];
+  

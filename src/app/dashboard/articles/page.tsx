@@ -3,7 +3,7 @@ import TableList from '@/components/Table/TableList';
 import { IBlog, dummy_data, dummy_gifts } from '@/dummy_data';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import article, { setArticle } from '@/redux/slices/article';
-import { showNotification } from '@/redux/slices/toast';
+import { showToast } from '@/redux/slices/toast';
 import { setType, showSlide } from '@/redux/slices/slider';
 import { DataObject, deleteListItem, setTable, setTimeOption } from '@/redux/slices/table';
 import React, { useEffect } from 'react'
@@ -37,7 +37,7 @@ const page = (props: Props) => {
             },
             delete: (id:number)=> {
               dispatch(deleteListItem(id));
-              dispatch(showNotification({ message: 'Article deleted successfully', type: 'error' }));
+              dispatch(showToast({ message: 'Article deleted successfully', type: 'error' }));
             },
           }
         }));

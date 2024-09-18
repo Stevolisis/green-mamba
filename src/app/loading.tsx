@@ -6,7 +6,7 @@ type Props = {}
 
 const loading = (props: Props) => {
   return (
-    <div style={{zIndex:60}} className=' w-full h-full glassMorphism flex justify-center items-center fixed'>
+    <div style={{zIndex:60}} className=' w-full h-[85vh] glassMorphism flex justify-center items-center fixed'>
         <Loader size={70} color='#00ff95' />
     </div>
   )

@@ -4,7 +4,8 @@ import ReactProvider from "@/redux/AppProvider";
 import Footer from "../components/Footer";
 import Header from "@/components/Header";
 import Slider from "@/components/Slider";
-import Notification from "@/components/Toast";
+import Toast from "@/components/Toast";
+import Notification from "@/components/Notification/Container";
 
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body className="bg-bgPrimary h-auto">
         <ReactProvider>
           <Notification />
+          <Toast />
           <Slider/>
           <Header/>
             <main className="pt-24">
