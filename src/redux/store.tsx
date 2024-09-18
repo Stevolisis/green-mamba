@@ -6,6 +6,7 @@ import counterSlice from './slices/counter';
 import chart from './slices/chart';
 import table from './slices/table';
 import article from './slices/article';
+import toast from './slices/toast';
 import notification from './slices/notification';
 
 
@@ -22,6 +23,7 @@ const combinedReducers = combineReducers({
   charts: chart,
   table: table,
   article: article,
+  toast: toast,
   notification: notification,
 });
 

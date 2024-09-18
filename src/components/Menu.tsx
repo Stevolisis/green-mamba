@@ -8,7 +8,7 @@ import { PiDotsThreeOutlineVerticalFill } from "react-icons/pi";
 import { RiEditFill, RiLogoutBoxRFill } from "react-icons/ri";
 import { useAppDispatch } from "@/redux/hooks";
 import { setType, showSlide } from "@/redux/slices/slider";
-import { showNotification } from "@/redux/slices/notification";
+import { showNotification } from "@/redux/slices/toast";
 
 const Menu = () => {
   const [active, setActive] = useState<boolean>(false);

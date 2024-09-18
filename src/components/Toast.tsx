@@ -1,11 +1,11 @@
 "use client"
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import { hideNotification } from '@/redux/slices/notification';
+import { hideToast } from '@/redux/slices/toast';
 import { useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
-const Notification = () => {
-    const { message, type } = useAppSelector((state) => state.notification);
+const Toast = () => {
+    const { message, type } = useAppSelector((state) => state.toast);
     const dispatch = useAppDispatch();
     const successToastStyle= {
         border: '1px solid #00ff95',
@@ -43,7 +43,7 @@ const Notification = () => {
             }
 
             const timer = setTimeout(() => {
-                dispatch(hideNotification());
+                dispatch(hideToast());
             }, 2500);
             return () => clearTimeout(timer);
         }
@@ -58,4 +58,4 @@ const Notification = () => {
   )
 };
 
-export default Notification;
+export default Toast;

@@ -4,7 +4,7 @@ import ReactProvider from "@/redux/AppProvider";
 import Footer from "../components/Footer";
 import Header from "@/components/Header";
 import Slider from "@/components/Slider";
-import Notification from "@/components/Notification";
+import Notification from "@/components/Toast";
 
 
 export const metadata: Metadata = {

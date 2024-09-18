@@ -1,29 +1,37 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface NotificationState {
-  message: string;
-  type: 'success' | 'error' | 'info';
+type notificationItem = {
+    heading: string;
+    type: "message" | "announcement" | "gift";
+    message: string;
+    read: boolean;
+}
+interface ToastState {
+  notifications: notificationItem[];
+  unReadNotifications: number;
+  visible: boolean;
 }
 
-const initialState: NotificationState = {
-  message: '',
-  type: 'info',
+const initialState: ToastState = {
+  notifications: [],
+  unReadNotifications: 0,
+  visible: false
 };
 
 const notificationSlice = createSlice({
   name: 'notification',
   initialState,
   reducers: {
-    showNotification: (state, action: PayloadAction<{ message: string; type: 'success' | 'error' | 'info' }>) => {
-      state.message = action.payload.message;
-      state.type = action.payload.type;
+    setNotification: (state, action: PayloadAction<{ notifications: notificationItem[] }>) => {
+      state.notifications = action.payload.notifications;
+      const unRead = action.payload.notifications.filter((messages)=> messages.read === false);
+      state.unReadNotifications = unRead.length;
     },
-    hideNotification: (state) => {
-        state.message = "";
-        state.type = "info";    
+    setVisibility: (state,{ payload }: PayloadAction<boolean>) => {
+        state.visible = payload;    
     },
   },
 });
 
-export const { showNotification, hideNotification } = notificationSlice.actions;
+export const { setNotification, setVisibility } = notificationSlice.actions;
 export default notificationSlice.reducer;

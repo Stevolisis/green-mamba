@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import React, { useEffect, useState } from 'react';
 import CustomMultiselect from './CustomMultiselect';
 import CustomTextEditor from './CustomTextEditor';
-import { showNotification } from '@/redux/slices/notification';
+import { showToast } from '@/redux/slices/toast';
 import Loader from './Loader';
 
 export interface IFormData {
@@ -42,7 +42,7 @@ const EditArticle = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         setIsLoading(!isLoading);
-        dispatch(showNotification({ message: 'Article updated successfully', type: 'success' }));
+        dispatch(showToast({ message: 'Article updated successfully', type: 'success' }));
     };
     
     useEffect(() => {
