@@ -20,15 +20,10 @@ interface IInitialState{
     title: string;
     timeOptions: TimeOptions[];
     currentTimeOption: string | null;
-    timeUpdateFunc?: (e:string)=> void,
     headings: string[];
     dataKeys: dataKey[];
     data: DataObject[] | IBlog[];
     actionBtn: boolean;
-    actionFunc?: {
-        "edit": (data: IBlog[], id:number)=> void;
-        "delete": (id:number)=> void;
-    }
 }
 
 const initialState: IInitialState = {
@@ -49,17 +44,10 @@ export const tableSlice = createSlice({
             state.title = payload.title;
             state.timeOptions = payload.timeOptions;
             state.currentTimeOption = payload.currentTimeOption;
-            state.timeUpdateFunc = payload.timeUpdateFunc;
             state.headings = payload.headings;
             state.dataKeys = payload.dataKeys;
             state.data = payload.data;
             state.actionBtn = payload.actionBtn;
-            state.actionFunc = payload.actionFunc;
-
-            if(payload.actionBtn){
-                state.actionFunc = payload.actionFunc;
-            }
-
         },
         setTimeOption:(state, { payload }) =>{
             state.currentTimeOption = payload;

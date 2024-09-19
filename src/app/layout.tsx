@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   description: "Get all Crypto News and Update",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -20,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <>
-    <html>
+    <html lang="en">
       <body className="bg-bgPrimary h-auto">
         <ReactProvider>
           <Notification />

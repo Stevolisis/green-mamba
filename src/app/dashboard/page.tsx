@@ -9,7 +9,7 @@ import { BsBank2 } from 'react-icons/bs'
 import { IoNotifications } from 'react-icons/io5'
 import { MdArticle } from 'react-icons/md'
 import TableList from '../../components/Table/TableList'
-import { deleteListItem, setTable, setTimeOption } from '@/redux/slices/table'
+import { setTable, setTimeOption } from '@/redux/slices/table'
 import { setVisibility } from '@/redux/slices/notification'
 
 
@@ -28,7 +28,6 @@ const page = () => {
       title: "Financial History",
       timeOptions: ["1D","1M","3M","1Y","ALL"],
       currentTimeOption: "1M",
-      timeUpdateFunc: (e)=> dispatch(setTimeOption(e)),
       headings: ["#", "Sender", "Amount", "Blockchain", "Blog Title", "Date"],
       dataKeys: [
         { key:"id", autoIndex: true }, 
@@ -144,4 +143,4 @@ const page = () => {
   )
 }
 
-export default page
+export default page;

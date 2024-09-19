@@ -42,6 +42,8 @@ export default function Home() {
             alt="Hero"
             width={1000}
             height={1000}
+            placeholder="blur"
+            priority
           />
         </div>
       </div>
