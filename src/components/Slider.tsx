@@ -20,7 +20,7 @@ const Slider = () => {
         ${
           slideUp ? "transform translate-y-0" : "transform translate-y-full"
         } 
-        overflow-auto scrollbar-none sm:scrollbar-thin !z-[52] flex flex-col justify-start items-center w-full fixed h-[83vh] sm:h-[96vh] bottom-0 rounded-tr-[40px] 
+        overflow-none overflow-auto scrollbar-thumb-[#0C5A33] scrollbar-thumb-rounded-full scrollbar-track-rounded-full scroll-smooth scrollbar-none sm:scrollbar !z-[52] flex flex-col justify-start items-center w-full fixed h-[83vh] sm:h-[96vh] bottom-0 rounded-tr-[40px] 
         rounded-tl-[40px] bg-slideUp`}
       >
         <button className='absolute right-6 top-6' onClick={()=> dispatch(showSlide())}>

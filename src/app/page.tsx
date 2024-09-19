@@ -1,11 +1,20 @@
+"use client"
 import { Hero } from "@/assets";
 import Image from "next/image";
 import { IBlog, dummy_data } from "@/dummy_data";
 import ArticleCard from "@/components/ArticleCard";
+import { setArticles } from "@/redux/slices/article";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 
 export default function Home() {
+  const dispatch = useAppDispatch();
+  const { articles } = useAppSelector(state => state.article);
 
+  useEffect(()=>{
+    dispatch(setArticles(dummy_data));
+  }, []);
 
   return (
     <main className="px-4 sm:px-16 py-12">
@@ -39,7 +48,7 @@ export default function Home() {
 
       <div className="py-12 flex flex-wrap justify-center gap-12 sm:gap-7">
         {
-          dummy_data.map((blog:IBlog, i:number)=>(
+          articles.map((blog:IBlog, i:number)=>(
             <ArticleCard blog={blog} key={i} />
           ))
         }

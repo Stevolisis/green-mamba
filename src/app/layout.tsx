@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <>
-    <html lang="en">
+    <html>
       <body className="bg-bgPrimary h-auto">
         <ReactProvider>
           <Notification />

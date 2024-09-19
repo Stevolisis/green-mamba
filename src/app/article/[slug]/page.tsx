@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { dummy_data, IBlog } from '@/dummy_data';
 import { useParams } from 'next/navigation';
 import Image from "next/image";
@@ -12,7 +12,17 @@ type ISlug = {
 
 const page = () => {
   const { slug }:ISlug = useParams();
+  const [article, setArticle] = useState<IBlog>();
   const blog: IBlog = dummy_data.filter((blog: IBlog )=> blog.slug === slug )[0];
+
+  function handleGifting(){
+    return;
+  };
+
+  useEffect(()=>{
+    setArticle(blog);
+  },[blog]);
+
 
   return (
     <div>
@@ -22,7 +32,7 @@ const page = () => {
 
       <div className='flex flex-wrap gap-3 px-4 sm:px-20'>
         {
-          blog?.tags?.map((tag,i)=>(
+          article?.tags?.map((tag,i)=>(
             <p key={i} className='text-[10px] font-[SatoshiMedium] rounded-[4px] py-[5px] px-2 bg-bgSecondary text-bgPrimary'>{ tag }</p>
           ))
         }
@@ -38,8 +48,8 @@ const page = () => {
           </div>
 
           <div>
-            <h4 className='font-[SatoshiMedium] text-xs'>{ blog.authorName }</h4>
-            <p className='font-[SatoshiLight] text-[10px]'>{ formatDate(blog.createdAt, false) }</p>
+            <h4 className='font-[SatoshiMedium] text-xs'>{ article?.authorName }</h4>
+            <p className='font-[SatoshiLight] text-[10px]'>{ article && formatDate(article.createdAt, false) }</p>
           </div>
         </div>
 
@@ -52,24 +62,24 @@ const page = () => {
       </div>
 
       <div className='py-6'>
-          <Image
-            src={ blog.image }
+          {article && <Image
+            src={ article.image }
             alt="content image"
             width={400}
             height={400}
             className='!w-full aspect-[4/2.2] sm:aspect-[4/1.5] object-cover'
             placeholder='blur'
-          />
+          />}
       </div>
 
       <div className='px-4 sm:px-20 py-5 sm:py-7'>
         <p className='font-[SatoshiRegular] text-[15px]'>
-          { blog.content }
+          { article?.content }
         </p>
       </div>
 
       <div className='flex justify-center items-center pb-12'>
-          <button className="font-[SatoshiMedium] flex gap-2 items-center text-xs text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
+          <button onClick={()=>handleGifting()} className="font-[SatoshiMedium] flex gap-2 items-center text-xs text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
             <FaGift className="text-lg" />
             <p className="border-l border-l-bgPrimary pl-2">Gift Author</p>
           </button>

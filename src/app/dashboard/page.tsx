@@ -10,11 +10,13 @@ import { IoNotifications } from 'react-icons/io5'
 import { MdArticle } from 'react-icons/md'
 import TableList from '../../components/Table/TableList'
 import { deleteListItem, setTable, setTimeOption } from '@/redux/slices/table'
+import { setVisibility } from '@/redux/slices/notification'
 
 
 const page = () => {
   const dispatch = useAppDispatch();
   const { currentMonth, currentYear} = useAppSelector(state => state.charts);
+  const { unReadNotifications } = useAppSelector((state)=> state.notification);
 
   useEffect(()=>{
     dispatch(addChart({name:"Gifts",title:"Finance Report",data:dummy_gifts}));
@@ -38,10 +40,6 @@ const page = () => {
       ],
       data: dummy_gifts,
       actionBtn: false,
-      // actionFunc:{
-      //   edit: ()=> dispatch(deleteListItem(22)),
-      //   delete: (id:number)=> dispatch(deleteListItem(id)),
-      // }
     }));
   },[]);
 
@@ -117,7 +115,7 @@ const page = () => {
             </div>
 
             <div>
-              <Link href="/articles" className="text-sm underline text-gray-400">View all</Link>
+              <Link href={""} onClick={()=>dispatch(setVisibility(true))} className="text-sm underline text-gray-400">View all</Link>
             </div>
           </div>
 
@@ -128,7 +126,7 @@ const page = () => {
                 Recent Notification
               </p>
               <h2 className="text-3xl font-[SatoshiBold]">
-                17
+                { unReadNotifications }
               </h2>
             </div>
 
