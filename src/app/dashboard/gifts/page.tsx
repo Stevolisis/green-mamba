@@ -14,7 +14,6 @@ const page = (props: Props) => {
           title: "Gifts History",
           timeOptions: ["1D","1M","3M","1Y","ALL"],
           currentTimeOption: "1M",
-          timeUpdateFunc: (e)=> dispatch(setTimeOption(e)),
           headings: ["#", "Sender", "Amount", "Blockchain", "Blog Title", "Date"],
           dataKeys: [
             { key:"id", autoIndex: true }, 
@@ -26,10 +25,6 @@ const page = (props: Props) => {
           ],
           data: dummy_gifts,
           actionBtn: false,
-          // actionFunc:{
-          //   edit: ()=> dispatch(deleteListItem(22)),
-          //   delete: (id:number)=> dispatch(deleteListItem(id)),
-          // }
         }));
       },[]);
     

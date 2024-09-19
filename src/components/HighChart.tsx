@@ -74,7 +74,7 @@ const HighChart = (props:IProps) => {
         }
       },
       accessibility: {
-        enabled: true
+        enabled: false
       },
       credits: false 
   };
