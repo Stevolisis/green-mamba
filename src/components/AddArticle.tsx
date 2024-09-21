@@ -92,9 +92,7 @@ const AddArticle = () => {
     }
     useEffect(()=>{
         if(formData.image){
-            uploadImage2();
         }
-        console.log("ttt", process.env.NEXT_PUBLIC_PINATA_API_KEY);
     },[formData.image]);
     
 
