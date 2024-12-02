@@ -8,7 +8,6 @@ export async function POST(req: NextRequest) {
         
         if(file){
             const uploadFile = pinata.upload.file(file);
-            console.log("333 ",uploadFile);
             const url = await pinata.gateways.convert((await uploadFile).IpfsHash);
             return NextResponse.json({ data: url, message:"Image Uploaded Successfully" },{ status: 200});  
 
