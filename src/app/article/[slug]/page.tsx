@@ -1,11 +1,14 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import { dummy_data, IBlog } from '@/dummy_data';
 import { useParams } from 'next/navigation';
 import Image from "next/image";
 import { FaGift, FaUserCircle } from "react-icons/fa";
-import { formatDate } from '@/utils/fomateDate';
+import { formatDate, formatDate2 } from '@/utils/fomateDate';
 import Head from 'next/head';
+import { api } from '@/utils/axiosConfig';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { IBlogApi, setArticle } from '@/redux/slices/article';
+import parse from 'html-react-parser';
 
 type ISlug = {
   slug: string
@@ -14,16 +17,27 @@ type ISlug = {
 
 const page = () => {
   const { slug }:ISlug = useParams();
-  const [article, setArticle] = useState<IBlog>();
-  const blog: IBlog = dummy_data.filter((blog: IBlog )=> blog.slug === slug )[0];
+  const { article } = useAppSelector(state => state.article);
+  const dispatch = useAppDispatch();
+
+  async function fetchArticles(){
+    try{
+      const result = await api.get(`/articles/getArticle/${slug}`);
+      const data:IBlogApi = result.data.data;
+      dispatch(setArticle(data));
+
+      console.log(result);
+    }catch(err){
+      console.log("Err: ", err);
+    }
+  }
+  useEffect(()=>{
+    fetchArticles();
+  }, []);
 
   function handleGifting(){
     return;
   };
-
-  useEffect(()=>{
-    setArticle(blog);
-  },[blog]);
 
   useEffect(() => {
     document.title = "About Us ";
@@ -41,7 +55,7 @@ const page = () => {
       </Head>
       <div>
         <div className='pt-12 pb-6 sm:pb-4 px-4 sm:px-20'>
-          <h1 className='text-3xl sm:text-4xl font-[SatoshiBold] text-gray-100'>{ blog.title }</h1>
+          <h1 className='text-3xl sm:text-4xl font-[SatoshiBold] text-gray-100'>{ article?.title }</h1>
         </div>
 
         <div className='flex flex-wrap gap-3 px-4 sm:px-20'>
@@ -62,8 +76,8 @@ const page = () => {
             </div>
 
             <div>
-              <h4 className='font-[SatoshiMedium] text-xs'>{ article?.authorName }</h4>
-              <p className='font-[SatoshiLight] text-[10px]'>{ article && formatDate(article.createdAt, false) }</p>
+              <h4 className='font-[SatoshiMedium] text-xs'>{ article?.author.name }</h4>
+              <p className='font-[SatoshiLight] text-[10px]'>{ article && formatDate2(article.createdAt) }</p>
             </div>
           </div>
 
@@ -77,18 +91,19 @@ const page = () => {
 
         <div className='py-6'>
             {article && <Image
-              src={ article.image }
+              src={ article.img.url }
               alt="content image"
               width={400}
               height={400}
               className='!w-full aspect-[4/2.2] sm:aspect-[4/1.5] object-cover'
               placeholder='blur'
+              blurDataURL={article.img.url}
             />}
         </div>
 
         <div className='px-4 sm:px-20 py-5 sm:py-7'>
           <p className='font-[SatoshiRegular] text-[15px]'>
-            { article?.content }
+            { article && parse(article?.content as string) }
           </p>
         </div>
 

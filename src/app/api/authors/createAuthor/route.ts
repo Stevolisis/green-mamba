@@ -7,6 +7,7 @@ export async function POST(req: NextRequest) {
 
     try {
         const body = await req.formData();
+        console.log(body);
 
         const newAuthor= new Author({
             walletAddress: body.get("walletAddress"),

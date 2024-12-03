@@ -6,9 +6,9 @@ export async function GET(req: NextRequest,{params}:any) {
     await dbConnect();
 
     try {  
-        const id:string = params.id;
-        console.log(id);
-        const getArticle = await Article.findOne({_id:id}).populate("author");
+        const slug:string = params.slug;
+        console.log(slug);
+        const getArticle = await Article.findOne({slug:slug}).populate("author");
         return NextResponse.json({ data: getArticle, message:"success" },{ status: 200});  
 
     } catch (error:any) {  

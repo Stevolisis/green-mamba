@@ -1,7 +1,7 @@
 import { useAppSelector } from '@/redux/hooks'
 import React from 'react'
 import DropDown from './DropDown'
-import { formatDate } from '@/utils/fomateDate'
+import { formatDate2 } from '@/utils/fomateDate'
 import { minifyAddress } from '@/utils/minifyAddress'
 
 
@@ -25,14 +25,15 @@ const DataList = () => {
                             >
                                 { 
                                     arg.autoIndex ? ((i + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })) :
-                                    arg.time ? formatDate(item[arg.key as keyof typeof item], true) :
+                                    arg.time ? formatDate2(item[arg.key as keyof typeof item]) :
                                     arg.address ? minifyAddress(item[arg.key as keyof typeof item]) :
+                                    arg.author ? item[arg.key as keyof typeof item].name :
                                     item[arg.key as keyof typeof item] 
                                 }
                             </td>
                         ))
                     }
-                    {actionBtn && <DropDown id={data[i].id} />}
+                    {actionBtn && <DropDown id={data[i].id} data={item} />}
                 </tr>
             ))
         }

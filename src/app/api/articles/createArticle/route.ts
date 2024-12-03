@@ -1,5 +1,4 @@
 import Article from "@/db/Model/articleSchema";
-import Author from "@/db/Model/authorSchema";
 import dbConnect from "@/db/dbConnect";
 import { uploadImage } from "@/utils/uploadImage";
 import { NextRequest, NextResponse } from "next/server";
@@ -16,6 +15,7 @@ export async function POST(req: NextRequest) {
             let imgData:any = await uploadImage(file);
             const slug:FormDataEntryValue= body.get("title")!.toString();
             const slugged = slugify(slug.replace(/[^\w\s']|_/g,' ').replaceAll("'",' '));
+            const tags = JSON.parse(body.get("tags") as string);
 
             const newArticle= new Article({
                 title: body.get("title"),
@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
                 img:{ public_id:imgData.public_id, url:imgData.secure_url },
                 content: body.get("content"),
                 author: body.get("author"),
-                tags: body.get("tags"),
+                tags: tags,
                 gifts: 0
             });
 

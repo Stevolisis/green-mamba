@@ -4,6 +4,9 @@ import CustomMultiselect from './CustomMultiselect';
 import CustomTextEditor from './CustomTextEditor';
 import { showToast } from '@/redux/slices/toast';
 import Loader from './Loader';
+import { showSlide } from '@/redux/slices/slider';
+import { api } from '@/utils/axiosConfig';
+import { setArticle } from '@/redux/slices/article';
 
 export interface IFormData {
     title: string;
@@ -16,6 +19,7 @@ export interface IFormData {
 const EditArticle = () => {
     const { article, keyWords } = useAppSelector(state => state.article);
     const [ isLoading, setIsLoading ] = useState<boolean>(false);
+    const { walletAddress, userId } = useAppSelector(state => state.auth);
     const [formData, setFormData] = useState<IFormData>({
         title: "",
         image: null,
@@ -39,14 +43,63 @@ const EditArticle = () => {
         setFormData({ ...formData, content: e });
     };
 
-    const handleSubmit = (e: any) => {
+    async function handleSubmit(e:React.FormEvent<HTMLFormElement>){
         e.preventDefault();
-        setIsLoading(!isLoading);
-        dispatch(showToast({ message: 'Article updated successfully', type: 'success' }));
-    };
+        setIsLoading(true);
+
+        const form = e.target as HTMLFormElement;
+        if(!walletAddress && !userId){
+            setIsLoading(false);
+            return dispatch(showToast({message:"Pls connect your wallet!", type:"error"}));
+        }
+        if(!formData.tags || !formData.content){
+            setIsLoading(false);
+            return dispatch(showToast({message:"Pls complete the form!", type:"error"}));
+        }
+        if(!article){
+            setIsLoading(false);
+            return dispatch(showToast({message:"No Article Found", type:"error"}));
+        }
+
+
+        try{
+            const formdata= new FormData(form);
+            formdata.append("author", userId);
+            {formData.image && formdata.append("file", formData.image);}
+            formdata.append("tags", JSON.stringify(formData.tags));
+            formdata.append("content", formData.content);
+
+            const result = await api.patch(`/articles/editArticle/${article._id}`, formdata);
+            const data = result.data;
+            dispatch(showToast({message:data.message, type:"success"}));
+            dispatch(showSlide());
+            form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input, textarea").forEach(input => {
+                input.value = "";
+            });
+            setFormData({
+                title: "",
+                image: null,
+                description: "",
+                tags: [],
+                content: ""
+            });
+            console.log(data);
+            setIsLoading(false);
+
+        }catch(err:any){
+          console.log("Err: ", err);
+          setIsLoading(false);
+          dispatch(showToast({message:err.response.data.message, type:"error"}));
+        }
+    }
+
     
     useEffect(() => {
+        console.log("rrrrrrrrr")
+
         if (article && (formData.title !== article.title)) { 
+            console.log("ooooooo")
+
             setFormData({
                 title: article.title || "",
                 image: null, 
@@ -58,7 +111,7 @@ const EditArticle = () => {
 
     }, [article, formData.title]);
 
-    console.log("form.. ",formData.image)
+    console.log("form.. ",formData)
 
     return (
         <>
@@ -80,12 +133,11 @@ const EditArticle = () => {
                 <div className='my-5 w-full'>
                     <p className='ml-1 mb-1 text-sm'>Description</p>
                     <textarea
+                        name='description'
                         className="h-[250px] mb-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
                         maxLength={80}
                         placeholder="Description e.g AI is the future and everybody loves it..."
-                        value={formData.description}
-                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    />
+                        value={formData.description}                    />
                 </div>
 
 
@@ -113,7 +165,6 @@ const EditArticle = () => {
                         className="font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
                         placeholder="Content e.g AI has taken over humans, many have integrated AI in their daily life activity..."
                         type='file'
-                        onChange={(e) => setFormData({ ...formData, image: e.target.files?.[0] || null })}
                     />
                 </div>
 

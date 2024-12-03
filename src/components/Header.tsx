@@ -1,7 +1,7 @@
 "use client"
 import { Logo } from "@/assets";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { setAddress, setType, showSlide } from "@/redux/slices/slider";
+import { setType, showSlide } from "@/redux/slices/slider";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -11,20 +11,18 @@ import { useRouter } from 'next/navigation';
 
 const Header = () => {
   const [active, setActive]= useState(1);
-  const address:string = useAppSelector((state)=>state.slider.address);
+  const { walletAddress, userId } = useAppSelector((state)=>state.auth);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
   function handleClick(){
+    if(walletAddress && userId){
+      return router.push("/dashboard");
+    }
     dispatch(showSlide());
     dispatch(setType("complete_profile"));
-    dispatch(setAddress("0x5B38Da6a701c568545dCfcB03FcB875f56beddC4"));
   }
 
-  function handleClick2(){
-    dispatch(showSlide());
-    router.push("/dashboard");
-  }
   
   return (
     <header className="blurMorphism z-50 flex justify-between items-center border-gradient w-full py-7 px-4 sm:px-16 fixed">
@@ -48,15 +46,15 @@ const Header = () => {
 
       <div className="font-[SatoshiMedium] pl-3">
         {
-          address ? 
-            <button onClick={()=> handleClick2()} className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
+          walletAddress ? 
+            <button onClick={()=> handleClick()} className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
               <FaWallet className="text-lg" />
-              <p className="border-l border-l-bgPrimary pl-2">{address ? address.slice(0,11) + "..." : "Connect Wallet"}</p>
+              <p className="border-l border-l-bgPrimary pl-2">{walletAddress ? walletAddress.slice(0,11) + "..." : "Connect Wallet"}</p>
             </button>
           :
             <button onClick={()=> handleClick()} className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
               <FaWallet className="text-lg" />
-              <p className="border-l border-l-bgPrimary pl-2">{address ? address.slice(0,11) + "..." : "Connect Wallet"}</p>
+              <p className="border-l border-l-bgPrimary pl-2">Connect Wallet</p>
             </button>
         }
       </div>

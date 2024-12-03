@@ -8,13 +8,14 @@ import table from './slices/table';
 import article from './slices/article';
 import toast from './slices/toast';
 import notification from './slices/notification';
+import auth from './slices/auth';
 
 
 const persistConfig = {
   key: 'root',
   storage,
   version: 1,
-  whitelist: ["counter"]
+  whitelist: ["counter","auth"]
 }
 
 const combinedReducers = combineReducers({
@@ -25,6 +26,7 @@ const combinedReducers = combineReducers({
   article: article,
   toast: toast,
   notification: notification,
+  auth: auth,
 });
 
 

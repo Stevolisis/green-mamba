@@ -3,10 +3,11 @@ import { Hero } from "@/assets";
 import Image from "next/image";
 import { IBlog, dummy_data } from "@/dummy_data";
 import ArticleCard from "@/components/ArticleCard";
-import { setArticles } from "@/redux/slices/article";
+import { IBlogApi, setArticles } from "@/redux/slices/article";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { api } from "../utils/axiosConfig";
+import { showToast } from "@/redux/slices/toast";
 
 
 export default function Home() {
@@ -20,8 +21,9 @@ export default function Home() {
       dispatch(setArticles(data));
 
       console.log(result);
-    }catch(err){
+    }catch(err:any){
       console.log("Err: ", err);
+      dispatch(showToast({message:err.response.data.message, type:"error"}));
     }
   }
   useEffect(()=>{
@@ -62,7 +64,7 @@ export default function Home() {
 
       <div className="py-12 flex flex-wrap justify-center gap-12 sm:gap-7">
         {
-          articles.map((blog:IBlog, i:number)=>(
+          articles.map((blog:IBlogApi, i:number)=>(
             <ArticleCard blog={blog} key={i} />
           ))
         }

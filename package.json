@@ -17,6 +17,7 @@
     "formidable": "^3.5.2",
     "highcharts": "^11.4.8",
     "highcharts-react-official": "^3.2.1",
+    "html-react-parser": "^5.1.18",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.8.3",
     "multiselect-react-dropdown": "^2.0.25",

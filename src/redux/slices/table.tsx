@@ -1,5 +1,6 @@
 import { IBlog } from "@/dummy_data";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { IBlogApi } from "./article";
 
 type dataKey = {
     key:string,
@@ -7,6 +8,7 @@ type dataKey = {
     address?: boolean,
     longText?: boolean,
     autoIndex?: boolean
+    author?: boolean
 }
 
 export type DataObject = {
@@ -22,7 +24,7 @@ interface IInitialState{
     currentTimeOption: string | null;
     headings: string[];
     dataKeys: dataKey[];
-    data: DataObject[] | IBlog[];
+    data: IBlogApi[];
     actionBtn: boolean;
 }
 

@@ -5,7 +5,8 @@ import CustomTextEditor from './CustomTextEditor';
 import { showToast } from '@/redux/slices/toast';
 import Loader from './Loader';
 import axios from 'axios';
-import { PinataSDK } from 'pinata-web3';
+import { api } from '@/utils/axiosConfig';
+import { showSlide } from '@/redux/slices/slider';
 
 export interface IFormData {
     title: string;
@@ -15,16 +16,12 @@ export interface IFormData {
     content: string;
 }
 
-const pinata = new PinataSDK({
-  pinataJwt: process.env.NEXT_PUBLIC_PINATA_JWT,
-  pinataGateway: "apricot-certain-bison-572.mypinata.cloud",
-});
 
 const AddArticle = () => {
     const { keyWords } = useAppSelector(state => state.article);
+    const { walletAddress, userId } = useAppSelector(state => state.auth);
     const [ isLoading, setIsLoading ] = useState<boolean>(false);
     const [ isUploading, setIsUploading ] = useState<boolean>(false);
-    const [ url, setUrl ] = useState<string>("");
     const [formData, setFormData] = useState<IFormData>({
         title: "",
         image: null,
@@ -48,52 +45,46 @@ const AddArticle = () => {
         setFormData({ ...formData, content: e });
     };
 
-    const handleSubmit = (e: any) => {
+
+    async function handleSubmit(e:React.FormEvent<HTMLFormElement>){
         e.preventDefault();
-        setIsLoading(!isLoading);
-        dispatch(showToast({ message: 'Article created successfully', type: 'success' }));
-    };
+        console.log("fdgfhgjhkjlhkgjfh");
+        setIsLoading(true);
 
-    async function uploadImage(){
-        if(formData.image){
-            setIsUploading(true);
-            const data = new FormData();
-            data.append("file",formData.image);
-
-            await axios.post("https://api.pinata.cloud/pinning/pinFileToIPFS", 
-            data, {
-                headers:{
-                    "pinata_api_key": process.env.NEXT_PUBLIC_PINATA_API_KEY,
-                    "pinata_secret_api_key": process.env.NEXT_PUBLIC_PINATA_API_SECRET,
-                    "Content-Type": "multipart/form-data"
-                }
-            })
-            .then(data=>{
-                const uploadImage = data.data;
-                console.log("uploadImage", uploadImage);
-            }).catch(err=>{
-                console.log("upload Error", err);
-            }).finally(()=>{
-                setIsUploading(false);
-            });
+        const form = e.target as HTMLFormElement;
+        if(!walletAddress && !userId){
+            setIsLoading(false);
+            return dispatch(showToast({message:"Pls connect your wallet!", type:"error"}));
+        }
+        if(!formData.image || !formData.tags || !formData.content){
+            setIsLoading(false);
+            return dispatch(showToast({message:"Pls complete the form!", type:"error"}));
         }
 
-    };
+        try{
+            const formdata= new FormData(form);
+            formdata.append("author", userId);
+            formdata.append("file", formData.image);
+            formdata.append("tags", JSON.stringify(formData.tags));
+            formdata.append("content", formData.content);
 
-    async function uploadImage2(){
-        if(formData.image){
-            try {
-                const upload = await pinata.upload.file(formData.image);
-                console.log("!11",upload);
-              } catch (error) {
-                console.log("222", error);
-              }
+            const result = await api.post("/articles/createArticle", formdata);
+            const data = result.data;
+            dispatch(showToast({message:data.message, type:"success"}));
+            dispatch(showSlide());
+            form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input, textarea").forEach(input => {
+                input.value = "";
+            });
+            console.log(data);
+            setIsLoading(false);
+
+        }catch(err:any){
+          console.log("Err: ", err);
+          setIsLoading(false);
+          dispatch(showToast({message:err.response.data.message, type:"error"}));
         }
     }
-    useEffect(()=>{
-        if(formData.image){
-        }
-    },[formData.image]);
+
     
 
     return (
@@ -104,11 +95,10 @@ const AddArticle = () => {
                 <div className='my-5 w-full'>
                     <p className=' ml-1 mb-1 text-sm font-[SatoshiMedium]'>Title</p>
                     <input
+                        name='title'
                         className="mb-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
                         type="text"
                         placeholder="Title e.g Introduction to AI"
-                        value={formData.title}
-                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                     />
                 </div>
 
@@ -116,11 +106,10 @@ const AddArticle = () => {
                 <div className='my-5 w-full'>
                     <p className='ml-1 mb-1 text-sm font-[SatoshiMedium]'>Description</p>
                     <textarea
+                        name='description'
                         className="h-[250px] mb-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
                         maxLength={80}
                         placeholder="Description e.g AI is the future and everybody loves it..."
-                        value={formData.description}
-                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     />
                 </div>
 

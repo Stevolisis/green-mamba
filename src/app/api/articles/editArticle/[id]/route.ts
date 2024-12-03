@@ -11,6 +11,7 @@ export async function PATCH(req: NextRequest,{params}:any) {
     try {  
         const id:string = params.id;
         const body = await req.formData();
+        console.log(body);
         const file:File | null = body.get("file") as unknown as File;
         const slug:FormDataEntryValue= body.get("title")!.toString();
         const slugged = slugify(slug.replace(/[^\w\s']|_/g,' ').replaceAll("'",' '));

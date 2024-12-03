@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { FaUserCircle } from "react-icons/fa";
 import Image from "next/image";
-import { formatDate } from '@/utils/fomateDate';
+import { formatDate2 } from '@/utils/fomateDate';
 
 // let Props = {
 //     blog: IBlog
@@ -40,7 +40,7 @@ const ArticleCard = ({ blog }:any ) => {
           <p className="font-[SatoshiLight] text-xs">{ blog.author.name }</p>
         </div>
         <div>
-          <p className="font-[SatoshiLight] text-xs">{ formatDate(blog.createdAt, false) }</p>
+          <p className="font-[SatoshiLight] text-xs">{ formatDate2(blog.createdAt) }</p>
         </div>
       </div>
     </div>

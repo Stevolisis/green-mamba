@@ -1,9 +1,11 @@
 "use client"
 import TableList from '@/components/Table/TableList';
 import { dummy_data } from '@/dummy_data';
-import { useAppDispatch } from '@/redux/hooks';
-import article from '@/redux/slices/article';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import article, { setArticles } from '@/redux/slices/article';
 import { setTable } from '@/redux/slices/table';
+import { showToast } from '@/redux/slices/toast';
+import { api } from '@/utils/axiosConfig';
 import React, { useEffect } from 'react'
 
 type Props = {}
@@ -11,7 +13,11 @@ type Props = {}
 const page = (props: Props) => {
     const dispatch = useAppDispatch();
 
-    useEffect(()=>{
+    async function fetchArticles(){
+      try{
+        const result = await api.get("/articles/getArticles");
+        const data = result.data.data;
+        console.log("author: ",data[0]['author.name']);
         dispatch(setTable({
           title: "Your Articles",
           timeOptions: ["1D","1M","3M","1Y","ALL"],
@@ -20,14 +26,25 @@ const page = (props: Props) => {
           dataKeys: [
             { key:"id", autoIndex: true }, 
             { key:"title", longText:true }, 
-            { key:"authorName" },
+            { key:"author", author:true },
             { key: "gifts" }, 
             { key:"createdAt", time:true }
           ],
-          data: dummy_data,
+          data: data,
           actionBtn: true
         }));
-    },[article]);
+  
+        console.log(result);
+      }catch(err:any){
+        console.log("Err: ", err);
+        dispatch(showToast({message:err.response.data.message, type:"error"}));
+      }
+    }
+
+
+    useEffect(()=>{
+      fetchArticles();
+    }, []);
 
 
   return (

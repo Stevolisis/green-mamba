@@ -1,10 +1,21 @@
-import { IBlog } from "@/dummy_data";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { StaticImageData } from "next/image";
 
+export interface IBlogApi{
+    _id: string,
+    img: {public_id:string,url:string};
+    title: string;
+    slug: string;
+    description: string;
+    tags: string[],
+    author: any;
+    gifts: number;
+    content: string;
+    [key: string]: any;
+}
 interface IInitialState{
-    articles: IBlog[];
-    article: IBlog | null;
+    articles: IBlogApi[];
+    article: IBlogApi | null;
     keyWords: string[];
 };
 
@@ -32,12 +43,11 @@ export const articleSlice = createSlice({
     name: "article",
     initialState: initialState,
     reducers: {
-        setArticles: (state, { payload }: PayloadAction<IBlog[]>) =>{
+        setArticles: (state, { payload }: PayloadAction<IBlogApi[]>) =>{
             state.articles = payload;
         },
-        setArticle: (state, { payload }: PayloadAction<{data: IBlog[], id: number}>) =>{
-            const article = payload.data.find(item => item.id === payload.id);
-            state.article = article || null;
+        setArticle: (state, { payload }: PayloadAction<IBlogApi>) =>{
+            state.article = payload ;
         },
 
     }

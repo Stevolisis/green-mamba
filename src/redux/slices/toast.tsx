@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface ToastState {
   message: string;
-  type: 'success' | 'error' | 'info';
+  type: 'success' | 'error' | 'info' | 'neutral';
 }
 
 const initialState: ToastState = {
   message: '',
-  type: 'info',
+  type: 'neutral',
 };
 
 const toastSlice = createSlice({
@@ -20,7 +20,7 @@ const toastSlice = createSlice({
     },
     hideToast: (state) => {
         state.message = "";
-        state.type = "info";    
+        state.type = "neutral";    
     },
   },
 });

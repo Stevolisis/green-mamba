@@ -10,6 +10,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { setType, showSlide } from "@/redux/slices/slider";
 import { showToast } from "@/redux/slices/toast";
 import { setVisibility } from "@/redux/slices/notification";
+import { setUserId, setWalletAddress } from "@/redux/slices/auth";
 
 const Menu = () => {
   const [active, setActive] = useState<boolean>(false);
@@ -28,7 +29,14 @@ const Menu = () => {
     { name: "Add Article", func :()=>{ dispatch(showSlide()); dispatch(setType("add_article")); setActive(false)}, icon: <RiEditFill className="text-[20px] text-bgPrimary" />, active: false },
     { name: "Gifts", func :()=>{ router.push("/dashboard/gifts"); setActive(false)}, icon: <FaGift className="text-[20px] text-bgPrimary" />, active: false },
     { name: "Notification", func :()=>{ dispatch(setVisibility(true)); setActive(false)}, icon: <IoNotifications className="text-[20px] text-bgPrimary" />, active: false },
-    { name: "Logout", func :()=>{ router.push("/"); dispatch(showToast({ message: 'Logged Out Successfully', type: 'success' })); setActive(false)}, icon: <RiLogoutBoxRFill className="text-[20px] text-bgPrimary" />, active: false },
+    { name: "Logout", func :()=>{ 
+      router.push("/"); 
+      dispatch(showToast({ message: 'Logged Out Successfully', type: 'success' })); 
+      setActive(false); 
+      // dispatch(setWalletAddress("")); 
+      // dispatch(setUserId(""));
+    }, 
+      icon: <RiLogoutBoxRFill className="text-[20px] text-bgPrimary" />, active: false },
   ];
 
   return (
