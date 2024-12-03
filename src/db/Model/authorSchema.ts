@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
+import { Schema, InferSchemaType, model, models } from 'mongoose';
 
-const AuthorSchema = new mongoose.Schema({
+const AuthorSchema = new Schema({
     walletAddress: { 
         type: String, 
         required: true, 
-        unique: true 
+        unique: true ,
     },
     name: { 
         type: String, 
@@ -21,4 +21,7 @@ const AuthorSchema = new mongoose.Schema({
     timestamps:true
 });
 
-module.exports = mongoose.models.Author || mongoose.model('Author', AuthorSchema);
+type AuthorType = InferSchemaType<typeof AuthorSchema>;
+
+const Author = models.Author || model<AuthorType>('Author', AuthorSchema);
+export default Author;

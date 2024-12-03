@@ -14,12 +14,13 @@ const ArticleCard = ({ blog }:any ) => {
 
     <div className="">
       <Image
-        src={blog.image} 
+        src={blog.img.url} 
         alt={blog.title}
         width={500}
         height={300}
         className="aspect-[4/2.5] max-h-[300px] object-cover rounded"
         placeholder="blur"
+        blurDataURL={blog.img.url}
       /> 
     </div>  
 
@@ -36,7 +37,7 @@ const ArticleCard = ({ blog }:any ) => {
             size={17}
             className="text-bgSecondary"
           />
-          <p className="font-[SatoshiLight] text-xs">{ blog.authorName }</p>
+          <p className="font-[SatoshiLight] text-xs">{ blog.author.name }</p>
         </div>
         <div>
           <p className="font-[SatoshiLight] text-xs">{ formatDate(blog.createdAt, false) }</p>

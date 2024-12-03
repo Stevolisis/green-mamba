@@ -6,14 +6,26 @@ import ArticleCard from "@/components/ArticleCard";
 import { setArticles } from "@/redux/slices/article";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { api } from "../utils/axiosConfig";
 
 
 export default function Home() {
   const dispatch = useAppDispatch();
   const { articles } = useAppSelector(state => state.article);
 
+  async function fetchArticles(){
+    try{
+      const result = await api.get("/articles/getArticles");
+      const data = result.data.data;
+      dispatch(setArticles(data));
+
+      console.log(result);
+    }catch(err){
+      console.log("Err: ", err);
+    }
+  }
   useEffect(()=>{
-    dispatch(setArticles(dummy_data));
+    fetchArticles();
   }, []);
 
   return (

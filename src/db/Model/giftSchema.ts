@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+import { Schema, InferSchemaType, model, models } from 'mongoose';
 
-const GiftSchema = new mongoose.Schema({
+const GiftSchema = new Schema({
     senderWallet: { 
         type: String, 
         required: true 
@@ -10,7 +10,7 @@ const GiftSchema = new mongoose.Schema({
         required: true 
     },
     article: { 
-        type: mongoose.Schema.Types.ObjectId, 
+        type: Schema.Types.ObjectId, 
         ref: 'Article' 
     },
     amount: { 
@@ -25,4 +25,7 @@ const GiftSchema = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.models.Gift || mongoose.model('Gift', GiftSchema);
+type GiftType = InferSchemaType<typeof GiftSchema>;
+
+const Gift = models.Gift || model<GiftType>('Gift', GiftSchema);
+export default Gift;
