@@ -12,7 +12,7 @@ contract Authors{
     }
 
     mapping (address => Author) public authors;
-    event AuthorAdded(address indexed authorAddress, string name, string skills);
+    event AuthorAdded(address indexed authorAddress, string name, string title);
 
     function addAuthor(string memory _name, string memory _title) public {
         require(!authors[msg.sender].exists, "Author already exists");

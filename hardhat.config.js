@@ -25,3 +25,4 @@ module.exports = {
 //npx hardhat ignition deploy ignition/modules/Author.js --sepolis --reset      //if inconsistency detected
 //0xb3B6eb860768574A7817889E9167ED1A080E647e   //Author
 //0xFa21d4aeff75F5BB587362dAf38E54BC7A8d9880   //Article
+//npx hardhat test test/Article.js

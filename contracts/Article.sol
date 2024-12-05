@@ -32,18 +32,18 @@ contract Articles {
     event GiftSent(address indexed sender, address indexed recipient, uint256 amount, uint256 articleIndex, string articleTitle);
     event ArticleDeleted(address indexed author, uint256 articleIndex, string articleTitle);
 
-    function addArticle(string memory _title, string memory _metadataHash) public {
+    function addArticle(string memory _title, string memory _metadataId) public {
         Authors.Author memory author = authorsContract.getAuthor(msg.sender);
         require(author.exists, "Only registered authors can add articles");
-        articles.push(Article(_title, _metadataHash, msg.sender, true));
+        articles.push(Article(_title, _metadataId, msg.sender, true));
         uint256 articleIndex = articles.length - 1;
-        metadataToIndex[_metadataHash] = articleIndex;
+        metadataToIndex[_metadataId] = articleIndex;
 
-        emit ArticleAdded(_title, _metadataHash, msg.sender);
+        emit ArticleAdded(_title, _metadataId, msg.sender);
     }
 
-    function sendGift(string memory _metadataHash) public payable {
-        uint256 articleIndex = metadataToIndex[_metadataHash];
+    function sendGift(string memory _metadataId) public payable {
+        uint256 articleIndex = metadataToIndex[_metadataId];
         require(articleIndex < articles.length, "Article does not exist");
         
         Article memory article = articles[articleIndex];
@@ -63,16 +63,16 @@ contract Articles {
         emit GiftSent(msg.sender, article.authorAddress, msg.value, articleIndex, article.title);
     }
 
-    function getArticle(string memory _metadataHash) public view returns (string memory, string memory, address) {
-        uint256 articleIndex = metadataToIndex[_metadataHash];
+    function getArticle(string memory _metadataId) public view returns (string memory, string memory, address) {
+        uint256 articleIndex = metadataToIndex[_metadataId];
         require(articleIndex < articles.length, "Article does not exist");
 
         Article memory article = articles[articleIndex];
         return (article.title, article.metadataId, article.authorAddress);
     }
 
-    function deleteArticle(string memory _metadataHash) public {
-        uint256 articleIndex = metadataToIndex[_metadataHash];
+    function deleteArticle(string memory _metadataId) public {
+        uint256 articleIndex = metadataToIndex[_metadataId];
         require(articleIndex < articles.length, "Article does not exist");
 
         Article storage article = articles[articleIndex];

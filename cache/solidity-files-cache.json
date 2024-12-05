@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\USER\\Documents\\GitHub\\web3\\contracts\\Article.sol": {
-      "lastModificationDate": 1733318129574,
-      "contentHash": "d4f7c4ab00b1860bb85b30db2652370b",
+      "lastModificationDate": 1733436494158,
+      "contentHash": "3841376b0c51bf520e1f8af4538f41dc",
       "sourceName": "contracts/Article.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -40,8 +40,8 @@
       ]
     },
     "C:\\Users\\USER\\Documents\\GitHub\\web3\\contracts\\Author.sol": {
-      "lastModificationDate": 1733318108865,
-      "contentHash": "95df06b62c42c744e03959a342ea08a5",
+      "lastModificationDate": 1733433600742,
+      "contentHash": "954586e00e436b1e542c04943b8a3d42",
       "sourceName": "contracts/Author.sol",
       "solcConfig": {
         "version": "0.8.24",

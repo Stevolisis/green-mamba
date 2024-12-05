@@ -41,7 +41,7 @@ const CompleteProfile = () => {
             }catch(err:any){
                 console.log("Err: ", err);
                 setIsLoading(false);
-                dispatch(showToast({message:err.response.data.message, type:"error"}));
+                dispatch(showToast({message:err?.response?.data?.message || err.message, type:"error"}));
             }
         }else{
             dispatch(showToast({message:"Pls Connect Wallet!", type:"info"}));
