@@ -7,7 +7,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { FaWallet } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
-
+import web3modal from "web3modal";
+import { ethers } from "ethers";
+import { setWalletAddress } from "@/redux/slices/auth";
 
 const Header = () => {
   const [active, setActive]= useState(1);
@@ -15,12 +17,19 @@ const Header = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
-  function handleClick(){
+  async function handleClick(){
     if(walletAddress && userId){
       return router.push("/dashboard");
     }
+
+    const Web3Loader = new web3modal();
+    const connection = await Web3Loader.connect();
+    const provider = new ethers.BrowserProvider(connection);
+    const signer = await provider.getSigner();
     dispatch(showSlide());
+    dispatch(setWalletAddress(signer.address));
     dispatch(setType("complete_profile"));
+    console.log("eeeeeeeeeeeeeeeee: ", signer);
   }
 
   
@@ -49,7 +58,7 @@ const Header = () => {
           walletAddress ? 
             <button onClick={()=> handleClick()} className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
               <FaWallet className="text-lg" />
-              <p className="border-l border-l-bgPrimary pl-2">{walletAddress ? walletAddress.slice(0,11) + "..." : "Connect Wallet"}</p>
+              <p className="border-l border-l-bgPrimary pl-2">{walletAddress ? walletAddress.slice(0, 6) + "..." + walletAddress.slice(-5) : "Connect Wallet"}</p>
             </button>
           :
             <button onClick={()=> handleClick()} className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">

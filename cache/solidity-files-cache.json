@@ -1,10 +1,10 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "C:\\Users\\USER\\Documents\\GitHub\\web3\\contracts\\articles.sol": {
-      "lastModificationDate": 1727205233398,
-      "contentHash": "883fb0ebf91d1aabcebd3abc75b1dd48",
-      "sourceName": "contracts/articles.sol",
+    "C:\\Users\\USER\\Documents\\GitHub\\web3\\contracts\\Article.sol": {
+      "lastModificationDate": 1733318129574,
+      "contentHash": "d4f7c4ab00b1860bb85b30db2652370b",
+      "sourceName": "contracts/Article.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
@@ -30,14 +30,49 @@
         }
       },
       "imports": [
-        "./lib/slugify.sol",
-        "./authors.sol"
+        "./Author.sol"
       ],
       "versionPragmas": [
-        ">=0.7.0 <0.9.0"
+        ">= 0.7.0 < 0.9.0"
       ],
       "artifacts": [
-        "Article"
+        "Articles"
+      ]
+    },
+    "C:\\Users\\USER\\Documents\\GitHub\\web3\\contracts\\Author.sol": {
+      "lastModificationDate": 1733318108865,
+      "contentHash": "95df06b62c42c744e03959a342ea08a5",
+      "sourceName": "contracts/Author.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.7.0 < 0.9.0"
+      ],
+      "artifacts": [
+        "Authors"
       ]
     },
     "C:\\Users\\USER\\Documents\\GitHub\\web3\\contracts\\lib\\slugify.sol": {
@@ -74,81 +109,6 @@
       ],
       "artifacts": [
         "Slugify"
-      ]
-    },
-    "C:\\Users\\USER\\Documents\\GitHub\\web3\\contracts\\authors.sol": {
-      "lastModificationDate": 1727205243086,
-      "contentHash": "d9edabb8ef62a766815811b8e01d5737",
-      "sourceName": "contracts/authors.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.7.0 <0.9.0"
-      ],
-      "artifacts": [
-        "Author"
-      ]
-    },
-    "C:\\Users\\USER\\Documents\\GitHub\\web3\\contracts\\gifts.sol": {
-      "lastModificationDate": 1723905535664,
-      "contentHash": "dde0e329e6d3426b5172d17b9e152b7c",
-      "sourceName": "contracts/gifts.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./authors.sol",
-        "./articles.sol"
-      ],
-      "versionPragmas": [
-        ">= 0.7.0 < 0.9.0"
-      ],
-      "artifacts": [
-        "Gift"
       ]
     },
     "C:\\Users\\USER\\Documents\\GitHub\\web3\\contracts\\Lock.sol": {

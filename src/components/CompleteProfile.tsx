@@ -1,9 +1,10 @@
-import { useAppDispatch } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { setUserId, setWalletAddress } from '@/redux/slices/auth';
 import { showSlide } from '@/redux/slices/slider';
 import { showToast } from '@/redux/slices/toast';
 import { api } from '@/utils/axiosConfig';
 import React, { useState } from 'react'
+import Loader from './Loader';
 
 export interface IFormData {
     name:string;
@@ -13,29 +14,35 @@ export interface IFormData {
 
 const CompleteProfile = () => {
     const dispatch= useAppDispatch();
+    const { walletAddress, userId } = useAppSelector((state)=>state.auth);
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
 
     async function handleSubmit(e:React.FormEvent<HTMLFormElement>){
         e.preventDefault();
-        const form = e.target as HTMLFormElement;
 
-        try{
-            const addr:string = "0x2345678902227655670";
-            const formData= new FormData(form);
-            formData.append("walletAddress", addr)
-            const result = await api.post("/authors/createAuthor", formData);
-            const data = result.data;
-            dispatch(showToast({message:data.message, type:"success"}));
-            dispatch(showSlide());
-            dispatch(setUserId(data.data._id));
-            dispatch(setWalletAddress(addr));
-            form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input, textarea").forEach(input => {
-                input.value = "";
-            });
-            console.log(data);
-
-        }catch(err:any){
-          console.log("Err: ", err);
-          dispatch(showToast({message:err.response.data.message, type:"error"}));
+        if(walletAddress){
+            const form = e.target as HTMLFormElement;
+            setIsLoading(true);
+            try{
+                const formData= new FormData(form);
+                formData.append("walletAddress", walletAddress)
+                const result = await api.post("/authors/createAuthor", formData);
+                const data = result.data;
+                dispatch(showToast({message:data.message, type:"success"}));
+                dispatch(showSlide());
+                dispatch(setUserId(data.data._id));
+                form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input, textarea").forEach(input => {
+                    input.value = "";
+                });
+                console.log(data);
+                setIsLoading(false);
+            }catch(err:any){
+                console.log("Err: ", err);
+                setIsLoading(false);
+                dispatch(showToast({message:err.response.data.message, type:"error"}));
+            }
+        }else{
+            dispatch(showToast({message:"Pls Connect Wallet!", type:"info"}));
         }
     }
 
@@ -58,8 +65,8 @@ const CompleteProfile = () => {
                 <button className="w-full font-[SatoshiMedium] flex gap-2 justify-center items-center text-base text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
                     {
                         isLoading ? 
-                            <Loader size={24} color='#01140d' /> :
-                            <p className="pl-2">Complete Profile</p>
+                        <Loader size={24} color='#01140d' /> :
+                        <p className="pl-2">Complete Profile</p>
                     }
                 </button>
             </form>

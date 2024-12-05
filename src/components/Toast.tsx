@@ -13,7 +13,12 @@ const Toast = () => {
         background: '#01140d',
         color: '#fff',
     }
-
+    const infoToastStyle= {
+        border: '1px solid dodgerblue',
+        borderRadius: '10px',
+        background: '#01140d',
+        color: '#fff',
+    }
     const errorToastStyle= {
         border: '1px solid red',
         borderRadius: '10px',
@@ -27,6 +32,12 @@ const Toast = () => {
                 case "success":{
                     toast.success(message,{
                         style: successToastStyle,
+                    });
+                    break;
+                }   
+                case "info":{
+                    toast.success(message,{
+                        style: infoToastStyle,
                     });
                     break;
                 }   

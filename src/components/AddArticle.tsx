@@ -54,11 +54,11 @@ const AddArticle = () => {
         const form = e.target as HTMLFormElement;
         if(!walletAddress && !userId){
             setIsLoading(false);
-            return dispatch(showToast({message:"Pls connect your wallet!", type:"error"}));
+            return dispatch(showToast({message:"Pls connect your wallet!", type:"info"}));
         }
         if(!formData.image || !formData.tags || !formData.content){
             setIsLoading(false);
-            return dispatch(showToast({message:"Pls complete the form!", type:"error"}));
+            return dispatch(showToast({message:"Pls complete the form!", type:"info"}));
         }
 
         try{

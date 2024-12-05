@@ -50,15 +50,15 @@ const EditArticle = () => {
         const form = e.target as HTMLFormElement;
         if(!walletAddress && !userId){
             setIsLoading(false);
-            return dispatch(showToast({message:"Pls connect your wallet!", type:"error"}));
+            return dispatch(showToast({message:"Pls connect your wallet!", type:"info"}));
         }
         if(!formData.tags || !formData.content){
             setIsLoading(false);
-            return dispatch(showToast({message:"Pls complete the form!", type:"error"}));
+            return dispatch(showToast({message:"Pls complete the form!", type:"info"}));
         }
         if(!article){
             setIsLoading(false);
-            return dispatch(showToast({message:"No Article Found", type:"error"}));
+            return dispatch(showToast({message:"No Article Found", type:"info"}));
         }
 
 

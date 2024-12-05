@@ -24,22 +24,22 @@ const page = () => {
   },[dispatch, currentMonth, currentYear]);
 
   useEffect(()=>{
-    dispatch(setTable({
-      title: "Financial History",
-      timeOptions: ["1D","1M","3M","1Y","ALL"],
-      currentTimeOption: "1M",
-      headings: ["#", "Sender", "Amount", "Blockchain", "Blog Title", "Date"],
-      dataKeys: [
-        { key:"id", autoIndex: true }, 
-        { key:"userAddress", address:true }, 
-        { key:"amount" },
-        { key: "chain" }, 
-        { key:"articleSlug", longText:true }, 
-        { key:"createdAt", time:true }
-      ],
-      data: dummy_gifts,
-      actionBtn: false,
-    }));
+    // dispatch(setTable({
+    //   title: "Financial History",
+    //   timeOptions: ["1D","1M","3M","1Y","ALL"],
+    //   currentTimeOption: "1M",
+    //   headings: ["#", "Sender", "Amount", "Blockchain", "Blog Title", "Date"],
+    //   dataKeys: [
+    //     { key:"id", autoIndex: true }, 
+    //     { key:"userAddress", address:true }, 
+    //     { key:"amount" },
+    //     { key: "chain" }, 
+    //     { key:"articleSlug", longText:true }, 
+    //     { key:"createdAt", time:true }
+    //   ],
+    //   data: dummy_gifts,
+    //   actionBtn: false,
+    // }));
   },[]);
 
 
