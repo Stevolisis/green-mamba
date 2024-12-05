@@ -18,18 +18,19 @@ const Header = () => {
   const router = useRouter();
 
   async function handleClick(){
-    if(walletAddress && userId){
-      return router.push("/dashboard");
-    }
+    // if(walletAddress && userId){
+    //   return router.push("/dashboard");
+    // }
 
     const Web3Loader = new web3modal();
     const connection = await Web3Loader.connect();
     const provider = new ethers.BrowserProvider(connection);
     const signer = await provider.getSigner();
-    dispatch(showSlide());
     dispatch(setWalletAddress(signer.address));
-    dispatch(setType("complete_profile"));
     console.log("eeeeeeeeeeeeeeeee: ", signer);
+
+    dispatch(showSlide());
+    dispatch(setType("complete_profile"));
   }
 
   

@@ -3,8 +3,10 @@ import { setUserId, setWalletAddress } from '@/redux/slices/auth';
 import { showSlide } from '@/redux/slices/slider';
 import { showToast } from '@/redux/slices/toast';
 import { api } from '@/utils/axiosConfig';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Loader from './Loader';
+import web3modal from "web3modal";
+import { ethers } from "ethers";
 
 export interface IFormData {
     name:string;
@@ -45,6 +47,19 @@ const CompleteProfile = () => {
             dispatch(showToast({message:"Pls Connect Wallet!", type:"info"}));
         }
     }
+
+    async function connectWallet(){        
+        const Web3Loader = new web3modal();
+        const connection = await Web3Loader.connect();
+        const provider = new ethers.BrowserProvider(connection);
+        const signer = await provider.getSigner();
+        dispatch(setWalletAddress(signer.address));
+        console.log("eeeeeeeeeeeeeeeee: ", signer);
+    }
+
+    useEffect(()=>{
+        
+    },[]);
 
     return (
         <>
