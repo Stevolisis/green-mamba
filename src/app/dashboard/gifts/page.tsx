@@ -9,24 +9,24 @@ type Props = {}
 
 const page = (props: Props) => {
     const dispatch = useAppDispatch();
-    useEffect(()=>{
-        dispatch(setTable({
-          title: "Gifts History",
-          timeOptions: ["1D","1M","3M","1Y","ALL"],
-          currentTimeOption: "1M",
-          headings: ["#", "Sender", "Amount", "Blockchain", "Blog Title", "Date"],
-          dataKeys: [
-            { key:"id", autoIndex: true }, 
-            { key:"userAddress", address:true }, 
-            { key:"amount" },
-            { key: "chain" }, 
-            { key:"articleSlug", longText:true }, 
-            { key:"createdAt", time:true }
-          ],
-          data: dummy_gifts,
-          actionBtn: false,
-        }));
-      },[]);
+    // useEffect(()=>{
+    //     dispatch(setTable({
+    //       title: "Gifts History",
+    //       timeOptions: ["1D","1M","3M","1Y","ALL"],
+    //       currentTimeOption: "1M",
+    //       headings: ["#", "Sender", "Amount", "Blockchain", "Blog Title", "Date"],
+    //       dataKeys: [
+    //         { key:"id", autoIndex: true }, 
+    //         { key:"userAddress", address:true }, 
+    //         { key:"amount" },
+    //         { key: "chain" }, 
+    //         { key:"articleSlug", longText:true }, 
+    //         { key:"createdAt", time:true }
+    //       ],
+    //       data: dummy_gifts,
+    //       actionBtn: false,
+    //     }));
+    //   },[]);
     
   return (
     <div className='px-4 sm:px-16 py-12 pt-0 font-[SatoshiRegular]'>
