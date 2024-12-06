@@ -39,7 +39,9 @@ const CompleteProfile = () => {
             const result = await api.post("/authors/createAuthor", formData);
             const data = result.data;
             const metadataId = data.data._id;
-    
+            const name = data.data.name;
+            const title = data.data.title;
+            console.log("Rest Data:", data);
             // Interact with the smart contract
             const Web3Loader = new web3modal();
             const connection = await Web3Loader.connect();
@@ -52,7 +54,7 @@ const CompleteProfile = () => {
             const contract = new ethers.Contract(contractAddress, contractABI, signer);
     
             // Call the addAuthor function
-            const tx = await contract.addAuthor(metadataId);
+            const tx = await contract.addAuthor(name, title);
             await tx.wait(); // Wait for transaction to be mined
     
             console.log("Author added:", tx.hash);
@@ -74,20 +76,7 @@ const CompleteProfile = () => {
             setIsLoading(false);
         }
     }
-    
 
-    async function connectWallet(){        
-        const Web3Loader = new web3modal();
-        const connection = await Web3Loader.connect();
-        const provider = new ethers.BrowserProvider(connection);
-        const signer = await provider.getSigner();
-        dispatch(setWalletAddress(signer.address));
-        console.log("eeeeeeeeeeeeeeeee: ", signer);
-    }
-
-    useEffect(()=>{
-        
-    },[]);
 
     return (
         <>

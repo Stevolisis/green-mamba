@@ -11,6 +11,10 @@ import { MdArticle } from 'react-icons/md'
 import TableList from '../../components/Table/TableList'
 import { setTable, setTimeOption } from '@/redux/slices/table'
 import { setVisibility } from '@/redux/slices/notification'
+import { articleContractABI, articleContractAddress } from '@/utils/contractConfig'
+import { ethers } from 'ethers'
+import web3modal from "web3modal";
+import { showToast } from '@/redux/slices/toast'
 
 
 const page = () => {
@@ -18,28 +22,54 @@ const page = () => {
   const { currentMonth, currentYear} = useAppSelector(state => state.charts);
   const { unReadNotifications } = useAppSelector((state)=> state.notification);
 
+  async function loadAuthorGifts(){
+    try{
+      const Web3Loader = new web3modal();
+      const connection = await Web3Loader.connect();
+      const provider = new ethers.BrowserProvider(connection);
+      const signer = await provider.getSigner();
+
+      // Replace `AuthorContractAddress` and ABI with your contract details
+      const contractAddress = articleContractAddress;
+      const contractABI = articleContractABI;
+      const contract = new ethers.Contract(contractAddress, contractABI, signer);
+
+      // Call the addAuthor function
+      const tx = await contract.getAuthorGifts(signer.address);
+      console.log("vvvvvvv: ", tx.length);
+
+    }catch(err:any){
+      console.log(err);
+      dispatch(showToast({ message: err.message, type: "error" }));
+    }
+  }
+
+  useEffect(()=>{
+    loadAuthorGifts();
+  },[]);
+
   useEffect(()=>{
     dispatch(addChart({name:"Gifts",title:"Finance Report",data:dummy_gifts}));
     dispatch(addChart({name:"Gifters",title:"Finance Report",data:dummy_data}));
   },[dispatch, currentMonth, currentYear]);
 
   useEffect(()=>{
-    // dispatch(setTable({
-    //   title: "Financial History",
-    //   timeOptions: ["1D","1M","3M","1Y","ALL"],
-    //   currentTimeOption: "1M",
-    //   headings: ["#", "Sender", "Amount", "Blockchain", "Blog Title", "Date"],
-    //   dataKeys: [
-    //     { key:"id", autoIndex: true }, 
-    //     { key:"userAddress", address:true }, 
-    //     { key:"amount" },
-    //     { key: "chain" }, 
-    //     { key:"articleSlug", longText:true }, 
-    //     { key:"createdAt", time:true }
-    //   ],
-    //   data: dummy_gifts,
-    //   actionBtn: false,
-    // }));
+    dispatch(setTable({
+      title: "Financial History",
+      timeOptions: ["1D","1M","3M","1Y","ALL"],
+      currentTimeOption: "1M",
+      headings: ["#", "Sender", "Amount", "Blockchain", "Blog Title", "Date"],
+      dataKeys: [
+        { key:"id", autoIndex: true }, 
+        { key:"userAddress", address:true }, 
+        { key:"amount" },
+        { key: "chain" }, 
+        { key:"articleSlug", longText:true }, 
+        { key:"createdAt", time:true }
+      ],
+      data: [],
+      actionBtn: false,
+    }));
   },[]);
 
 

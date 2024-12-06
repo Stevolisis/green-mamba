@@ -55,7 +55,7 @@ const Toast = () => {
 
             const timer = setTimeout(() => {
                 dispatch(hideToast());
-            }, 2500);
+            }, 3500);
             return () => clearTimeout(timer);
         }
     }, [type, dispatch]);
