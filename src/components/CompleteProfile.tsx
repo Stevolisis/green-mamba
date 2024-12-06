@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react'
 import Loader from './Loader';
 import web3modal from "web3modal";
 import { ethers } from "ethers";
+import { authorContractABI, authorContractAddress } from '@/utils/contractConfig';
 
 export interface IFormData {
     name:string;
@@ -19,34 +20,61 @@ const CompleteProfile = () => {
     const { walletAddress, userId } = useAppSelector((state)=>state.auth);
     const [ isLoading, setIsLoading ] = useState<boolean>(false);
 
-    async function handleSubmit(e:React.FormEvent<HTMLFormElement>){
-        e.preventDefault();
-
-        if(walletAddress){
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        try {
+            e.preventDefault();
+    
+            if (!walletAddress) {
+                dispatch(showToast({ message: "Please connect your wallet!", type: "info" }));
+                return;
+            }
             const form = e.target as HTMLFormElement;
             setIsLoading(true);
-            try{
-                const formData= new FormData(form);
-                formData.append("walletAddress", walletAddress)
-                const result = await api.post("/authors/createAuthor", formData);
-                const data = result.data;
-                dispatch(showToast({message:data.message, type:"success"}));
-                dispatch(showSlide());
-                dispatch(setUserId(data.data._id));
-                form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input, textarea").forEach(input => {
-                    input.value = "";
-                });
-                console.log(data);
-                setIsLoading(false);
-            }catch(err:any){
-                console.log("Err: ", err);
-                setIsLoading(false);
-                dispatch(showToast({message:err?.response?.data?.message || err.message, type:"error"}));
-            }
-        }else{
-            dispatch(showToast({message:"Pls Connect Wallet!", type:"info"}));
+
+            // Prepare form data
+            const formData = new FormData(form);
+            formData.append("walletAddress", walletAddress);
+    
+            // Save profile to REST API
+            const result = await api.post("/authors/createAuthor", formData);
+            const data = result.data;
+            const metadataId = data.data._id;
+    
+            // Interact with the smart contract
+            const Web3Loader = new web3modal();
+            const connection = await Web3Loader.connect();
+            const provider = new ethers.BrowserProvider(connection);
+            const signer = await provider.getSigner();
+    
+            // Replace `AuthorContractAddress` and ABI with your contract details
+            const contractAddress = authorContractAddress;
+            const contractABI = authorContractABI;
+            const contract = new ethers.Contract(contractAddress, contractABI, signer);
+    
+            // Call the addAuthor function
+            const tx = await contract.addAuthor(metadataId);
+            await tx.wait(); // Wait for transaction to be mined
+    
+            console.log("Author added:", tx.hash);
+    
+            // Update Redux state and UI
+            dispatch(setUserId(metadataId));
+            dispatch(showToast({ message: "Profile created and added to blockchain!", type: "success" }));
+            dispatch(showSlide());
+    
+            // Clear the form
+            form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input, textarea").forEach(input => {
+                input.value = "";
+            });
+
+        } catch (err: any) {
+            console.error("Error during profile creation:", err);
+            dispatch(showToast({ message: err?.response?.data?.message || err.message, type: "error" }));
+        } finally {
+            setIsLoading(false);
         }
     }
+    
 
     async function connectWallet(){        
         const Web3Loader = new web3modal();

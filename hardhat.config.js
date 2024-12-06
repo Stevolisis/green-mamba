@@ -22,7 +22,11 @@ module.exports = {
 };
 //faucet.fantom.network
 //npx hardhat ignition deploy ignition/modules/Author.js --network fantomtest
-//npx hardhat ignition deploy ignition/modules/Author.js --sepolis --reset      //if inconsistency detected
+//npx hardhat ignition deploy ignition/modules/Author.js --network sepolia --reset      //if inconsistency detected
 //0xb3B6eb860768574A7817889E9167ED1A080E647e   //Author
 //0xFa21d4aeff75F5BB587362dAf38E54BC7A8d9880   //Article
+
+//after reset
+//0xBEd40172ACaaBBcE4562C0f0fd66FC3a94eD8B7B   //Author
+//0xD071cBda2E71b706D190E79b2882E103019057a1   //Article
 //npx hardhat test test/Article.js

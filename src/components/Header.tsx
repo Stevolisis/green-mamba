@@ -17,21 +17,28 @@ const Header = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
-  async function handleClick(){
-    // if(walletAddress && userId){
-    //   return router.push("/dashboard");
-    // }
+  async function handleClick() {
+    if (walletAddress && userId) {
+        // If the user is already registered, redirect to the dashboard
+        return router.push("/dashboard");
+    }
 
+    // Connect Wallet Logic
     const Web3Loader = new web3modal();
     const connection = await Web3Loader.connect();
     const provider = new ethers.BrowserProvider(connection);
     const signer = await provider.getSigner();
-    dispatch(setWalletAddress(signer.address));
-    console.log("eeeeeeeeeeeeeeeee: ", signer);
 
-    dispatch(showSlide());
-    dispatch(setType("complete_profile"));
-  }
+    dispatch(setWalletAddress(signer.address));
+    console.log("Wallet Connected:", signer.address);
+
+    // Show the Complete Profile Component if not registered
+    if (!userId) {
+        dispatch(showSlide());
+        dispatch(setType("complete_profile"));
+    }
+}
+
 
   
   return (
@@ -56,18 +63,43 @@ const Header = () => {
 
       <div className="font-[SatoshiMedium] pl-3">
         {
-          walletAddress ? 
-            <button onClick={()=> handleClick()} className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
-              <FaWallet className="text-lg" />
-              <p className="border-l border-l-bgPrimary pl-2">{walletAddress ? walletAddress.slice(0, 6) + "..." + walletAddress.slice(-5) : "Connect Wallet"}</p>
-            </button>
-          :
-            <button onClick={()=> handleClick()} className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
+          walletAddress ? (
+            userId ? (
+              // If walletAddress and userId exist, show button to navigate to Dashboard
+              <button
+                onClick={() => router.push("/dashboard")}
+                className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in"
+              >
+                <FaWallet className="text-lg" />
+                <p className="border-l border-l-bgPrimary pl-2">
+                  {walletAddress.slice(0, 6) + "..." + walletAddress.slice(-5)}
+                </p>
+              </button>
+            ) : (
+              // If walletAddress exists but userId does not, show Complete Profile flow
+              <button
+                onClick={() => handleClick()}
+                className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in"
+              >
+                <FaWallet className="text-lg" />
+                <p className="border-l border-l-bgPrimary pl-2">
+                  {walletAddress.slice(0, 6) + "..." + walletAddress.slice(-5)}
+                </p>
+              </button>
+            )
+          ) : (
+            // If no walletAddress, show Connect Wallet button
+            <button
+              onClick={() => handleClick()}
+              className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in"
+            >
               <FaWallet className="text-lg" />
               <p className="border-l border-l-bgPrimary pl-2">Connect Wallet</p>
             </button>
+          )
         }
       </div>
+
     </header>
   )
 }

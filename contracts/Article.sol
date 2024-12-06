@@ -26,11 +26,11 @@ contract Articles {
 
     Article[] public articles;
     mapping(address => Gift[]) public authorGifts;
-    mapping(string => uint256) private metadataToIndex;
+    mapping(string => uint256) public metadataToIndex;
 
     event ArticleAdded(string title, string metadataId, address authorAddress);
-    event GiftSent(address indexed sender, address indexed recipient, uint256 amount, uint256 articleIndex, string articleTitle);
-    event ArticleDeleted(address indexed author, uint256 articleIndex, string articleTitle);
+    event GiftSent(address indexed sender, address indexed recipient, uint256 amount, string metadataId, string articleTitle);
+    event ArticleDeleted(address indexed author, string metadataId, string articleTitle);
 
     function addArticle(string memory _title, string memory _metadataId) public {
         Authors.Author memory author = authorsContract.getAuthor(msg.sender);
@@ -60,7 +60,34 @@ contract Articles {
             sender: msg.sender
         }));
 
-        emit GiftSent(msg.sender, article.authorAddress, msg.value, articleIndex, article.title);
+        emit GiftSent(msg.sender, article.authorAddress, msg.value, _metadataId, article.title);
+    }
+
+    function getAllArticles() public view returns (Article[] memory) {
+        return articles;
+    }
+
+    function getAllActiveArticles() public view returns (Article[] memory) {
+        uint activeCount = 0;
+        
+        // Count the number of active articles
+        for (uint i = 0; i < articles.length; i++) {
+            if (articles[i].exists) {
+                activeCount++;
+            }
+        }
+        
+        // Create a new array to hold active articles
+        Article[] memory activeArticles = new Article[](activeCount);
+        uint index = 0;
+        for (uint i = 0; i < articles.length; i++) {
+            if (articles[i].exists) {
+                activeArticles[index] = articles[i];
+                index++;
+            }
+        }
+    
+        return activeArticles;
     }
 
     function getArticle(string memory _metadataId) public view returns (string memory, string memory, address) {
@@ -81,7 +108,7 @@ contract Articles {
         // Mark the article as deleted
         article.exists = false;
 
-        emit ArticleDeleted(msg.sender, articleIndex, article.title);
+        emit ArticleDeleted(msg.sender, _metadataId, article.title);
     }
 
     function getAuthorGifts(address _author) public view returns (Gift[] memory) {
