@@ -42,13 +42,14 @@ const CompleteProfile = () => {
             const name = data.data.name;
             const title = data.data.title;
             console.log("Rest Data:", data);
+
             // Interact with the smart contract
             const Web3Loader = new web3modal();
             const connection = await Web3Loader.connect();
             const provider = new ethers.BrowserProvider(connection);
             const signer = await provider.getSigner();
     
-            // Replace `AuthorContractAddress` and ABI with your contract details
+            // Set contract details
             const contractAddress = authorContractAddress;
             const contractABI = authorContractABI;
             const contract = new ethers.Contract(contractAddress, contractABI, signer);

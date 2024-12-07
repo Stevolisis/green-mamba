@@ -4,9 +4,11 @@ import CustomMultiselect from './CustomMultiselect';
 import CustomTextEditor from './CustomTextEditor';
 import { showToast } from '@/redux/slices/toast';
 import Loader from './Loader';
-import axios from 'axios';
 import { api } from '@/utils/axiosConfig';
 import { showSlide } from '@/redux/slices/slider';
+import { ethers } from 'ethers';
+import { articleContractABI, articleContractAddress } from '@/utils/contractConfig';
+import web3modal from "web3modal";
 
 export interface IFormData {
     title: string;
@@ -70,18 +72,37 @@ const AddArticle = () => {
 
             const result = await api.post("/articles/createArticle", formdata);
             const data = result.data;
+            const title = data.data.title;
+            const metadataId = data.data._id;
+            // Interact with the smart contract
+            const Web3Loader = new web3modal();
+            const connection = await Web3Loader.connect();
+            const provider = new ethers.BrowserProvider(connection);
+            const signer = await provider.getSigner();
+    
+            // Set contract details
+            const contractAddress = articleContractAddress;
+            const contractABI = articleContractABI;
+            const contract = new ethers.Contract(contractAddress, contractABI, signer);
+            console.log("Signer: ", signer);
+
+            // Call the addAuthor function
+            const tx = await contract.addArticle(title, metadataId);
+            await tx.wait(); // Wait for transaction to be mined
+            console.log("Article added: ", tx.hash);
+
             dispatch(showToast({message:data.message, type:"success"}));
             dispatch(showSlide());
             form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input, textarea").forEach(input => {
                 input.value = "";
             });
             console.log(data);
-            setIsLoading(false);
 
         }catch(err:any){
           console.log("Err: ", err);
-          setIsLoading(false);
-          dispatch(showToast({message:err.response.data.message, type:"error"}));
+          dispatch(showToast({message:err?.response?.data?.message || err.message, type:"error"}));
+        }finally{
+            setIsLoading(false);
         }
     }
 

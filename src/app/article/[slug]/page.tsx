@@ -9,6 +9,10 @@ import { api } from '@/utils/axiosConfig';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { IBlogApi, setArticle } from '@/redux/slices/article';
 import parse from 'html-react-parser';
+import { ethers } from 'ethers';
+import { articleContractABI, articleContractAddress } from '@/utils/contractConfig';
+import web3modal from "web3modal";
+import { showToast } from '@/redux/slices/toast';
 
 type ISlug = {
   slug: string
@@ -19,6 +23,39 @@ const page = () => {
   const { slug }:ISlug = useParams();
   const { article } = useAppSelector(state => state.article);
   const dispatch = useAppDispatch();
+
+  async function handleGifting() {
+    if(article){
+      try {
+        const Web3Loader = new web3modal();
+        const connection = await Web3Loader.connect();
+        const provider = new ethers.BrowserProvider(connection);
+        const signer = await provider.getSigner();
+  
+        // Initialize contract
+        const contract = new ethers.Contract(articleContractAddress, articleContractABI, signer);
+  
+        // Set the amount to gift (e.g., 0.01 Ether)
+        const giftAmount = ethers.parseEther("0.001"); // Adjust the amount as needed
+  
+        // Call the `giftAuthor` function (ensure the article's author address is available)
+        const tx = await contract.sendGift(article._id, { value: giftAmount });
+        console.log("Transaction sent:", tx);
+  
+        // Wait for the transaction to be confirmed
+        const receipt = await tx.wait();
+        console.log("Transaction confirmed:", receipt);
+  
+        // Notify the user
+        dispatch(showToast({ message: "Gift Sent Successfully", type: "success" }));
+  
+      } catch (err: any) {
+        console.error("Error sending gift:", err);
+        dispatch(showToast({message:err.message, type:"error"}));
+      }
+    }
+  };
+
 
   async function fetchArticles(){
     try{
@@ -31,13 +68,10 @@ const page = () => {
       console.log("Err: ", err);
     }
   }
+
   useEffect(()=>{
     fetchArticles();
   }, []);
-
-  function handleGifting(){
-    return;
-  };
 
   useEffect(() => {
     document.title = "About Us ";
@@ -82,7 +116,7 @@ const page = () => {
           </div>
 
           <div className=''>
-            <button className="font-[SatoshiMedium] flex gap-2 items-center text-xs text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
+            <button onClick={()=>handleGifting()} className="font-[SatoshiMedium] flex gap-2 items-center text-xs text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
               <FaGift className="text-lg" />
               <p className="hidden sm:block border-l border-l-bgPrimary pl-2">Gift Author</p>
             </button>

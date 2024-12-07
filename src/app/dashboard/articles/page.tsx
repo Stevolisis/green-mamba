@@ -37,7 +37,7 @@ const page = (props: Props) => {
         console.log(result);
       }catch(err:any){
         console.log("Err: ", err);
-        dispatch(showToast({message:err.response.data.message, type:"error"}));
+        dispatch(showToast({ message: err?.response?.data?.message || err.message, type: "error" }));
       }
     }
 

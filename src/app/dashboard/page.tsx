@@ -4,23 +4,38 @@ import { dummy_data, dummy_gifts } from '@/dummy_data'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { addChart } from '@/redux/slices/chart'
 import Link from 'next/link'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsBank2 } from 'react-icons/bs'
 import { IoNotifications } from 'react-icons/io5'
 import { MdArticle } from 'react-icons/md'
 import TableList from '../../components/Table/TableList'
 import { setTable, setTimeOption } from '@/redux/slices/table'
 import { setVisibility } from '@/redux/slices/notification'
-import { articleContractABI, articleContractAddress } from '@/utils/contractConfig'
+import { articleContractABI, articleContractAddress, authorContractABI, authorContractAddress } from '@/utils/contractConfig'
 import { ethers } from 'ethers'
 import web3modal from "web3modal";
 import { showToast } from '@/redux/slices/toast'
 
+interface IGift{
+  amout: number;
+  articlIndex: number;
+  title: string;
+  sender: string;
+}
+interface IUser{
+  name:string;
+  title:string;
+  exists: boolean;
+}
 
 const page = () => {
   const dispatch = useAppDispatch();
   const { currentMonth, currentYear} = useAppSelector(state => state.charts);
   const { unReadNotifications } = useAppSelector((state)=> state.notification);
+  const [ gifts, setGifts ] = useState<IGift[]>([]);
+  const [ articlesCount, setArticlesCount ] = useState<number>(0);
+  const [ balance, setBalance ] = useState<any>(0);
+  const [ user, setUser ] = useState<IUser|null>(null);
 
   async function loadAuthorGifts(){
     try{
@@ -29,14 +44,38 @@ const page = () => {
       const provider = new ethers.BrowserProvider(connection);
       const signer = await provider.getSigner();
 
-      // Replace `AuthorContractAddress` and ABI with your contract details
-      const contractAddress = articleContractAddress;
-      const contractABI = articleContractABI;
+      // Author Contract
+      const contractAddress = authorContractAddress;
+      const contractABI = authorContractABI;
       const contract = new ethers.Contract(contractAddress, contractABI, signer);
+      const tx = await contract.getAuthor(signer.address);
+      console.log("zzzzzzz: ", tx[0]);
+      setUser({name:tx[0],title:tx[1],exists:tx[2]});
 
-      // Call the addAuthor function
-      const tx = await contract.getAuthorGifts(signer.address);
-      console.log("vvvvvvv: ", tx.length);
+      //Article Contract
+      const contractAddress2 = articleContractAddress;
+      const contractABI2 = articleContractABI;
+      const contract2 = new ethers.Contract(contractAddress2, contractABI2, signer);
+      const tx2 = await contract2.getAuthorGifts(signer.address);
+      const tx3 = await contract2.getAllActiveArticles();
+
+      let totalBalance = BigInt(0); 
+
+      const tx2Length = tx2.length;
+      let index = 0;
+    
+      while (index < tx2Length) {
+        const giftAmount = ethers.toBigInt(tx2[index][0]); // Convert to BigInt
+        totalBalance += giftAmount; // Add the gift amount
+        console.log("hhhhh (Gift Amount):", ethers.formatEther(giftAmount)); // Debugging
+        index++;
+      }
+
+      console.log("vvvvvvv: ", ethers.formatEther(totalBalance));
+      console.log("rrrrrrr: ", tx3);
+      setGifts(tx2);
+      setBalance(ethers.formatEther(totalBalance));
+      setArticlesCount(tx3.length);
 
     }catch(err:any){
       console.log(err);
@@ -86,7 +125,7 @@ const page = () => {
             </div>
 
             <div>
-              <p className="text-sm">Steven Joseph</p>
+              <p className="text-sm">{!user ? "...loading" : user?.name}</p>
             </div>
           </div>
 
@@ -97,7 +136,7 @@ const page = () => {
                 Balance
               </p>
               <h2 className="text-3xl font-[SatoshiBold]">
-                12,455 ETH
+                {balance} ETH
               </h2>
             </div>
 
@@ -126,7 +165,7 @@ const page = () => {
                 Number Of Articles
               </p>
               <h2 className="text-3xl font-[SatoshiBold]">
-                43
+                {articlesCount}
               </h2>
             </div>
 
