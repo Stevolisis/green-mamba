@@ -6,7 +6,7 @@ import { useAppSelector } from '@/redux/hooks'
 import { FaHistory } from 'react-icons/fa'
 
 
-const TableList = () => {
+const TableList = ({children}:any) => {
   const { title, data, dataKeys } = useAppSelector(state => state.table);
 
   return (
@@ -24,7 +24,7 @@ const TableList = () => {
                   ?
                     <>
                       <Headers/>
-                      <DataList/>
+                      { children }
                     </>
                   : 
                   <tbody>

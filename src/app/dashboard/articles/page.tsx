@@ -1,8 +1,7 @@
 "use client"
+import DataList from '@/components/Table/DataList';
 import TableList from '@/components/Table/TableList';
-import { dummy_data } from '@/dummy_data';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import article, { setArticles } from '@/redux/slices/article';
 import { setTable } from '@/redux/slices/table';
 import { showToast } from '@/redux/slices/toast';
 import { api } from '@/utils/axiosConfig';
@@ -49,7 +48,9 @@ const page = (props: Props) => {
 
   return (
     <div className='px-4 sm:px-16 py-12 pt-0 font-[SatoshiRegular]'>
-        <TableList/>
+        <TableList>
+          <DataList />
+        </TableList>
     </div>
   )
 }

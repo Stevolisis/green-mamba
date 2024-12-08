@@ -31,8 +31,8 @@ const DataList = () => {
                             >
                                 { 
                                     arg.autoIndex ? ((i + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })) :
-                                    arg.time ? formatDate2(item[arg.key as keyof typeof item]) :
-                                    arg.address ? minifyAddress(item[arg.key as keyof typeof item]) :
+                                    arg.time && item[arg.key as keyof typeof item] ? formatDate2(item[arg.key as keyof typeof item]) :
+                                    // arg?.address ? minifyAddress(item[arg.key as keyof typeof item]) :
                                     arg.author ? item[arg.key as keyof typeof item]?.name :
                                     item[arg.key as keyof typeof item] 
                                 }

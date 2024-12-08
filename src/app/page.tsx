@@ -4,17 +4,20 @@ import Image from "next/image";
 import { IBlog, dummy_data } from "@/dummy_data";
 import ArticleCard from "@/components/ArticleCard";
 import { IBlogApi, setArticles } from "@/redux/slices/article";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { api } from "../utils/axiosConfig";
 import { showToast } from "@/redux/slices/toast";
+import Loader from "@/components/Loader";
 
 
 export default function Home() {
   const dispatch = useAppDispatch();
   const { articles } = useAppSelector(state => state.article);
+  const [loading, setLoading] = useState<boolean>(false);
 
   async function fetchArticles(){
+    setLoading(true);
     try{
       const result = await api.get("/articles/getArticles");
       const data = result.data.data;
@@ -24,6 +27,8 @@ export default function Home() {
     }catch(err:any){
       console.log("Err: ", err);
       dispatch(showToast({message:err.response.data.message, type:"error"}));
+    }finally{
+      setLoading(false);
     }
   }
   useEffect(()=>{
@@ -64,8 +69,12 @@ export default function Home() {
 
       <div className="py-12 flex flex-wrap justify-center gap-12 sm:gap-7">
         {
-          articles.map((blog:IBlogApi, i:number)=>(
-            <ArticleCard blog={blog} key={i} />
+          loading ?
+          <div className='w-full flex justify-center items-center'>
+            <Loader size={32} color="#00ff95" />
+          </div> 
+          :articles.map((blog:IBlogApi, i:number)=>(
+              <ArticleCard blog={blog} key={i} />
           ))
         }
       </div>

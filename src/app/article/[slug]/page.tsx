@@ -13,6 +13,7 @@ import { ethers } from 'ethers';
 import { articleContractABI, articleContractAddress } from '@/utils/contractConfig';
 import web3modal from "web3modal";
 import { showToast } from '@/redux/slices/toast';
+import Loader from '@/components/Loader';
 
 type ISlug = {
   slug: string
@@ -22,6 +23,7 @@ type ISlug = {
 const page = () => {
   const { slug }:ISlug = useParams();
   const { article } = useAppSelector(state => state.article);
+  const [loading, setLoading] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
   async function handleGifting() {
@@ -58,6 +60,7 @@ const page = () => {
 
 
   async function fetchArticles(){
+    setLoading(true);
     try{
       const result = await api.get(`/articles/getArticle/${slug}`);
       const data:IBlogApi = result.data.data;
@@ -66,6 +69,8 @@ const page = () => {
       console.log(result);
     }catch(err){
       console.log("Err: ", err);
+    }finally{
+      setLoading(false);
     }
   }
 
@@ -74,7 +79,7 @@ const page = () => {
   }, []);
 
   useEffect(() => {
-    document.title = "About Us ";
+    document.title = "Article";
   }, []);
 
   
@@ -100,28 +105,34 @@ const page = () => {
           }
         </div>
 
-        <div className='flex justify-between items-center py-7 mx-4 sm:mx-20 border-gradient'>
-          <div className='flex items-center gap-x-3'>
-            <div>
-              <FaUserCircle
-                size={24}
-                className="text-bgSecondary"
-              />
+        {
+          loading ?
+          <div className='w-full flex justify-center items-center'>
+            <Loader size={32} color="#00ff95" />
+          </div> 
+          :<div className='flex justify-between items-center py-7 mx-4 sm:mx-20 border-gradient'>
+            <div className='flex items-center gap-x-3'>
+              <div>
+                <FaUserCircle
+                  size={24}
+                  className="text-bgSecondary"
+                />
+              </div>
+
+              <div>
+                <h4 className='font-[SatoshiMedium] text-xs'>{ article?.author.name }</h4>
+                <p className='font-[SatoshiLight] text-[10px]'>{ article && formatDate2(article.createdAt) }</p>
+              </div>
             </div>
 
-            <div>
-              <h4 className='font-[SatoshiMedium] text-xs'>{ article?.author.name }</h4>
-              <p className='font-[SatoshiLight] text-[10px]'>{ article && formatDate2(article.createdAt) }</p>
+            <div className=''>
+              <button onClick={()=>handleGifting()} className="font-[SatoshiMedium] flex gap-2 items-center text-xs text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
+                <FaGift className="text-lg" />
+                <p className="hidden sm:block border-l border-l-bgPrimary pl-2">Gift Author</p>
+              </button>
             </div>
           </div>
-
-          <div className=''>
-            <button onClick={()=>handleGifting()} className="font-[SatoshiMedium] flex gap-2 items-center text-xs text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
-              <FaGift className="text-lg" />
-              <p className="hidden sm:block border-l border-l-bgPrimary pl-2">Gift Author</p>
-            </button>
-          </div>
-        </div>
+        }
 
         <div className='py-6'>
             {article && <Image

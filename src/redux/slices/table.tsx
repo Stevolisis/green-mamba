@@ -24,7 +24,7 @@ interface IInitialState{
     currentTimeOption: string | null;
     headings: string[];
     dataKeys: dataKey[];
-    data: IBlogApi[];
+    data: any[];
     actionBtn: boolean;
 }
 

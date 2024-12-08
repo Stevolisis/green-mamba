@@ -15,6 +15,8 @@ import { articleContractABI, articleContractAddress, authorContractABI, authorCo
 import { ethers } from 'ethers'
 import web3modal from "web3modal";
 import { showToast } from '@/redux/slices/toast'
+import GiftDataList from '@/components/Table/GiftDataList'
+import Loader from '@/components/Loader'
 
 interface IGift{
   amout: number;
@@ -32,7 +34,7 @@ const page = () => {
   const dispatch = useAppDispatch();
   const { currentMonth, currentYear} = useAppSelector(state => state.charts);
   const { unReadNotifications } = useAppSelector((state)=> state.notification);
-  const [ gifts, setGifts ] = useState<IGift[]>([]);
+  const [ gifts, setGifts ] = useState<any[] | null>(null);
   const [ articlesCount, setArticlesCount ] = useState<number>(0);
   const [ balance, setBalance ] = useState<any>(0);
   const [ user, setUser ] = useState<IUser|null>(null);
@@ -49,7 +51,6 @@ const page = () => {
       const contractABI = authorContractABI;
       const contract = new ethers.Contract(contractAddress, contractABI, signer);
       const tx = await contract.getAuthor(signer.address);
-      console.log("zzzzzzz: ", tx[0]);
       setUser({name:tx[0],title:tx[1],exists:tx[2]});
 
       //Article Contract
@@ -59,7 +60,7 @@ const page = () => {
       const tx2 = await contract2.getAuthorGifts(signer.address);
       const tx3 = await contract2.getAllActiveArticles();
 
-      let totalBalance = BigInt(0); 
+      let totalBalance = BigInt(0);
 
       const tx2Length = tx2.length;
       let index = 0;
@@ -67,12 +68,9 @@ const page = () => {
       while (index < tx2Length) {
         const giftAmount = ethers.toBigInt(tx2[index][0]); // Convert to BigInt
         totalBalance += giftAmount; // Add the gift amount
-        console.log("hhhhh (Gift Amount):", ethers.formatEther(giftAmount)); // Debugging
         index++;
       }
 
-      console.log("vvvvvvv: ", ethers.formatEther(totalBalance));
-      console.log("rrrrrrr: ", tx3);
       setGifts(tx2);
       setBalance(ethers.formatEther(totalBalance));
       setArticlesCount(tx3.length);
@@ -97,7 +95,7 @@ const page = () => {
       title: "Financial History",
       timeOptions: ["1D","1M","3M","1Y","ALL"],
       currentTimeOption: "1M",
-      headings: ["#", "Sender", "Amount", "Blockchain", "Blog Title", "Date"],
+      headings: ["#", "Sender", "Amount", "Blockchain", "Blog Title"],
       dataKeys: [
         { key:"id", autoIndex: true }, 
         { key:"userAddress", address:true }, 
@@ -106,12 +104,10 @@ const page = () => {
         { key:"articleSlug", longText:true }, 
         { key:"createdAt", time:true }
       ],
-      data: [],
+      data: [""],
       actionBtn: false,
     }));
   },[]);
-
-
 
   return (
     <div className="px-4 sm:px-16 py-12 font-[SatoshiRegular]">
@@ -207,7 +203,13 @@ const page = () => {
 
       <HighChart name="Gifts"/>
 
-      <TableList/>
+      <TableList>
+        {!gifts ? 
+          <div className='pl-3 py-4'>
+            <Loader size={16} color="#00ff95" />
+          </div> 
+        : <GiftDataList data={gifts} />}
+      </TableList>
     </div>
   )
 }
