@@ -9,6 +9,7 @@ import { ethers } from 'ethers';
 import web3modal from "web3modal";
 import { showToast } from '@/redux/slices/toast';
 import Loader from '@/components/Loader';
+import { getWeb3Modal } from '@/config/web3ModalConfig';
 
 type Props = {}
 
@@ -19,8 +20,8 @@ const page = (props: Props) => {
 
   async function loadAuthorGifts(){
     try{
-      const Web3Loader = new web3modal();
-      const connection = await Web3Loader.connect();
+      const web3Modal = getWeb3Modal();
+      const connection = await web3Modal.connect();
       const provider = new ethers.BrowserProvider(connection);
       const signer = await provider.getSigner();
 

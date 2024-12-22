@@ -7,9 +7,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { FaWallet } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
-import web3modal from "web3modal";
 import { ethers } from "ethers";
 import { setWalletAddress } from "@/redux/slices/auth";
+import { getWeb3Modal } from "@/config/web3ModalConfig";
 
 const Header = () => {
   const [active, setActive]= useState(1);
@@ -19,13 +19,12 @@ const Header = () => {
 
   async function handleClick() {
     if (walletAddress && userId) {
-        // If the user is already registered, redirect to the dashboard
         return router.push("/dashboard");
     }
 
     // Connect Wallet Logic
-    const Web3Loader = new web3modal();
-    const connection = await Web3Loader.connect();
+    const web3Modal = getWeb3Modal();
+    const connection = await web3Modal.connect();
     const provider = new ethers.BrowserProvider(connection);
     const signer = await provider.getSigner();
 
@@ -33,11 +32,11 @@ const Header = () => {
     console.log("Wallet Connected:", signer.address);
 
     // Show the Complete Profile Component if not registered
-    if (!userId) {
-        dispatch(showSlide());
-        dispatch(setType("complete_profile"));
-    }
-}
+    // if (!userId) {
+    //     dispatch(showSlide());
+    //     dispatch(setType("complete_profile"));
+    // }
+  }
 
 
   
