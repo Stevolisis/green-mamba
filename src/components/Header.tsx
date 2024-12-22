@@ -10,6 +10,8 @@ import { useRouter } from 'next/navigation';
 import { ethers } from "ethers";
 import { setWalletAddress } from "@/redux/slices/auth";
 import { getWeb3Modal } from "@/config/web3ModalConfig";
+import { authorContractABI, authorContractAddress } from "@/utils/contractConfig";
+import { showToast } from '@/redux/slices/toast'
 
 const Header = () => {
   const [active, setActive]= useState(1);
@@ -22,20 +24,33 @@ const Header = () => {
         return router.push("/dashboard");
     }
 
-    // Connect Wallet Logic
-    const web3Modal = getWeb3Modal();
-    const connection = await web3Modal.connect();
-    const provider = new ethers.BrowserProvider(connection);
-    const signer = await provider.getSigner();
+    try{
+      // Connect Wallet Logic
+      const web3Modal = getWeb3Modal();
+      const connection = await web3Modal.connect();
+      const provider = new ethers.BrowserProvider(connection);
+      const signer = await provider.getSigner();
+      const contractAddress = authorContractAddress;
+      const contractABI = authorContractABI;
+      const contract = new ethers.Contract(contractAddress, contractABI, signer);
+      const tx = await contract.getAuthor(signer.address);
+      console.log("tx: ", tx);
 
-    dispatch(setWalletAddress(signer.address));
-    console.log("Wallet Connected:", signer.address);
+      if(!tx[2]){
+        //Show the Complete Profile Component if not registered
+        if (!userId) {
+            dispatch(showSlide());
+            dispatch(setType("complete_profile"));
+        }
+      }
 
-    // Show the Complete Profile Component if not registered
-    // if (!userId) {
-    //     dispatch(showSlide());
-    //     dispatch(setType("complete_profile"));
-    // }
+      dispatch(setWalletAddress(signer.address));
+      console.log("Wallet Connected:", signer.address);
+    }catch(err:any){
+      console.log(err);
+      dispatch(showToast({ message: err.message, type: "error" }));
+    }
+
   }
 
 
