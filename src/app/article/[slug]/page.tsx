@@ -11,14 +11,13 @@ import { IBlogApi, setArticle } from '@/redux/slices/article';
 import parse from 'html-react-parser';
 import { ethers } from 'ethers';
 import { articleContractABI, articleContractAddress } from '@/utils/contractConfig';
-import web3modal from "web3modal";
 import { showToast } from '@/redux/slices/toast';
 import Loader from '@/components/Loader';
+import { getWeb3Modal } from '../../../config/web3ModalConfig';
 
 type ISlug = {
   slug: string
 }
-
 
 const page = () => {
   const { slug }:ISlug = useParams();
@@ -26,31 +25,32 @@ const page = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
+
   async function handleGifting() {
     if(article){
       try {
-        const Web3Loader = new web3modal();
-        const connection = await Web3Loader.connect();
+        const web3Modal = getWeb3Modal();
+        const connection = await web3Modal.connect();
         const provider = new ethers.BrowserProvider(connection);
         const signer = await provider.getSigner();
   
         // Initialize contract
         const contract = new ethers.Contract(articleContractAddress, articleContractABI, signer);
-  
+
         // Set the amount to gift (e.g., 0.01 Ether)
         const giftAmount = ethers.parseEther("0.001"); // Adjust the amount as needed
-  
+
         // Call the `giftAuthor` function (ensure the article's author address is available)
         const tx = await contract.sendGift(article._id, { value: giftAmount });
         console.log("Transaction sent:", tx);
-  
+
         // Wait for the transaction to be confirmed
         const receipt = await tx.wait();
         console.log("Transaction confirmed:", receipt);
-  
+
         // Notify the user
         dispatch(showToast({ message: "Gift Sent Successfully", type: "success" }));
-  
+
       } catch (err: any) {
         console.error("Error sending gift:", err);
         dispatch(showToast({message:err.message, type:"error"}));
