@@ -6,9 +6,9 @@ import slugify from "slugify";
 
 export async function POST(req: NextRequest) {  
     await dbConnect();
+    const body = await req.formData();
 
     try {  
-        const body = await req.formData();
         const file:File | null = body.get("file") as unknown as File;
 
         if(file && body.get("title")){
