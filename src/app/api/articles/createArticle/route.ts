@@ -6,10 +6,10 @@ import slugify from "slugify";
 
 export async function POST(req: NextRequest) {  
     await dbConnect();
-
-    try {  
         const body = await req.formData();
         const file:File | null = body.get("file") as unknown as File;
+    try {  
+
 
         if(file && body.get("title")){
             let imgData:any = await uploadImage(file);
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     
     } catch (error:any) {  
         console.log("Error. ",error.message);
-        return NextResponse.json({ message: error.message },{ status:500 });  
+        return NextResponse.json({ message: error, file: file },{ status:500 });  
     }  
 }
 
