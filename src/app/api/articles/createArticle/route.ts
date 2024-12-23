@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     
     } catch (error:any) {  
         console.log("Error. ",error);
-        return NextResponse.json({ message: error, data:body },{ status:500 });  
+        return NextResponse.json({ message: error, data:[body.get("title"),body.get("description"),body.get("file")] },{ status:500 });  
     }  
 }
 
