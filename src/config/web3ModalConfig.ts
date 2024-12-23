@@ -9,7 +9,7 @@ export const getWeb3Modal = () => {
             walletconnect: {
                 package: WalletConnectProvider,
                 options: {
-                    infuraId: "https://sepolia.infura.io/v3/92f7d1a479bf40ada16cc4d7d17d33ea",
+                    infuraId: "92f7d1a479bf40ada16cc4d7d17d33ea",
                 },
             },
         },

@@ -18,7 +18,8 @@ const Header = () => {
   const { walletAddress, userId } = useAppSelector((state)=>state.auth);
   const dispatch = useAppDispatch();
   const router = useRouter();
-
+  // const { open } = useWeb3Modal();
+  
   async function handleClick() {
     if (walletAddress && userId) {
         return router.push("/dashboard");
@@ -30,22 +31,33 @@ const Header = () => {
       const connection = await web3Modal.connect();
       const provider = new ethers.BrowserProvider(connection);
       const signer = await provider.getSigner();
-      const contractAddress = authorContractAddress;
-      const contractABI = authorContractABI;
-      const contract = new ethers.Contract(contractAddress, contractABI, signer);
-      const tx = await contract.getAuthor(signer.address);
-      console.log("tx: ", tx);
+      console.log("tx: ", signer);
 
-      if(!tx[2]){
-        //Show the Complete Profile Component if not registered
-        if (!userId) {
-            dispatch(showSlide());
-            dispatch(setType("complete_profile"));
+      if(signer.address){
+        dispatch(setWalletAddress(signer.address));
+
+        const contractAddress = authorContractAddress;
+        const contractABI = authorContractABI;
+        const contract = new ethers.Contract(contractAddress, contractABI, signer);
+        let tx;
+
+        try {
+            tx = await contract.getAuthor(signer.address);
+        } catch (err) {
+            console.error("Error calling getAuthor:", err);
+            // throw new Error("Unable to fetch author details.");
+        }
+        console.log("getAuthor result:", tx);
+
+        if(!tx){
+          // if (!userId) {
+              dispatch(showSlide());
+              dispatch(setType("complete_profile"));
+          // }
         }
       }
-
-      dispatch(setWalletAddress(signer.address));
       console.log("Wallet Connected:", signer.address);
+
     }catch(err:any){
       console.log(err);
       dispatch(showToast({ message: err.message, type: "error" }));

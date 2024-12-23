@@ -55,11 +55,15 @@ const CompleteProfile = () => {
             const contract = new ethers.Contract(contractAddress, contractABI, signer);
     
             // Call the addAuthor function
-            const tx = await contract.addAuthor(name, title);
-            await tx.wait(); // Wait for transaction to be mined
-    
-            console.log("Author added:", tx.hash);
-    
+            let tx ;
+            try {
+                tx = await contract.addAuthor(name, title);
+                await tx.wait();
+                console.log("Author added:", tx.hash);
+            } catch (err) {
+                console.error("Error calling addAuthor:", err);
+                throw new Error("Unable to add User details.");
+            }
             // Update Redux state and UI
             dispatch(setUserId(metadataId));
             dispatch(showToast({ message: "Profile created and added to blockchain!", type: "success" }));

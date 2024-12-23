@@ -87,10 +87,15 @@ const AddArticle = () => {
             console.log("Signer: ", signer);
 
             // Call the addAuthor function
-            const tx = await contract.addArticle(title, metadataId);
-            await tx.wait(); // Wait for transaction to be mined
-            console.log("Article added: ", tx.hash);
-
+            let tx ;
+            try {
+                tx = await contract.addArticle(title, metadataId);
+                await tx.wait();
+                console.log("Article added: ", tx.hash);
+            } catch (err) {
+                console.error("Error calling addArticle:", err);
+                throw new Error("Unable to add Article details.");
+            }
             dispatch(showToast({message:data.message, type:"success"}));
             dispatch(showSlide());
             form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input, textarea").forEach(input => {
