@@ -6,7 +6,7 @@ export async function GET() {
     await dbConnect();
 
     try {  
-        const articles = await Article.find().populate("author");
+        const articles = await Article.find({});
         return NextResponse.json({ data: articles, message:"success" },{ status: 200});  
 
     } catch (error:any) {  
