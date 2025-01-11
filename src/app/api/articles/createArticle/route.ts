@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
         const file:File | null = body.get("file") as unknown as File;
 
         if(file && body.get("title")){
-            // let imgData:any = await uploadImage(file);
+            let imgData:any = await uploadImage(file);
             const slug:FormDataEntryValue= body.get("title")!.toString();
             const slugged = slugify(slug.replace(/[^\w\s']|_/g,' ').replaceAll("'",' '));
             const tags = JSON.parse(body.get("tags") as string);
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
                 title: body.get("title"),
                 slug: slugged,
                 description: body.get("description"),
-                img:{ public_id:"imgData.public_id", url:"imgData.secure_url" },
+                img:{ public_id:imgData.public_id, url:imgData.secure_url },
                 content: body.get("content"),
                 author: body.get("author"),
                 tags: tags,
