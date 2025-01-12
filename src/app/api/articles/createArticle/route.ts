@@ -17,11 +17,11 @@ export async function POST(req: NextRequest) {
 
         if(file && body.get("title")){
             if(authorId){
-                // let imgData:any = await uploadImage(file);
+                let imgData:any = await uploadImage(file);
                 const slug:FormDataEntryValue= body.get("title")!.toString();
                 const slugged = slugify(slug.replace(/[^\w\s']|_/g,' ').replaceAll("'",' '));
                 const tags = JSON.parse(body.get("tags") as string);
-                // console.log("ImgUpload: ", imgData);
+                console.log("ImgUpload: ", imgData);
                 console.log('File type:', file.type);
                 console.log('File size:', file.size);
                 // const newArticle= new Article({
@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
                 // });
     
                 // const addArticle= await newArticle.save();
-                return NextResponse.json({ data: file.size, message:"Article posted Successfully" },{ status: 200});      
+                return NextResponse.json({ data: imgData, message:"Article posted Successfully" },{ status: 200});      
             }else{
                 return NextResponse.json({ message:"AuthorId not found" },{ status: 404});
             }
