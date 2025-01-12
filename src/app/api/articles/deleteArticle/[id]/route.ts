@@ -11,7 +11,7 @@ export async function DELETE(req: NextRequest,{params}:any) {
         const getArticle = await Article.findOne({_id:id});
 
         if(getArticle){
-            const deleteImage= await cloudinary.uploader.destroy(getArticle.img.public_id);
+            const deleteImage= await cloudinary.uploader.destroy(getArticle.img!.public_id);
             console.log("deleteImage: ",deleteImage);
             const deleteArticle = await Article.deleteOne({_id:id});
             return NextResponse.json({ data: deleteArticle, message:"success" },{ status: 200});      
