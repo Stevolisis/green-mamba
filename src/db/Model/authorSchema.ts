@@ -1,4 +1,4 @@
-import { Schema, InferSchemaType, model, models } from 'mongoose';
+import { Schema, InferSchemaType, model, models, Model } from 'mongoose';
 
 const AuthorSchema = new Schema({
     walletAddress: { 
@@ -23,5 +23,5 @@ const AuthorSchema = new Schema({
 
 type AuthorType = InferSchemaType<typeof AuthorSchema>;
 
-const Author = models.Author || model<AuthorType>('Author', AuthorSchema);
+const Author:Model<AuthorType> = models?.Author || model('Author', AuthorSchema);
 export default Author;

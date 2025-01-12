@@ -1,4 +1,4 @@
-import { Schema, InferSchemaType, model, models } from 'mongoose';
+import { Schema, InferSchemaType, model, models, Model } from 'mongoose';
 
 // Define the schema for the Article model
 const ArticleSchema = new Schema(
@@ -49,5 +49,5 @@ const ArticleSchema = new Schema(
 
 type ArticleType = InferSchemaType<typeof ArticleSchema>;
 
-const Article = models.Article || model<ArticleType>('Article', ArticleSchema);
+const Article:Model<ArticleType> = models?.Article || model('Article', ArticleSchema);
 export default Article;
