@@ -124,7 +124,7 @@ const page = () => {
               </div>
 
               <div>
-                <h4 className='font-[SatoshiMedium] text-xs'>{ article?.author.name }</h4>
+                <h4 className='font-[SatoshiMedium] text-xs'>{ article?.author?.name }</h4>
                 <p className='font-[SatoshiLight] text-[10px]'>{ article && formatDate2(article.createdAt) }</p>
               </div>
             </div>
