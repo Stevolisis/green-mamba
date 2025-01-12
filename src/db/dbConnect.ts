@@ -1,4 +1,6 @@
 import mongoose, { Connection } from 'mongoose';
+import "@/db/Model/authorSchema";
+import "@/db/Model/articleSchema"; 
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -36,7 +38,7 @@ async function dbConnect() {
     });
   }
   cached.conn = await cached.promise;
-  console.log('Connected to MongoDB (cache)', cached);
+  console.log('Connected to MongoDB (cache)', cached.conn.models);
   return cached.conn;
 }
 
