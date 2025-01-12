@@ -23,5 +23,5 @@ const AuthorSchema = new Schema({
 
 type AuthorType = InferSchemaType<typeof AuthorSchema>;
 
-const Author:Model<AuthorType> = models?.Author || model('Author', AuthorSchema);
+const Author = models.Author || model<AuthorType>('Author', AuthorSchema);
 export default Author;

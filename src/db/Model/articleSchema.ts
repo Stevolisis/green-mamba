@@ -49,5 +49,5 @@ const ArticleSchema = new Schema(
 
 type ArticleType = InferSchemaType<typeof ArticleSchema>;
 
-const Article:Model<ArticleType> = models?.Article || model('Article', ArticleSchema);
+const Article = models.Article || model<ArticleType>('Article', ArticleSchema);
 export default Article;

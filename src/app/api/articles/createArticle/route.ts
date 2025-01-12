@@ -13,6 +13,7 @@ export async function POST(req: NextRequest) {
     try {  
         const file:File | null = body.get("file") as unknown as File;
         const authorId:FormDataEntryValue = body.get("author")!;
+        console.log("body: ", body);
 
         if(file && body.get("title")){
             if(authorId){
@@ -28,7 +29,7 @@ export async function POST(req: NextRequest) {
                     description: body.get("description"),
                     img:{ public_id:imgData.public_id, url:imgData.secure_url },
                     content: body.get("content"),
-                    author: new Types.ObjectId(authorId as string),
+                    author: authorId,
                     tags: tags,
                     gifts: 0
                 });
