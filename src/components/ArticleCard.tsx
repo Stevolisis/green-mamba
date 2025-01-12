@@ -37,7 +37,7 @@ const ArticleCard = ({ blog }:any ) => {
             size={17}
             className="text-bgSecondary"
           />
-          <p className="font-[SatoshiLight] text-xs">{ blog.author.name }</p>
+          <p className="font-[SatoshiLight] text-xs">{ blog?.author?.name }</p>
         </div>
         <div>
           <p className="font-[SatoshiLight] text-xs">{ formatDate2(blog.createdAt) }</p>
