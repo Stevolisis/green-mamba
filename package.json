@@ -23,7 +23,7 @@
     "highcharts-react-official": "^3.2.1",
     "html-react-parser": "^5.1.18",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.8.3",
+    "mongoose": "^6.9.1",
     "multiselect-react-dropdown": "^2.0.25",
     "next": "14.2.5",
     "pinata-web3": "^0.4.1",
