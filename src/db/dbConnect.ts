@@ -31,13 +31,12 @@ async function dbConnect() {
   }
 
   if (!cached.promise) {
-
-    cached.promise = mongoose.connect(MONGODB_URI!).then(() => {
+    cached.promise = mongoose.connect(MONGODB_URI!).then(()=> {
       return mongoose.connection;
     });
   }
   cached.conn = await cached.promise;
-  console.log('Connected to MongoDB (cache)');
+  console.log('Connected to MongoDB (cache)', cached);
   return cached.conn;
 }
 

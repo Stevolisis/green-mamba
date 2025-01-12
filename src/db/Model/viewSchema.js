@@ -22,4 +22,4 @@ const viewSchema=new mongoose.Schema({
 
 
 //---------------------------------------------------
-module.exports=mongoose.models.views || mongoose.model('views',viewSchema);
+module.exports=mongoose.models.View || mongoose.model('View',viewSchema);

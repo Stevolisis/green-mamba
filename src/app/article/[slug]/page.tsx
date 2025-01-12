@@ -23,12 +23,14 @@ const page = () => {
   const { slug }:ISlug = useParams();
   const { article } = useAppSelector(state => state.article);
   const [loading, setLoading] = useState<boolean>(false);
+  const [giftSending, setGiftSending] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
 
   async function handleGifting() {
     if(article){
       try {
+        setGiftSending(true);
         const web3Modal = getWeb3Modal();
         const connection = await web3Modal.connect();
         const provider = new ethers.BrowserProvider(connection);
@@ -53,7 +55,9 @@ const page = () => {
 
       } catch (err: any) {
         console.error("Error sending gift:", err);
-        dispatch(showToast({message:err.message, type:"error"}));
+        dispatch(showToast({message:"Error Occured", type:"error"}));
+      } finally{
+        setGiftSending(false);
       }
     }
   };
@@ -128,7 +132,13 @@ const page = () => {
             <div className=''>
               <button onClick={()=>handleGifting()} className="font-[SatoshiMedium] flex gap-2 items-center text-xs text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
                 <FaGift className="text-lg" />
-                <p className="hidden sm:block border-l border-l-bgPrimary pl-2">Gift Author</p>
+                {
+                  giftSending ? 
+                  <p className='border-l border-l-bgPrimary pl-2'>
+                    <Loader size={20} color="#01140d" />
+                  </p> :
+                  <p className="hidden sm:block border-l border-l-bgPrimary pl-2">Gift Author</p>
+                }
               </button>
             </div>
           </div>
@@ -155,7 +165,13 @@ const page = () => {
         <div className='flex justify-center items-center pb-12'>
             <button onClick={()=>handleGifting()} className="font-[SatoshiMedium] flex gap-2 items-center text-xs text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
               <FaGift className="text-lg" />
-              <p className="border-l border-l-bgPrimary pl-2">Gift Author</p>
+              {
+                giftSending ? 
+                <p className='border-l border-l-bgPrimary pl-2'>
+                  <Loader size={20} color="#01140d" />
+                </p> :
+                <p className="border-l border-l-bgPrimary pl-2">Gift Author</p>
+              }
             </button>
         </div>
 

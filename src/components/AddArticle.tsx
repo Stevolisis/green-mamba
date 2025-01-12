@@ -50,11 +50,11 @@ const AddArticle = () => {
 
     async function handleSubmit(e:React.FormEvent<HTMLFormElement>){
         e.preventDefault();
-        console.log("fdgfhgjhkjlhkgjfh");
+        console.log("fdgfhgjhkjlhkgjfh", userId ? userId : 'noUserId');
         setIsLoading(true);
 
         const form = e.target as HTMLFormElement;
-        if(!walletAddress && !userId){
+        if(!walletAddress || !userId){
             setIsLoading(false);
             return dispatch(showToast({message:"Pls connect your wallet!", type:"info"}));
         }

@@ -8,10 +8,11 @@ import { useState } from "react";
 import { FaWallet } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
 import { ethers } from "ethers";
-import { setWalletAddress } from "@/redux/slices/auth";
+import { setUserId, setWalletAddress } from "@/redux/slices/auth";
 import { getWeb3Modal } from "@/config/web3ModalConfig";
 import { authorContractABI, authorContractAddress } from "@/utils/contractConfig";
 import { showToast } from '@/redux/slices/toast'
+import { api } from "@/utils/axiosConfig";
 
 const Header = () => {
   const [active, setActive]= useState(1);
@@ -54,7 +55,17 @@ const Header = () => {
               dispatch(showSlide());
               dispatch(setType("complete_profile"));
           // }
+        }else{
+          try{
+            const {data}:any = await api.get(`/authors/getAuthor/${signer.address}`);
+            console.log("data: ", data);
+            dispatch(setUserId(data.data._id));
+            dispatch(showToast({ message: "User Data Fetched", type: "success" }));
+          }catch(err){
+            console.error("Error calling getAuthor:", err);
+          }
         }
+        //fetch author from api and set redux auths
       }
       console.log("Wallet Connected:", signer.address);
 
