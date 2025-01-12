@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
                 // });
     
                 // const addArticle= await newArticle.save();
-                return NextResponse.json({ data: body.get("file"), message:"Article posted Successfully" },{ status: 200});      
+                return NextResponse.json({ data: file.size, message:"Article posted Successfully" },{ status: 200});      
             }else{
                 return NextResponse.json({ message:"AuthorId not found" },{ status: 404});
             }
