@@ -1,4 +1,5 @@
 import Article from "@/db/Model/articleSchema";
+import Author from "@/db/Model/authorSchema";
 import dbConnect from "@/db/dbConnect";
 import { NextRequest, NextResponse } from "next/server";
 
