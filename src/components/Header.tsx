@@ -13,67 +13,68 @@ import { getWeb3Modal } from "@/config/web3ModalConfig";
 import { authorContractABI, authorContractAddress } from "@/utils/contractConfig";
 import { showToast } from '@/redux/slices/toast'
 import { api } from "@/utils/axiosConfig";
+import { useAppKit } from "@reown/appkit/react";
 
 const Header = () => {
   const [active, setActive]= useState(1);
   const { walletAddress, userId } = useAppSelector((state)=>state.auth);
   const dispatch = useAppDispatch();
   const router = useRouter();
-  // const { open } = useWeb3Modal();
-  
+  const { open } = useAppKit();
+    
   async function handleClick() {
-    if (walletAddress && userId) {
-        return router.push("/dashboard");
-    }
+    // if (walletAddress && userId) {
+    //     return router.push("/dashboard");
+    // }
 
-    try{
-      // Connect Wallet Logic
-      const web3Modal = getWeb3Modal();
-      const connection = await web3Modal.connect();
-      const provider = new ethers.BrowserProvider(connection);
-      const signer = await provider.getSigner();
-      console.log("tx: ", signer);
+    // try{
+    //   // Connect Wallet Logic
+    //   const web3Modal = getWeb3Modal();
+    //   const connection = await web3Modal.connect();
+    //   const provider = new ethers.BrowserProvider(connection);
+    //   const signer = await provider.getSigner();
+    //   console.log("tx: ", signer);
 
-      if(signer.address){
-        dispatch(setWalletAddress(signer.address));
+    //   if(signer.address){
+    //     dispatch(setWalletAddress(signer.address));
 
-        const contractAddress = authorContractAddress;
-        const contractABI = authorContractABI;
-        const contract = new ethers.Contract(contractAddress, contractABI, signer);
-        let tx;
+    //     const contractAddress = authorContractAddress;
+    //     const contractABI = authorContractABI;
+    //     const contract = new ethers.Contract(contractAddress, contractABI, signer);
+    //     let tx;
 
-        try {
-            tx = await contract.getAuthor(signer.address);
-        } catch (err) {
-            console.error("Error calling getAuthor:", err);
-            // throw new Error("Unable to fetch author details.");
-        }
-        console.log("getAuthor result:", tx);
+    //     try {
+    //         tx = await contract.getAuthor(signer.address);
+    //     } catch (err) {
+    //         console.error("Error calling getAuthor:", err);
+    //         // throw new Error("Unable to fetch author details.");
+    //     }
+    //     console.log("getAuthor result:", tx);
 
-        if(!tx){
-          // if (!userId) {
-              dispatch(showSlide());
-              dispatch(setType("complete_profile"));
-          // }
-        }else{
-          try{
-            const {data}:any = await api.get(`/authors/getAuthor/${signer.address}`);
-            console.log("data: ", data);
-            dispatch(setUserId(data.data._id));
-            dispatch(showToast({ message: "User Data Fetched", type: "success" }));
-          }catch(err){
-            console.error("Error calling getAuthor:", err);
-          }
-        }
-        //fetch author from api and set redux auths
-      }
-      console.log("Wallet Connected:", signer.address);
+    //     if(!tx){
+    //       // if (!userId) {
+    //           dispatch(showSlide());
+    //           dispatch(setType("complete_profile"));
+    //       // }
+    //     }else{
+    //       try{
+    //         const {data}:any = await api.get(`/authors/getAuthor/${signer.address}`);
+    //         console.log("data: ", data);
+    //         dispatch(setUserId(data.data._id));
+    //         dispatch(showToast({ message: "User Data Fetched", type: "success" }));
+    //       }catch(err){
+    //         console.error("Error calling getAuthor:", err);
+    //       }
+    //     }
+    //     //fetch author from api and set redux auths
+    //   }
+    //   console.log("Wallet Connected:", signer.address);
 
-    }catch(err:any){
-      console.log(err);
-      dispatch(showToast({ message: err.message, type: "error" }));
-    }
-
+    // }catch(err:any){
+    //   console.log(err);
+    //   dispatch(showToast({ message: err.message, type: "error" }));
+    // }
+    open();
   }
 
 
@@ -104,7 +105,8 @@ const Header = () => {
             userId ? (
               // If walletAddress and userId exist, show button to navigate to Dashboard
               <button
-                onClick={() => router.push("/dashboard")}
+                // onClick={() => router.push("/dashboard")}
+                onClick={() => handleClick()}
                 className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in"
               >
                 <FaWallet className="text-lg" />

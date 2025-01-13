@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import Slider from "@/components/Slider";
 import Toast from "@/components/Toast";
 import Notification from "@/components/Notification/Container";
-import { WagmiContextProvider } from "./WagmiProvider";
+import { AppKitProvider } from './appkit'
 
 
 export const metadata: Metadata = {
@@ -24,19 +24,18 @@ export default function RootLayout({
     <>
     <html lang="en">
       <body className="bg-bgPrimary h-auto">
-        {/* <WagmiContextProvider>
-
-        </WagmiContextProvider> */}
+        <AppKitProvider>
           <ReactProvider>
-              <Notification />
-              <Toast />
-              <Slider/>
-              <Header/>
-                <main className="pt-24">
-                  {children}
-                </main>
-              <Footer/>
-          </ReactProvider>
+                <Notification />
+                <Toast />
+                <Slider/>
+                <Header/>
+                  <main className="pt-24">
+                    {children}
+                  </main>
+                <Footer/>
+            </ReactProvider>
+        </AppKitProvider>
       </body>
     </html>
     </>
