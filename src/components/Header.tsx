@@ -13,7 +13,7 @@ import { getWeb3Modal } from "@/config/web3ModalConfig";
 import { authorContractABI, authorContractAddress } from "@/utils/contractConfig";
 import { showToast } from '@/redux/slices/toast'
 import { api } from "@/utils/axiosConfig";
-import { useAppKit } from "@reown/appkit/react";
+import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
 
 const Header = () => {
   const [active, setActive]= useState(1);
@@ -21,7 +21,8 @@ const Header = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { open } = useAppKit();
-    
+  const { address, caipAddress, isConnected } = useAppKitAccount();
+  
   async function handleClick() {
     // if (walletAddress && userId) {
     //     return router.push("/dashboard");
@@ -77,7 +78,9 @@ const Header = () => {
     open();
   }
 
-
+  console.log("Address: ", address);
+  console.log("CaipAddress: ", caipAddress);
+  console.log("isConnected: ", isConnected);
   
   return (
     <header className="blurMorphism z-50 flex justify-between items-center border-gradient w-full py-7 px-4 sm:px-16 fixed">
