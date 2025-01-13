@@ -11,7 +11,7 @@ export async function GET() {
         const articles = await Article.find({}).populate('author').sort({ createdAt: -1 });;
         return NextResponse.json({ data: articles, message:"success" },{ status: 200});  
 
-    } catch (error:any) {  
+    } catch (error:any) {
         console.log("Error. ",error.message);
         return NextResponse.json({ message: error.message },{ status:500 });  
     }  

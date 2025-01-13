@@ -6,7 +6,6 @@ import { ReactNode } from 'react'
 
 // 1. Get projectId at https://cloud.reown.com
 const projectId = process.env.NEXT_PUBLIC_REOWN_PROJECT_ID || '';
-console.log("NEXT_PUBLIC_REOWN_PROJECT_ID", process.env.NEXT_PUBLIC_REOWN_PROJECT_ID);
 
 // 2. Create a metadata object
 const metadata = {

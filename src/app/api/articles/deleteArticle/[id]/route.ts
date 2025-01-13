@@ -2,11 +2,13 @@ import cloudinary from "@/config/cloudinary";
 import Article from "@/db/Model/articleSchema";
 import dbConnect from "@/db/dbConnect";
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from 'next/cache';
 
 export async function DELETE(req: NextRequest,{params}:any) {  
     await dbConnect();
 
     try {  
+        revalidatePath('/api/articles/deleteArticle/[id]');
         const id:string = params.id;
         const getArticle = await Article.findOne({_id:id});
 
