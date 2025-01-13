@@ -61,6 +61,13 @@ const Header = () => {
           try{
             const {data}:any = await api.get(`/authors/getAuthor/${signer.address}`);
             console.log("data: ", data);
+
+            if(data.data === null){
+              dispatch(showSlide());
+              dispatch(setType("complete_profile"));
+              return;
+            }
+            
             dispatch(setUserId(data.data._id));
             dispatch(showToast({ message: "User Data Fetched", type: "success" }));
           }catch(err){
