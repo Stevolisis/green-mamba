@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --glassMorph: 255, 255, 255, 0.05
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,6 +14,7 @@
     --foreground-rgb: 0, 0, 0;
     --background-start-rgb: 214, 219, 220;
     --background-end-rgb: 255, 255, 255;
+    --glassMorph: 255, 255, 255, 0.05
   }
 }
 
@@ -40,7 +42,7 @@ body {
   }
 
   .glassMorphism {
-    background: rgba(255,255,255,0.05);
+    background: rgba(var(--glassMorph));
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     /* border: 1px solid rgba(255,255,255,0.25); */

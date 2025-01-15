@@ -116,10 +116,10 @@ const EditArticle = () => {
     return (
         <>
             <form onSubmit={(e)=>handleSubmit(e)} className="w-full sm:w-[55vw] pt-16 pb-5 px-4 flex flex-col justify-start items-center">
-                <h1 className="mb-5 font-[SatoshiMedium] text-3xl">Edit Article</h1>
+                <h1 className="mb-5 font-[SatoshiMedium] text-3xl text-white dark:text-white">Edit Article</h1>
 
                 <div className='my-5 w-full'>
-                    <p className=' ml-1 mb-1 text-sm'>Title</p>
+                    <p className=' ml-1 mb-1 text-sm text-white dark:text-white'>Title</p>
                     <input
                         className="mb-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
                         type="text"
@@ -131,7 +131,7 @@ const EditArticle = () => {
 
 
                 <div className='my-5 w-full'>
-                    <p className='ml-1 mb-1 text-sm'>Description</p>
+                    <p className='ml-1 mb-1 text-sm text-white dark:text-white'>Description</p>
                     <textarea
                         name='description'
                         className="h-[250px] mb-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
@@ -148,7 +148,7 @@ const EditArticle = () => {
                 />
 
                 <div className='my-5 w-full'>
-                    <p className=' ml-1 mb-1 text-sm'>Keywords</p>
+                    <p className=' ml-1 mb-1 text-sm text-white dark:text-white'>Keywords</p>
                     <CustomMultiselect 
                         options={keyWords} 
                         defaultVal={formData.tags}
@@ -160,7 +160,7 @@ const EditArticle = () => {
 
 
                 <div className='my-5 w-full'>
-                    <p className=' ml-1 mb-1 text-sm'>Image</p>
+                    <p className=' ml-1 mb-1 text-sm text-white dark:text-white'>Image</p>
                     <input
                         className="font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
                         placeholder="Content e.g AI has taken over humans, many have integrated AI in their daily life activity..."

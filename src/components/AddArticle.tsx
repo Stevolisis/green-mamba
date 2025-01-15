@@ -116,10 +116,10 @@ const AddArticle = () => {
     return (
         <>
             <form onSubmit={(e)=>handleSubmit(e)} className="w-full sm:w-[55vw] pt-16 pb-5 px-4 flex flex-col justify-start items-center">
-                <h1 className="mb-5 font-[SatoshiMedium] text-3xl">Add Article</h1>
+                <h1 className="mb-5 font-[SatoshiMedium] text-3xl text-white dark:text-white">Add Article</h1>
 
                 <div className='my-5 w-full'>
-                    <p className=' ml-1 mb-1 text-sm font-[SatoshiMedium]'>Title</p>
+                    <p className=' ml-1 mb-1 text-sm font-[SatoshiMedium] text-white dark:text-white'>Title</p>
                     <input
                         name='title'
                         className="mb-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
@@ -130,7 +130,7 @@ const AddArticle = () => {
 
 
                 <div className='my-5 w-full'>
-                    <p className='ml-1 mb-1 text-sm font-[SatoshiMedium]'>Description</p>
+                    <p className='ml-1 mb-1 text-sm font-[SatoshiMedium] text-white dark:text-white'>Description</p>
                     <textarea
                         name='description'
                         className="h-[250px] mb-5 font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
@@ -147,7 +147,7 @@ const AddArticle = () => {
                 />
 
                 <div className='my-5 w-full'>
-                    <p className=' ml-1 mb-1 text-sm font-[SatoshiMedium]'>Keywords</p>
+                    <p className=' ml-1 mb-1 text-sm font-[SatoshiMedium] text-white dark:text-white'>Keywords</p>
                     <CustomMultiselect 
                         options={keyWords} 
                         defaultVal={formData.tags}
@@ -159,7 +159,7 @@ const AddArticle = () => {
 
 
                 <div className='my-5 w-full'>
-                    <p className=' ml-1 mb-1 text-sm font-[SatoshiMedium]'>Image</p>
+                    <p className=' ml-1 mb-1 text-sm font-[SatoshiMedium] text-white dark:text-white'>Image</p>
                     <div className='flex gap-x-2 items-center justify-between'>
                         <input
                             className="font-[SatoshiRegular] w-full text-sm bg-transparent border border-bgSecondary focus:outline-bgSecondary focus:border-bgSecondary rounded-lg py-3 px-5"
@@ -173,11 +173,11 @@ const AddArticle = () => {
                     </div>
                 </div>
 
-                <button className="w-full font-[SatoshiMedium] flex gap-2 justify-center items-center text-base text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
+                <button className="w-full font-[SatoshiMedium] flex gap-2 justify-center items-center text-base py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
                     {
                         isLoading ? 
                             <Loader size={24} color='#01140d' /> :
-                            <p className="pl-2">Add Article</p>
+                            <p className="pl-2 text-bgPrimary dark:text-bgPrimary ">Add Article</p>
                     }
                 </button>
             </form>
