@@ -23,11 +23,11 @@ const DataList = () => {
                     {
                         dataKeys.map((arg, j)=>(
                             <td key={j} className={`${
-                                arg.autoIndex ? " text-xs text-gray-400 " :
+                                arg.autoIndex ? " text-xs text-gray-400 dark:text-gray-400" :
                                 arg.longText ? "  pr-3  whitespace-normal break-words min-w-[250px] " : 
                                 arg.time ? " whitespace-nowrap pr-3 " : 
                                 "  pr-3 "} 
-                                ${j === 0 ? " pl-3 " : j === data.length- 1 ? "  pr-0 " : ""} py-4 text-sm`}
+                                ${j === 0 ? " pl-3 " : j === data.length- 1 ? "  pr-0 " : ""} py-4 text-sm text-white dark:text-white`}
                             >
                                 { 
                                     arg.autoIndex ? ((i + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })) :

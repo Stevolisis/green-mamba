@@ -131,7 +131,7 @@ const page = () => {
           <div className='flex justify-between items-center'>
             
             <div className='rounded-md p-3 glassMorphism'>
-              <BsBank2 size={18} />
+              <BsBank2 size={18} className="text-white dark:text-white" />
             </div>
 
             <div>
@@ -160,7 +160,7 @@ const page = () => {
           <div className='flex justify-between items-center'>
             
             <div className='rounded-md p-3 glassMorphism'>
-              <MdArticle size={18} />
+              <MdArticle size={18} className="text-white dark:text-white" />
             </div>
 
             <div>
