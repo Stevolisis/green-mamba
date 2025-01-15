@@ -189,7 +189,7 @@ const page = () => {
           <div className='flex justify-between items-center'>
             
             <div className='rounded-md p-3 glassMorphism'>
-              <IoNotifications size={18} />
+              <IoNotifications size={18}  className='text-white dark:text-white'/>
             </div>
 
             <div>

@@ -13,19 +13,19 @@ const GiftDataList = ({data}:any) => {
             data.map((item:any, i:number)=>{
                 console.log("item: ", item);
                 return  <tr key={i}>
-                            <td className='pl-3 py-4 text-sm text-gray-400 '>
+                            <td className='pl-3 py-4 text-sm text-gray-400 dark:text-gray-100'>
                                 {i + 1}
                             </td>
-                            <td className='pr-3 py-4 text-sm'>
+                            <td className='pr-3 py-4 text-sm text-gray-400 dark:text-gray-100'>
                                 {item[3]}
                             </td>
-                            <td  className='pr-3 py-4 text-sm'>
+                            <td  className='pr-3 py-4 text-sm text-gray-400 dark:text-gray-100'>
                                 {ethers.formatEther(item[0])}
                             </td>
-                            <td  className='pr-3 py-4 text-sm'>
+                            <td  className='pr-3 py-4 text-sm text-gray-400 dark:text-gray-100'>
                                 ETH
                             </td>
-                            <td className='whitespace-nowrap pr-3 py-4 text-sm '>
+                            <td className='whitespace-nowrap pr-3 py-4 text-sm  text-gray-400 dark:text-gray-100'>
                                 {item[2]}
                             </td>
                         </tr>
