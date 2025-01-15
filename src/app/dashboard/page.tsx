@@ -12,12 +12,13 @@ import TableList from '../../components/Table/TableList'
 import { setTable, setTimeOption } from '@/redux/slices/table'
 import { setVisibility } from '@/redux/slices/notification'
 import { articleContractABI, articleContractAddress, authorContractABI, authorContractAddress } from '@/utils/contractConfig'
-import { ethers } from 'ethers'
+import { BrowserProvider, Eip1193Provider, ethers } from 'ethers'
 import web3modal from "web3modal";
 import { showToast } from '@/redux/slices/toast'
 import GiftDataList from '@/components/Table/GiftDataList'
 import Loader from '@/components/Loader'
 import { getWeb3Modal } from '@/config/web3ModalConfig'
+import { useAppKit, useAppKitAccount, useAppKitProvider } from '@reown/appkit/react'
 
 interface IGift{
   amout: number;
@@ -35,56 +36,68 @@ const page = () => {
   const dispatch = useAppDispatch();
   const { currentMonth, currentYear} = useAppSelector(state => state.charts);
   const { unReadNotifications } = useAppSelector((state)=> state.notification);
+  const { isWalletConnected } = useAppSelector((state)=>state.auth);
   const [ gifts, setGifts ] = useState<any[] | null>(null);
   const [ articlesCount, setArticlesCount ] = useState<number>(0);
   const [ balance, setBalance ] = useState<any>(0);
   const [ user, setUser ] = useState<IUser|null>(null);
+  const { open } = useAppKit();
+  const { walletProvider } = useAppKitProvider('eip155');
+  const { address, isConnected } = useAppKitAccount();
 
   async function loadAuthorGifts(){
-    try{
-      const web3Modal = getWeb3Modal();
-      const connection = await web3Modal.connect();
-      const provider = new ethers.BrowserProvider(connection);
-      const signer = await provider.getSigner();
-
-      // Author Contract
-      const contractAddress = authorContractAddress;
-      const contractABI = authorContractABI;
-      const contract = new ethers.Contract(contractAddress, contractABI, signer);
-      const tx = await contract.getAuthor(signer.address);
-      setUser({name:tx[0],title:tx[1],exists:tx[2]});
-
-      //Article Contract
-      const contractAddress2 = articleContractAddress;
-      const contractABI2 = articleContractABI;
-      const contract2 = new ethers.Contract(contractAddress2, contractABI2, signer);
-      const tx2 = await contract2.getAuthorGifts(signer.address);
-      const tx3 = await contract2.getAllActiveArticles();
-
-      let totalBalance = BigInt(0);
-
-      const tx2Length = tx2.length;
-      let index = 0;
-    
-      while (index < tx2Length) {
-        const giftAmount = ethers.toBigInt(tx2[index][0]); // Convert to BigInt
-        totalBalance += giftAmount; // Add the gift amount
-        index++;
+    if(walletProvider){
+      try{
+        const provider = new BrowserProvider(walletProvider as Eip1193Provider);
+        const signer = await provider.getSigner();
+  
+        // Author Contract
+        const contractAddress = authorContractAddress;
+        const contractABI = authorContractABI;
+        const contract = new ethers.Contract(contractAddress, contractABI, signer);
+        const tx = await contract.getAuthor(signer.address);
+        setUser({name:tx[0],title:tx[1],exists:tx[2]});
+        console.log("TX DASHBOARD: ", tx);
+  
+        //Article Contract
+        const contractAddress2 = articleContractAddress;
+        const contractABI2 = articleContractABI;
+        const contract2 = new ethers.Contract(contractAddress2, contractABI2, signer);
+        const tx2 = await contract2.getAuthorGifts(signer.address);
+        const tx3 = await contract2.getAllActiveArticles();
+        console.log("TX DASHBOARD2: ", tx2);
+        let totalBalance = BigInt(0);
+  
+        const tx2Length = tx2.length;
+        let index = 0;
+      
+        while (index < tx2Length) {
+          const giftAmount = ethers.toBigInt(tx2[index][0]); // Convert to BigInt
+          totalBalance += giftAmount; // Add the gift amount
+          index++;
+        }
+  
+        setGifts(tx2);
+        setBalance(ethers.formatEther(totalBalance));
+        setArticlesCount(tx3.length);
+  
+      }catch(err:any){
+        console.log(err);
+        dispatch(showToast({ message: err.message, type: "error" }));
       }
-
-      setGifts(tx2);
-      setBalance(ethers.formatEther(totalBalance));
-      setArticlesCount(tx3.length);
-
-    }catch(err:any){
-      console.log(err);
-      dispatch(showToast({ message: err.message, type: "error" }));
     }
   }
 
   useEffect(()=>{
-    loadAuthorGifts();
-  },[]);
+    console.log("Dashboard isConnected", isWalletConnected);
+    if(isWalletConnected){
+     loadAuthorGifts();
+    }else{
+      console.log("Dashboard isConnected222", isWalletConnected);
+
+      open();
+    }
+  },[isWalletConnected]);
 
   useEffect(()=>{
     dispatch(addChart({name:"Gifts",title:"Finance Report",data:dummy_gifts}));

@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface ToastState {
-  jwt: string;
+  isWalletConnected: boolean;
   userId: string;
   walletAddress: string;
 }
 
 const initialState: ToastState = {
-  jwt: '',
+  isWalletConnected: false,
   userId: '',
   walletAddress: '',
 };
@@ -22,11 +22,11 @@ const authSlice = createSlice({
     setWalletAddress: (state, { payload }: PayloadAction<string>) => {
         state.walletAddress = payload;
     },
-    setJwt: (state, { payload }: PayloadAction<string>) => {
-        state.jwt = payload;
+    setIsWalletConnected: (state, { payload }: PayloadAction<boolean>) => {
+        state.isWalletConnected = payload;
     },
   },
 });
 
-export const { setUserId, setWalletAddress, setJwt } = authSlice.actions;
+export const { setUserId, setWalletAddress, setIsWalletConnected } = authSlice.actions;
 export default authSlice.reducer;

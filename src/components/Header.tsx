@@ -4,88 +4,96 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setType, showSlide } from "@/redux/slices/slider";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaWallet } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
-import { ethers } from "ethers";
-import { setUserId, setWalletAddress } from "@/redux/slices/auth";
+import { BrowserProvider, Eip1193Provider, ethers } from "ethers";
+import { setIsWalletConnected, setUserId, setWalletAddress } from "@/redux/slices/auth";
 import { getWeb3Modal } from "@/config/web3ModalConfig";
 import { authorContractABI, authorContractAddress } from "@/utils/contractConfig";
 import { showToast } from '@/redux/slices/toast'
 import { api } from "@/utils/axiosConfig";
-import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
+import { useAppKit, useAppKitAccount, useAppKitProvider } from "@reown/appkit/react";
 
 const Header = () => {
   const [active, setActive]= useState(1);
-  const { walletAddress, userId } = useAppSelector((state)=>state.auth);
+  const { walletAddress } = useAppSelector((state)=>state.auth);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { open } = useAppKit();
-  const { address, caipAddress, isConnected } = useAppKitAccount();
-  
+  const { address, status, isConnected } = useAppKitAccount();
+  const { walletProvider } = useAppKitProvider('eip155')
+
   async function handleClick() {
-    if (walletAddress && userId) {
-        return router.push("/dashboard");
-    }
-
-    try{
-      // Connect Wallet Logic
-      const web3Modal = getWeb3Modal();
-      const connection = await web3Modal.connect();
-      const provider = new ethers.BrowserProvider(connection);
-      const signer = await provider.getSigner();
-      console.log("tx: ", signer);
-
-      if(signer.address){
-        dispatch(setWalletAddress(signer.address));
-
-        const contractAddress = authorContractAddress;
-        const contractABI = authorContractABI;
-        const contract = new ethers.Contract(contractAddress, contractABI, signer);
-        let tx;
-
-        try {
-            tx = await contract.getAuthor(signer.address);
-        } catch (err) {
-            console.error("Error calling getAuthor:", err);
-            // throw new Error("Unable to fetch author details.");
-        }
-        console.log("getAuthor result:", tx);
-
-        if(!tx){
-          // if (!userId) {
-              dispatch(showSlide());
-              dispatch(setType("complete_profile"));
-          // }
-        }else{
-          try{
-            const {data}:any = await api.get(`/authors/getAuthor/${signer.address}`);
-            console.log("data: ", data);
-
-            if(data.data === null){
-              dispatch(showSlide());
-              dispatch(setType("complete_profile"));
-              return;
-            }
-            
-            dispatch(setUserId(data.data._id));
-            dispatch(showToast({ message: "User Data Fetched", type: "success" }));
-          }catch(err){
-            console.error("Error calling getAuthor:", err);
-          }
-        }
-        //fetch author from api and set redux auths
+    try {
+      if (!isConnected) {
+        const connect = await open();
       }
-      console.log("Wallet Connected:", signer.address);
-
-    }catch(err:any){
-      console.log(err);
+    } catch (err: any) {
+      console.error("Error in handleClick:", err);
       dispatch(showToast({ message: err.message, type: "error" }));
     }
   }
 
+  useEffect(()=>{
+    (async()=>{
+      if(isConnected){
+        try{
+          if (address) {
+            dispatch(setWalletAddress(address));
+      
+            if (!walletProvider) {
+              throw new Error("Wallet provider not available.");
+            }
+      
+            const provider = new BrowserProvider(walletProvider as Eip1193Provider);
+            const signer = await provider.getSigner();
+            console.log("Signer:", signer);
+    
+            const contract = new ethers.Contract(authorContractAddress, authorContractABI, signer);
+            let tx;
+    
+            try {
+              tx = await contract.getAuthor(address);
+            } catch (err) {
+              console.error("Error calling getAuthor:", err);
+            }
+            console.log("getAuthor result:", tx);
+      
+            if (!tx) {
+              dispatch(showSlide());
+              dispatch(setType("complete_profile"));
+            } else {
+              try {
+                const { data }: any = await api.get(`/authors/getAuthor/${address}`);
+                console.log("API data:", data);
+      
+                if (!data?.data) {
+                  dispatch(showSlide());
+                  dispatch(setType("complete_profile"));
+                  return;
+                }
+                dispatch(setUserId(data.data._id));
+                dispatch(showToast({ message: "User Data Fetched", type: "success" }));
+              } catch (err) {
+                console.error("Error fetching user data from API:", err);
+              }
+            }
+          }
+        }catch (err: any) {
+          console.error("Error in handleClick:", err);
+          dispatch(showToast({ message: err.message, type: "error" }));
+        }
+      }
+    })();
+  },[isConnected]);
+
+  useEffect(()=>{
+    dispatch(setIsWalletConnected(isConnected));
+  },[isConnected]);
+
   console.log("Address: ", address);
-  console.log("CaipAddress: ", caipAddress);
+  console.log("CaipAddress: ", status);
   console.log("isConnected: ", isConnected);
   
   return (
@@ -109,43 +117,17 @@ const Header = () => {
       </div>
 
       <div className="font-[SatoshiMedium] pl-3">
-        {
-          walletAddress ? (
-            userId ? (
-              // If walletAddress and userId exist, show button to navigate to Dashboard
-              <button
-                // onClick={() => router.push("/dashboard")}
-                onClick={() => handleClick()}
-                className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in"
-              >
-                <FaWallet className="text-lg" />
-                <p className="border-l border-l-bgPrimary pl-2">
-                  {walletAddress.slice(0, 6) + "..." + walletAddress.slice(-5)}
-                </p>
-              </button>
-            ) : (
-              // If walletAddress exists but userId does not, show Complete Profile flow
-              <button
-                onClick={() => handleClick()}
-                className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in"
-              >
-                <FaWallet className="text-lg" />
-                <p className="border-l border-l-bgPrimary pl-2">
-                  {walletAddress.slice(0, 6) + "..." + walletAddress.slice(-5)}
-                </p>
-              </button>
-            )
-          ) : (
-            // If no walletAddress, show Connect Wallet button
             <button
               onClick={() => handleClick()}
-              className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in"
-            >
+              className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
               <FaWallet className="text-lg" />
-              <p className="border-l border-l-bgPrimary pl-2">Connect Wallet</p>
+              {
+                isConnected ? 
+                walletAddress && (walletAddress.slice(0, 6) + "..." + walletAddress.slice(-5)) :
+                <p className="border-l border-l-bgPrimary pl-2">Connect Wallet</p>
+              }
             </button>
-          )
-        }
+
       </div>
 
     </header>
