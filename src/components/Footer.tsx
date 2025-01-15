@@ -54,34 +54,34 @@ const Footer = (props: Props) => {
           
         <div className='py-7 md:py-0'>
           <div className='pb-6'>
-            <h3 className='font-[SatoshiBold]'>Products</h3>
+            <h3 className='font-[SatoshiBold] text-white dark:text-white'>Products</h3>
           </div>
           <div className='flex flex-col gap-y-4'>
-            <Link href="/" className='font-[SatoshiLight] text-sm transition-colors ease-in hover:text-bgPrimary'>NFT</Link>
-            <Link href="/" className='font-[SatoshiLight] text-sm transition-colors ease-in hover:text-bgPrimary'>Resources</Link>
-            <Link href="/" className='font-[SatoshiLight] text-sm transition-colors ease-in hover:text-bgPrimary'>Trade</Link>
+            <Link href="/" className='text-white dark:text-white font-[SatoshiLight] text-sm transition-colors ease-in hover:text-bgPrimary'>NFT</Link>
+            <Link href="/" className='text-white dark:text-white font-[SatoshiLight] text-sm transition-colors ease-in hover:text-bgPrimary'>Resources</Link>
+            <Link href="/" className='text-white dark:text-white font-[SatoshiLight] text-sm transition-colors ease-in hover:text-bgPrimary'>Trade</Link>
           </div>
         </div>
 
         <div className='py-7 md:py-0'>
           <div className='pb-6'>
-            <h3 className='font-[SatoshiBold]'>Support</h3>
+            <h3 className='font-[SatoshiBold] text-white dark:text-white'>Support</h3>
           </div>
           <div className='flex flex-col gap-y-4'>
-            <Link href="/" className='font-[SatoshiLight] text-sm transition-colors ease-in hover:text-bgPrimary'>Help Center</Link>
-            <Link href="/" className='font-[SatoshiLight] text-sm transition-colors ease-in hover:text-bgPrimary'>Trading fees</Link>
-            <Link href="/" className='font-[SatoshiLight] text-sm transition-colors ease-in hover:text-bgPrimary'>Contact Us</Link>
+            <Link href="/" className='text-white dark:text-white font-[SatoshiLight] text-sm transition-colors ease-in hover:text-bgPrimary'>Help Center</Link>
+            <Link href="/" className='text-white dark:text-white font-[SatoshiLight] text-sm transition-colors ease-in hover:text-bgPrimary'>Trading fees</Link>
+            <Link href="/" className='text-white dark:text-white font-[SatoshiLight] text-sm transition-colors ease-in hover:text-bgPrimary'>Contact Us</Link>
           </div>
         </div>
 
         <div className='py-7 md:py-0'>
           <div className='pb-6'>
-            <h3 className='font-[SatoshiBold]'>Legal</h3>
+            <h3 className='font-[SatoshiBold] text-white dark:text-white'>Legal</h3>
           </div>
           <div className='flex flex-col gap-y-4'>
-            <Link href="/" className='font-[SatoshiLight] text-sm transition-colors ease-in hover:text-bgPrimary'>Privacy Policy</Link>
-            <Link href="/" className='font-[SatoshiLight] text-sm transition-colors ease-in hover:text-bgPrimary'>Terms Of Service</Link>
-            <Link href="/" className='font-[SatoshiLight] text-sm transition-colors ease-in hover:text-bgPrimary'>Wallet Agreements</Link>
+            <Link href="/" className='text-white dark:text-white font-[SatoshiLight] text-sm transition-colors ease-in hover:text-bgPrimary'>Privacy Policy</Link>
+            <Link href="/" className='text-white dark:text-white font-[SatoshiLight] text-sm transition-colors ease-in hover:text-bgPrimary'>Terms Of Service</Link>
+            <Link href="/" className='text-white dark:text-white font-[SatoshiLight] text-sm transition-colors ease-in hover:text-bgPrimary'>Wallet Agreements</Link>
           </div>
         </div>
       </div>

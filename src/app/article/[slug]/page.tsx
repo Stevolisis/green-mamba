@@ -98,13 +98,13 @@ const page = () => {
       </Head>
       <div className="bg-bgPrimary">
         <div className='pt-12 pb-6 sm:pb-4 px-4 sm:px-20'>
-          <h1 className='text-3xl sm:text-4xl font-[SatoshiBold] text-gray-100'>{ article?.title }</h1>
+          <h1 className='text-3xl sm:text-4xl font-[SatoshiBold] text-gray-100 dark:text-gray-100'>{ article?.title }</h1>
         </div>
 
         <div className='flex flex-wrap gap-3 px-4 sm:px-20'>
           {
             article?.tags?.map((tag,i)=>(
-              <p key={i} className='text-[10px] font-[SatoshiMedium] rounded-[4px] py-[5px] px-2 bg-bgSecondary text-bgPrimary'>{ tag }</p>
+              <p key={i} className='text-[10px] font-[SatoshiMedium] rounded-[4px] py-[5px] px-2 bg-bgSecondary text-bgPrimary dark:text-bgPrimary'>{ tag }</p>
             ))
           }
         </div>
@@ -137,7 +137,7 @@ const page = () => {
                   <p className='border-l border-l-bgPrimary pl-2'>
                     <Loader size={20} color="#01140d" />
                   </p> :
-                  <p className="hidden sm:block border-l border-l-bgPrimary pl-2">Gift Author</p>
+                  <p className="hidden sm:block border-l border-l-bgPrimary pl-2 text-bgPrimary dark:text-bgPrimary">Gift Author</p>
                 }
               </button>
             </div>
@@ -157,7 +157,7 @@ const page = () => {
         </div>
 
         <div className='px-4 sm:px-20 py-5 sm:py-7'>
-          <p className='font-[SatoshiRegular] text-[15px]'>
+          <p className='font-[SatoshiRegular] text-[15px] text-white dark:text-white'>
             { article && parse(article?.content as string) }
           </p>
         </div>

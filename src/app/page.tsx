@@ -49,8 +49,8 @@ export default function Home() {
           </div>
 
           <div>
-            <button className=" text-sm text-bgPrimary dark:text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px]">
-              <p className="font-[SatoshiMedium]">Get Started</p>
+            <button className=" text-sm py-2 px-4 bg-bgSecondary rounded-[4px]">
+              <p className="font-[SatoshiMedium] text-bgPrimary dark:text-bgPrimary">Get Started</p>
             </button>
           </div>
         </div>
