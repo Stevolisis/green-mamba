@@ -96,7 +96,7 @@ const page = () => {
           content="example description"
         />
       </Head>
-      <div>
+      <div className="bg-bgPrimary">
         <div className='pt-12 pb-6 sm:pb-4 px-4 sm:px-20'>
           <h1 className='text-3xl sm:text-4xl font-[SatoshiBold] text-gray-100'>{ article?.title }</h1>
         </div>

@@ -105,7 +105,7 @@ const Header = () => {
           width={30}
           height={30}
         />
-        <h1 className="text-base sm:text-lg"> GREEN <span>MAMBA</span> </h1>
+        <h1 className="text-base sm:text-lg text-white dark:text-white"> GREEN <span>MAMBA</span> </h1>
       </Link>
 
       <div className="font-[SatoshiLight] hidden gap-8 text-sm md:flex">
@@ -119,7 +119,7 @@ const Header = () => {
       <div className="font-[SatoshiMedium] pl-3">
             <button
               onClick={() => handleClick()}
-              className="flex gap-2 items-center text-sm text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
+              className="flex gap-2 items-center text-sm text-bgPrimary dark:text-bgPrimary py-2 px-4 bg-bgSecondary rounded-[4px] hover:bg-emerald-400 transition-colors ease-in">
               <FaWallet className="text-lg" />
               {
                 isConnected ? 

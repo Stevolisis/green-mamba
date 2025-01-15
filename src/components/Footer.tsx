@@ -19,29 +19,29 @@ const Footer = (props: Props) => {
               width={30}
               height={30}
             />
-            <h1 className="text-lg"> GREEN <span>MAMBA</span> </h1>
+            <h1 className="text-lg text-white dark:text-white"> GREEN <span>MAMBA</span> </h1>
           </div>
           <div className='py-3'>
-            <p className='font-[SatoshiLight] text-sm'>Revolutionary Approach to Wealth Creation</p>
+            <p className='font-[SatoshiLight] text-sm text-white dark:text-white'>Revolutionary Approach to Wealth Creation</p>
           </div>
         </div>
 
         <div className=''>
           <div className='pt-6 pb-4'>
-            <h3 className='font-[SatoshiBold]'>Stay Informed</h3>
+            <h3 className='font-[SatoshiBold] text-white dark:text-white'>Stay Informed</h3>
           </div>
 
           <div className='flex gap-6'>
-            <Link href="/" className='text-[10px] rounded-full p-2 border hover:bg-bgSecondary hover:text-bgPrimary'>
+            <Link href="/" className='text-[10px] text-white dark:text-white rounded-full p-2 border border-white dark:border-white hover:bg-bgSecondary hover:text-bgPrimary'>
               <FaFacebookF />
             </Link>
-            <Link href="/" className='text-[10px] rounded-full p-2 border hover:bg-bgSecondary hover:text-bgPrimary'>
+            <Link href="/" className='text-[10px] text-white dark:text-white rounded-full p-2 border border-white dark:border-white hover:bg-bgSecondary hover:text-bgPrimary'>
               <FaTwitter />
             </Link>
-            <Link href="/" className='text-[10px] rounded-full p-2 border hover:bg-bgSecondary hover:text-bgPrimary'>
+            <Link href="/" className='text-[10px] text-white dark:text-white rounded-full p-2 border border-white dark:border-white hover:bg-bgSecondary hover:text-bgPrimary'>
               <FaInstagram  />
             </Link>
-            <Link href="/" className='text-[10px] rounded-full p-2 border hover:bg-bgSecondary hover:text-bgPrimary'>
+            <Link href="/" className='text-[10px] text-white dark:text-white rounded-full p-2 border border-white dark:border-white hover:bg-bgSecondary hover:text-bgPrimary'>
               <FaLinkedinIn />
             </Link>
 

@@ -26,10 +26,10 @@ const ArticleCard = ({ blog }:any ) => {
 
     <div className="p-2 md:p-6">
       <div className="py-5">
-        <h2 className="font-[SatoshiBold] line-clamp-3 text-xl md:text-2xl">{ blog.title }</h2>
+        <h2 className="font-[SatoshiBold] line-clamp-3 text-xl md:text-2xl text-white dark:text-white">{ blog.title }</h2>
       </div>
       <div>
-        <p className="font-[SatoshiLight] line-clamp-3 text-sm">{ blog.description }</p>
+        <p className="font-[SatoshiLight] line-clamp-3 text-sm text-white dark:text-white">{ blog.description }</p>
       </div>
       <div className="pt-7 flex justify-between items-center">
         <div className="flex items-center gap-2 sm:gap-3">
@@ -37,10 +37,10 @@ const ArticleCard = ({ blog }:any ) => {
             size={17}
             className="text-bgSecondary"
           />
-          <p className="font-[SatoshiLight] text-xs">{ blog?.author?.name }</p>
+          <p className="font-[SatoshiLight] text-xs text-white dark:text-white">{ blog?.author?.name }</p>
         </div>
         <div>
-          <p className="font-[SatoshiLight] text-xs">{ formatDate2(blog.createdAt) }</p>
+          <p className="font-[SatoshiLight] text-xs text-white dark:text-white">{ formatDate2(blog.createdAt) }</p>
         </div>
       </div>
     </div>
