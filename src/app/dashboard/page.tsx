@@ -135,17 +135,17 @@ const page = () => {
             </div>
 
             <div>
-              <p className="text-sm">{!user ? "...loading" : user?.name}</p>
+              <p className="text-sm text-white dark:text-white">{!user ? "...loading" : user?.name}</p>
             </div>
           </div>
 
           <div className='flex justify-between items-baseline'>
             
             <div>
-              <p className="text-sm mb-2">
+              <p className="text-sm mb-2 text-white dark:text-white">
                 Balance
               </p>
-              <h2 className="text-3xl font-[SatoshiBold]">
+              <h2 className="text-3xl font-[SatoshiBold] text-white dark:text-white">
                 {balance} ETH
               </h2>
             </div>
@@ -164,17 +164,17 @@ const page = () => {
             </div>
 
             <div>
-              <Link href="/articles" className="text-sm underline text-gray-400">View all</Link>
+              <Link href="/articles" className="text-sm underline text-gray-400 dark:text-gray-400">View all</Link>
             </div>
           </div>
 
           <div className='flex justify-between items-baseline'>
             
             <div>
-              <p className="text-sm mb-2 text-gray-400">
+              <p className="text-sm mb-2 text-gray-400 dark:text-gray-400">
                 Number Of Articles
               </p>
-              <h2 className="text-3xl font-[SatoshiBold]">
+              <h2 className="text-3xl font-[SatoshiBold] text-white dark:text-white">
                 {articlesCount}
               </h2>
             </div>
@@ -193,17 +193,17 @@ const page = () => {
             </div>
 
             <div>
-              <Link href={""} onClick={()=>dispatch(setVisibility(true))} className="text-sm underline text-gray-400">View all</Link>
+              <Link href={""} onClick={()=>dispatch(setVisibility(true))} className="text-sm underline text-gray-400 dark:text-gray-400">View all</Link>
             </div>
           </div>
 
           <div className='flex justify-between items-baseline'>
             
             <div>
-              <p className="text-sm mb-2 text-gray-400">
+              <p className="text-sm mb-2 text-gray-400 dark:text-gray-400">
                 Recent Notification
               </p>
-              <h2 className="text-3xl font-[SatoshiBold]">
+              <h2 className="text-3xl font-[SatoshiBold] text-white dark:text-white">
                 { unReadNotifications }
               </h2>
             </div>

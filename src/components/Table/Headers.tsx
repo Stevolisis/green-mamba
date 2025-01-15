@@ -8,7 +8,7 @@ const Headers = (props: Props) => {
 
   return (
     <thead>
-        <tr className='text-gray-400 rounded-2xl text-sm'>
+        <tr className='text-gray-400 dark:text-gray-400 rounded-2xl text-sm'>
             {
               headings.map((heading, i)=>(
                 <td key={i} className={`glassMorphism   
