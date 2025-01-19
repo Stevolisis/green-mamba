@@ -124,7 +124,7 @@ const Header = () => {
           {
             isConnected ? 
             walletAddress && (walletAddress.slice(0, 6) + "..." + walletAddress.slice(-5)) :
-            <p style={{color:'#01140d'}} className="border-l border-l-bgPrimary pl-2 text-black dark:text-black">Connect Wallet</p>
+            <p className="border-l border-l-bgPrimary pl-2 text-black dark:text-black">Connect Wallet</p>
           }
         </button>
 

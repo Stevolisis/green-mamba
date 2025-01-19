@@ -49,7 +49,7 @@ export default function Home() {
           </div>
 
           <div>
-            <button style={{color:'#01140d'}} className=" text-sm py-2 px-4 bg-bgSecondary rounded-[4px]">
+            <button className=" text-sm py-2 px-4 bg-bgSecondary rounded-[4px]">
               <p className="font-[SatoshiMedium] text-bgPrimary dark:text-bgPrimary">Get Started</p>
             </button>
           </div>
