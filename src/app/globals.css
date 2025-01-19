@@ -28,6 +28,10 @@ body {
     /* rgb(var(--background-start-rgb)); */
 }
 
+button{
+  color: #01140d;
+}
+
 @layer utilities {
   .border-gradient {
     border-bottom: 1px solid; 
@@ -52,6 +56,16 @@ body {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
   }
+
+  @media (prefers-color-scheme: dark) {
+    .glassMorphism {
+      background: rgba(var(--glassMorph));
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      /* border: 1px solid rgba(255,255,255,0.25); */
+    }
+  }
+  
 }
 
 @layer base {

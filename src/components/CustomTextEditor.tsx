@@ -14,7 +14,7 @@ const CustomTextEditor: React.FC<CustomTextEditorProps> = ({
 }) => {
     return (
         <div className='my-5'>
-            <p className=' mb-1 text-sm'>Content</p>
+            <p className=' mb-1 text-sm text-white dark:text-white'>Content</p>
             <SunEditor 
                 placeholder={ placeholder }
                 onChange={onEDTChange}
