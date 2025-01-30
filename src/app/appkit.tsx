@@ -22,7 +22,9 @@ createAppKit({
   networks: [sepolia],
   projectId,
   features: {
-    analytics: true // Optional - defaults to your Cloud configuration
+    analytics: true,
+    email: false,
+    socials: false,
   }
 })
 
