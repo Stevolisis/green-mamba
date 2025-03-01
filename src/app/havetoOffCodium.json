@@ -1,0 +1,789 @@
+{
+    "type": "success",
+    "error": null,
+    "url": "http://localhost:8081/#state=OVkIQr5lcW&access_token=ya29.a0AXooCgtiCUYMEn__HdnXlBuH1zVJ2n-aCmVAMgapdFvGs6s1zgdMd1APTUqkZJdwhRl7j8kTINslV4VDOKSJ2OQbMeSbgK-r9WNw7pu9i_N88Up3KTCBdjoJI5q2YlgLb6XwBSTSXxV-dCrKZcKzC5OWuwXG2QNJeQaCgYKAaMSARISFQHGX2Mi-D-CD2DsZKePnW_CJo6K2g0169&token_type=Bearer&expires_in=3599&scope=email%20profile%20https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile%20openid&authuser=1&prompt=consent",
+    "params": {
+        "state": "OVkIQr5lcW",
+        "access_token": "ya29.a0AXooCgtiCUYMEn__HdnXlBuH1zVJ2n-aCmVAMgapdFvGs6s1zgdMd1APTUqkZJdwhRl7j8kTINslV4VDOKSJ2OQbMeSbgK-r9WNw7pu9i_N88Up3KTCBdjoJI5q2YlgLb6XwBSTSXxV-dCrKZcKzC5OWuwXG2QNJeQaCgYKAaMSARISFQHGX2Mi-D-CD2DsZKePnW_CJo6K2g0169",
+        "token_type": "Bearer",
+        "expires_in": "3599",
+        "scope": "email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid",
+        "authuser": "1",
+        "prompt": "consent"
+    },
+    "authentication": {
+        "accessToken": "ya29.a0AXooCgtiCUYMEn__HdnXlBuH1zVJ2n-aCmVAMgapdFvGs6s1zgdMd1APTUqkZJdwhRl7j8kTINslV4VDOKSJ2OQbMeSbgK-r9WNw7pu9i_N88Up3KTCBdjoJI5q2YlgLb6XwBSTSXxV-dCrKZcKzC5OWuwXG2QNJeQaCgYKAaMSARISFQHGX2Mi-D-CD2DsZKePnW_CJo6K2g0169",
+        "tokenType": "Bearer",
+        "expiresIn": "3599",
+        "scope": "email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid",
+        "state": "OVkIQr5lcW",
+        "issuedAt": 1720821268
+    },
+    "errorCode": null
+}
+
+{
+    "type": "error",
+    "error": {
+        "code": "access_denied",
+        "description": "The resource owner or authorization server denied the request.",
+        "params": {
+            "error": "access_denied",
+            "state": "JM0cUac5jO"
+        },
+        "state": "JM0cUac5jO"
+    },
+    "url": "http://localhost:8081/#error=access_denied&state=JM0cUac5jO",
+    "params": {
+        "error": "access_denied",
+        "state": "JM0cUac5jO"
+    },
+    "authentication": null,
+    "errorCode": null
+}
+
+
+config.push({
+    "utf-8-validate":"commonjs utf-8-validate",
+    bufferutil: "coomonjs bufferutil",
+    canvas: "commonjs canvas",
+});
+
+
+
+
+
+
+
+
+
+
+
+
+Require stack:
+- C:\Users\USER\Documents\GitHub\konva_next\.next\server\app\page.js
+    at Object.canvas (C:\Users\USER\Documents\GitHub\konva_next\.next\server\app\page.js:66:18)
+    at __webpack_require__ (C:\Users\USER\Documents\GitHub\konva_next\.next\server\webpack-runtime.js:33:42)
+    at __webpack_require__ (C:\Users\USER\Documents\GitHub\konva_next\.next\server\webpack-runtime.js:33:42)
+    at __webpack_require__ (C:\Users\USER\Documents\GitHub\konva_next\.next\server\webpack-runtime.js:33:42)
+    at eval (./src/app/page.tsx:11:69)
+    at (ssr)/./src/app/page.tsx (C:\Users\USER\Documents\GitHub\konva_next\.next\server\app\page.js:151:1)
+    at Object.__webpack_require__ [as require] (C:\Users\USER\Documents\GitHub\konva_next\.next\server\webpack-runtime.js:33:42)
+digest: "452092564"
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+    "id": "5a76f1b8-623c-4f69-ab94-bbdf3447bc10",
+    "createdAt": "2024-10-27T20:10:10.602Z",
+    "updatedAt": "2024-10-27T20:10:10.602Z",
+    "designId": "d28b57cc-3e0b-42f4-bf18-0b67da3ec94a",
+    "documentRestrictions": [
+        ""
+    ],
+    "data": [
+        {
+            "width": 1080,
+            "height": 1080,
+            "elements": [
+                {
+                    "restrictions": [],
+                    "resizableX": false,
+                    "resizableY": false,
+                    "isHidden": false,
+                    "name": "Untitled Grid",
+                    "angle": 0,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "scale": 1,
+                    "opacity": 1,
+                    "fonts": [],
+                    "imageInstructions": [
+                        {
+                            "opacity": 1,
+                            "scaleX": 1,
+                            "scaleY": 1,
+                            "top": 0,
+                            "left": 0,
+                            "filters": "64646464646464064",
+                            "domId": "image-wrapper-1",
+                            "id": "30cd3a6a-4a7e-4ebc-9cba-d898a7a1c52c",
+                            "thumbSrc": "https://s3.amazonaws.com/asset.easil.com/30cd3a6a-4a7e-4ebc-9cba-d898a7a1c52c/thumb_Gradient17.jpg",
+                            "previewSrc": "https://s3.amazonaws.com/asset.easil.com/30cd3a6a-4a7e-4ebc-9cba-d898a7a1c52c/preview_Gradient17.jpg",
+                            "src": "https://s3.amazonaws.com/asset.easil.com/30cd3a6a-4a7e-4ebc-9cba-d898a7a1c52c/Gradient17.jpg",
+                            "price": null,
+                            "source": "Easil",
+                            "size": null,
+                            "mediaId": "30cd3a6a-4a7e-4ebc-9cba-d898a7a1c52c",
+                            "restrictions": [],
+                            "resizableX": false,
+                            "resizableY": false,
+                            "isHidden": false,
+                            "name": "Softest Pinks Gradient",
+                            "angle": 0,
+                            "scale": 1,
+                            "type": "image",
+                            "mask": {
+                                "top": 0,
+                                "left": 0
+                            },
+                            "author": null,
+                            "authorUrl": null,
+                            "categories": [
+                                "gradients",
+                                "gradient"
+                            ],
+                            "duration": null,
+                            "subscriptionCode": "BASIC",
+                            "teamId": null,
+                            "thumbnailUrl": "https://s3.amazonaws.com/asset.easil.com/30cd3a6a-4a7e-4ebc-9cba-d898a7a1c52c/thumb_Gradient17.jpg",
+                            "url": "https://s3.amazonaws.com/asset.easil.com/30cd3a6a-4a7e-4ebc-9cba-d898a7a1c52c/Gradient17.jpg",
+                            "userId": null,
+                            "origin": "stock",
+                            "canBeDeleted": false,
+                            "uniqueId": "4582c832-cb9f-4e16-bd33-74037bc330be",
+                            "srcWidth": 800,
+                            "width": 1087.5,
+                            "srcHeight": 800,
+                            "height": 1087.5,
+                            "palette": [
+                                "#d16f2d",
+                                "#f4dccc",
+                                "#6d3917",
+                                "#7d421b",
+                                "#ecd4d4",
+                                "#7d421b"
+                            ]
+                        }
+                    ],
+                    "palette": [],
+                    "source": {
+                        "type": "image",
+                        "domId": "image-wrapper-1"
+                    },
+                    "textInstructions": [],
+                    "type": "grid",
+                    "uniqueId": "9244ae9d-8012-485b-a3d0-66931fb4b0ae",
+                    "id": "90b7f755-6cc9-4954-803b-395c479865e3",
+                    "top": -7.5000000000000355,
+                    "left": 0,
+                    "height": 1087.5,
+                    "srcHeight": 0,
+                    "srcWidth": 0,
+                    "width": 1080,
+                    "filter": null,
+                    "groupId": "814287e3-4a2e-4932-a80a-3de9f2e29399"
+                },
+                {
+                    "restrictions": [],
+                    "resizableX": true,
+                    "resizableY": true,
+                    "isHidden": false,
+                    "name": "Box Rounded",
+                    "angle": 0,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "scale": 0.6161733552441837,
+                    "opacity": 0.2,
+                    "imageInstructions": [],
+                    "mask": {
+                        "top": 0,
+                        "left": 0
+                    },
+                    "src": "https://s3.amazonaws.com/asset.easil.com/fdc6420c-88af-46d0-a2a3-f424da4949cb/rounded_square.svg",
+                    "id": "fdc6420c-88af-46d0-a2a3-f424da4949cb",
+                    "height": 859.8152012285962,
+                    "width": 859.8234155803788,
+                    "thumbSrc": "https://s3.amazonaws.com/asset.easil.com/fdc6420c-88af-46d0-a2a3-f424da4949cb/thumb_roundedFill.png",
+                    "previewSrc": "https://s3.amazonaws.com/asset.easil.com/fdc6420c-88af-46d0-a2a3-f424da4949cb/rounded_square.svg",
+                    "price": null,
+                    "source": "Easil",
+                    "type": "vector",
+                    "uniqueId": "2a3227e4-96ae-4b66-bb6c-b136e4fae0ec",
+                    "srcWidth": 240,
+                    "srcHeight": 240,
+                    "fillColors": [
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-2"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-3"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-4"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-5"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-6"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-7"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-8"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-9"
+                        }
+                    ],
+                    "top": 110.09381082369013,
+                    "left": 107.58985623568944,
+                    "filter": null,
+                    "fontSize": 0,
+                    "rows": null,
+                    "columnsMetadata": null,
+                    "outline": {
+                        "color": "#141548",
+                        "width": 1,
+                        "knockout": true,
+                        "fill": false,
+                        "fade": 5
+                    },
+                    "topIncrement": 0,
+                    "leftIncrement": 0,
+                    "groupId": "814287e3-4a2e-4932-a80a-3de9f2e29399"
+                },
+                {
+                    "restrictions": [],
+                    "resizableX": true,
+                    "resizableY": true,
+                    "isHidden": false,
+                    "name": "Box Rounded",
+                    "angle": 0,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "scale": 0.6161733552441837,
+                    "opacity": 0.32,
+                    "imageInstructions": [],
+                    "mask": {
+                        "top": 0,
+                        "left": 0
+                    },
+                    "src": "https://s3.amazonaws.com/asset.easil.com/fdc6420c-88af-46d0-a2a3-f424da4949cb/rounded_square.svg",
+                    "id": "fdc6420c-88af-46d0-a2a3-f424da4949cb",
+                    "height": 859.8152012285962,
+                    "width": 859.8234155803788,
+                    "thumbSrc": "https://s3.amazonaws.com/asset.easil.com/fdc6420c-88af-46d0-a2a3-f424da4949cb/thumb_roundedFill.png",
+                    "previewSrc": "https://s3.amazonaws.com/asset.easil.com/fdc6420c-88af-46d0-a2a3-f424da4949cb/rounded_square.svg",
+                    "price": null,
+                    "source": "Easil",
+                    "type": "vector",
+                    "uniqueId": "7b287ad5-1d67-42a4-a6c0-259b6e144838",
+                    "srcWidth": 240,
+                    "srcHeight": 240,
+                    "fillColors": [
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-2"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-3"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-4"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-5"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-6"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-7"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-8"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-9"
+                        }
+                    ],
+                    "top": 110.09239938570188,
+                    "left": 108.83829220981053,
+                    "filter": null,
+                    "fontSize": 0,
+                    "rows": null,
+                    "columnsMetadata": null,
+                    "outline": {
+                        "color": "#EAEAED",
+                        "width": 0,
+                        "knockout": false,
+                        "fill": false
+                    },
+                    "topIncrement": 0,
+                    "leftIncrement": 0,
+                    "groupId": "814287e3-4a2e-4932-a80a-3de9f2e29399"
+                },
+                {
+                    "restrictions": [],
+                    "resizableX": true,
+                    "resizableY": true,
+                    "isHidden": false,
+                    "name": "Box Rounded",
+                    "angle": 0,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "scale": 0.5589779589303262,
+                    "opacity": 1,
+                    "imageInstructions": [],
+                    "mask": {
+                        "top": 0,
+                        "left": 0
+                    },
+                    "src": "https://s3.amazonaws.com/asset.easil.com/fdc6420c-88af-46d0-a2a3-f424da4949cb/rounded_square.svg",
+                    "id": "fdc6420c-88af-46d0-a2a3-f424da4949cb",
+                    "height": 690.3848742624281,
+                    "width": 780.011556473674,
+                    "thumbSrc": "https://s3.amazonaws.com/asset.easil.com/fdc6420c-88af-46d0-a2a3-f424da4949cb/thumb_roundedFill.png",
+                    "previewSrc": "https://s3.amazonaws.com/asset.easil.com/fdc6420c-88af-46d0-a2a3-f424da4949cb/rounded_square.svg",
+                    "price": null,
+                    "source": "Easil",
+                    "type": "vector",
+                    "uniqueId": "18c7a744-d6a5-479f-a8a2-32a39c9d401a",
+                    "srcWidth": 240,
+                    "srcHeight": 240,
+                    "fillColors": [
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-2"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-3"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-4"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-5"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-6"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-7"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-8"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1-9"
+                        }
+                    ],
+                    "top": 243.0922320176557,
+                    "left": 149.9960537003738,
+                    "filter": null,
+                    "fontSize": 0,
+                    "rows": null,
+                    "columnsMetadata": null,
+                    "outline": {
+                        "color": "#EAEAED",
+                        "width": 0,
+                        "knockout": false,
+                        "fill": false
+                    },
+                    "topIncrement": 0,
+                    "leftIncrement": 0,
+                    "groupId": "814287e3-4a2e-4932-a80a-3de9f2e29399"
+                },
+                {
+                    "restrictions": [],
+                    "resizableX": true,
+                    "resizableY": 0,
+                    "isHidden": false,
+                    "name": "Simple Line",
+                    "angle": 0,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "scale": 0.3705887064087764,
+                    "opacity": 1,
+                    "imageInstructions": [],
+                    "mask": {
+                        "top": 0,
+                        "left": 0
+                    },
+                    "src": "https://s3.amazonaws.com/asset.easil.com/42c12e1d-04ab-465b-8591-5fe2a0055a45/stretchable_line.svg",
+                    "id": "42c12e1d-04ab-465b-8591-5fe2a0055a45",
+                    "height": 3.7058870640877632,
+                    "width": 854.8756517892741,
+                    "thumbSrc": "https://s3.amazonaws.com/asset.easil.com/42c12e1d-04ab-465b-8591-5fe2a0055a45/thumb_stretchable_line.png",
+                    "previewSrc": "https://s3.amazonaws.com/asset.easil.com/42c12e1d-04ab-465b-8591-5fe2a0055a45/stretchable_line.svg",
+                    "price": null,
+                    "source": "Easil",
+                    "type": "vector",
+                    "uniqueId": "64d1b71b-921c-4805-be50-8b0bd70d8745",
+                    "srcWidth": 240,
+                    "srcHeight": 10,
+                    "fillColors": [
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1_2_"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1_1_"
+                        },
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1"
+                        }
+                    ],
+                    "top": 202.91167832528464,
+                    "left": 111.19055309229529,
+                    "filter": null,
+                    "fontSize": 0,
+                    "rows": null,
+                    "columnsMetadata": null,
+                    "topIncrement": 0,
+                    "leftIncrement": 0,
+                    "groupId": "814287e3-4a2e-4932-a80a-3de9f2e29399"
+                },
+                {
+                    "restrictions": [],
+                    "resizableX": 0,
+                    "resizableY": 0,
+                    "isHidden": false,
+                    "name": "3 Dots In Line",
+                    "angle": 0,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "scale": 0.5942545049477048,
+                    "opacity": 1,
+                    "imageInstructions": [],
+                    "mask": {
+                        "top": 0,
+                        "left": 0
+                    },
+                    "src": "https://s3.amazonaws.com/asset.easil.com/71e69a35-c290-4578-b97c-c52c55d77b06/3-dots-in-line.svg",
+                    "id": "71e69a35-c290-4578-b97c-c52c55d77b06",
+                    "height": 26.982125071742217,
+                    "width": 142.6210811874492,
+                    "thumbSrc": "https://s3.amazonaws.com/asset.easil.com/71e69a35-c290-4578-b97c-c52c55d77b06/thumb_3-dots-in-line.png",
+                    "previewSrc": "https://s3.amazonaws.com/asset.easil.com/71e69a35-c290-4578-b97c-c52c55d77b06/3-dots-in-line.svg",
+                    "price": null,
+                    "source": "Easil",
+                    "type": "vector",
+                    "uniqueId": "eeabb6a9-984d-443b-9826-f2700d28c0bc",
+                    "srcWidth": 240,
+                    "srcHeight": 45.404998779296875,
+                    "fillColors": [
+                        {
+                            "color": "#FFFFFF",
+                            "domId": "change_1"
+                        }
+                    ],
+                    "top": 153.16160253193817,
+                    "left": 149.63341251486418,
+                    "filter": null,
+                    "fontSize": 0,
+                    "rows": null,
+                    "columnsMetadata": null,
+                    "groupId": "814287e3-4a2e-4932-a80a-3de9f2e29399",
+                    "topIncrement": 0,
+                    "leftIncrement": 0
+                },
+                {
+                    "restrictions": [],
+                    "resizableX": false,
+                    "resizableY": false,
+                    "isHidden": false,
+                    "name": "Circle Dropzone",
+                    "angle": 0,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "scale": 0.4258316974930275,
+                    "opacity": 1,
+                    "imageInstructions": [
+                        {
+                            "opacity": 1,
+                            "scaleX": 1,
+                            "scaleY": 1,
+                            "top": 0,
+                            "left": -73.98970876338375,
+                            "filters": "64646464646464064",
+                            "id": "dcd16bdd-8a79-45e5-a767-14aba00598ac",
+                            "name": "andreas-fidler-437916-unsplash.jpg",
+                            "price": "0.0",
+                            "type": "image",
+                            "teamImage": false,
+                            "source": "easil",
+                            "src": "https://s3.amazonaws.com/media.easil.com/vector/svg/dcd16bdd-8a79-45e5-a767-14aba00598ac/preview_andreas-fidler-437916-unsplash.jpg",
+                            "srcWidth": 800,
+                            "srcHeight": 519,
+                            "thumbSrc": "https://s3.amazonaws.com/media.easil.com/vector/thumbnail/dcd16bdd-8a79-45e5-a767-14aba00598ac/thumb_andreas-fidler-437916-unsplash.jpg",
+                            "domId": "clip_1",
+                            "palette": [
+                                "#EECCBE",
+                                "#D3AC9F",
+                                "#A6A8C6",
+                                "#A597A8",
+                                "#9F7475",
+                                "#5C3234"
+                            ],
+                            "width": 369.9421965317919,
+                            "height": 240,
+                            "previewSrc": "https://s3.amazonaws.com/media.easil.com/vector/svg/dcd16bdd-8a79-45e5-a767-14aba00598ac/preview_andreas-fidler-437916-unsplash.jpg",
+                            "angle": 0,
+                            "scale": 1
+                        }
+                    ],
+                    "mask": {
+                        "top": 0,
+                        "left": 0
+                    },
+                    "width": 102.1996073983266,
+                    "locked": false,
+                    "height": 102.1996073983266,
+                    "groupId": "c6eadc27-5295-471b-9ae4-932f4ed25c0e",
+                    "left": 201.54768985045607,
+                    "top": 290.29368778336897,
+                    "srcWidth": 240,
+                    "visible": true,
+                    "type": "vector",
+                    "uniqueId": "28ccfd24-3634-4378-85b4-e43f1f9c5968",
+                    "srcHeight": 240,
+                    "source": "easil",
+                    "id": "09fcb2cb-a738-4e9c-8e9d-caea5759cc5d",
+                    "thumbSrc": "https://s3.amazonaws.com/media.easil.com/vector/thumbnail/09fcb2cb-a738-4e9c-8e9d-caea5759cc5d/thumb_Circ.png",
+                    "fonts": [],
+                    "fillColors": [
+                        {
+                            "domId": "change_1",
+                            "color": "#F26650"
+                        }
+                    ],
+                    "textInstructions": [],
+                    "src": "https://s3.amazonaws.com/media.easil.com/vector/svg/09fcb2cb-a738-4e9c-8e9d-caea5759cc5d/Dropzone.svg",
+                    "palette": [],
+                    "price": "0.0",
+                    "topIncrement": 0,
+                    "leftIncrement": 0,
+                    "fontSize": null,
+                    "columnsMetadata": null,
+                    "rows": null
+                },
+                {
+                    "source": "textbox",
+                    "restrictions": [],
+                    "resizableX": true,
+                    "resizableY": true,
+                    "isHidden": false,
+                    "name": "Text Field",
+                    "angle": 0,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "scale": 1,
+                    "opacity": 1,
+                    "type": "textbox",
+                    "fontSize": 22.8450285,
+                    "lineHeight": "1.45",
+                    "letterSpacing": 0,
+                    "textAlign": "left",
+                    "color": "#2C2E2F",
+                    "fontFamily": "Montserrat-Regular",
+                    "fontId": "94ae72c6-3648-402d-82f1-472a2af3c749",
+                    "value": "PERSONAL TRAINER",
+                    "textDecoration": "none",
+                    "bold": false,
+                    "width": 580.100545125,
+                    "height": 32.635755,
+                    "locked": false,
+                    "groupId": "c6eadc27-5295-471b-9ae4-932f4ed25c0e",
+                    "left": 328.11111111111114,
+                    "top": 351.5188617550961,
+                    "srcWidth": 899.1984375000001,
+                    "visible": true,
+                    "uniqueId": "b5f98134-c52c-4f9b-afcd-8b57a58e4930",
+                    "srcHeight": 123.20000000000002,
+                    "id": "38gb7fg3",
+                    "italic": false,
+                    "palette": [],
+                    "version": 1.1,
+                    "topIncrement": 0,
+                    "leftIncrement": 0,
+                    "columnsMetadata": null,
+                    "rows": null,
+                    "textCase": "none",
+                    "displayValue": "PERSONAL TRAINER"
+                },
+                {
+                    "source": "textbox",
+                    "restrictions": [],
+                    "resizableX": true,
+                    "resizableY": true,
+                    "isHidden": false,
+                    "name": "Text Field",
+                    "angle": 0,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "scale": 0.5288058841358567,
+                    "opacity": 1,
+                    "type": "textbox",
+                    "fontSize": 43.14494819304052,
+                    "lineHeight": "1.2",
+                    "letterSpacing": -30,
+                    "textAlign": "left",
+                    "color": "#2C2E2F",
+                    "fontFamily": "Roboto-Regular",
+                    "fontId": "c9b5a19b-3b18-4bf2-87de-fb7de2ca8214",
+                    "value": "Jane Wilkins",
+                    "textDecoration": "none",
+                    "bold": false,
+                    "width": 252.39794692928703,
+                    "height": 51.773937831648624,
+                    "locked": false,
+                    "groupId": "c6eadc27-5295-471b-9ae4-932f4ed25c0e",
+                    "left": 328.11111111111114,
+                    "top": 300.85458843219067,
+                    "srcWidth": 899.1984375000001,
+                    "visible": true,
+                    "uniqueId": "79506579-f762-45c1-a44c-c5af5b539ef9",
+                    "srcHeight": 123.20000000000002,
+                    "id": "38gb7fg3",
+                    "italic": false,
+                    "palette": [],
+                    "version": 1.1,
+                    "topIncrement": 0,
+                    "leftIncrement": 0,
+                    "columnsMetadata": null,
+                    "rows": null,
+                    "textCase": "none",
+                    "displayValue": "Jane Wilkins"
+                },
+                {
+                    "source": "textbox",
+                    "restrictions": [],
+                    "resizableX": true,
+                    "resizableY": true,
+                    "isHidden": false,
+                    "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit velit orci, ut commodo lectus volutpat vel. Nulla pretium quis risus pellentesque congue.Curabitur blandit velit orci, ut commodo lectus volutpat vel. Nulla pretium quis risus pellentesque congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
+                    "angle": 0,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "scale": 1,
+                    "opacity": 1,
+                    "type": "textbox",
+                    "fontSize": 35,
+                    "lineHeight": "1.5",
+                    "letterSpacing": 0,
+                    "textAlign": "left",
+                    "color": "#4D4D4D",
+                    "fontFamily": "Roboto-Regular",
+                    "fontId": "c9b5a19b-3b18-4bf2-87de-fb7de2ca8214",
+                    "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit velit orci, ut commodo lectus volutpat vel. Nulla pretium quis risus pellentesque congud.<br><br>Curabitur blandit velit orci, ut commodo lectus volutpat vel. <span style=\"font-family: Roboto-Bold;\">Nulla pretium quis risus pellentesque congue</span>.&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>",
+                    "textDecoration": "none",
+                    "bold": false,
+                    "width": 698.4306518029016,
+                    "height": 473,
+                    "locked": false,
+                    "groupId": "c6eadc27-5295-471b-9ae4-932f4ed25c0e",
+                    "left": 197.1032921081952,
+                    "top": 420.7397517056665,
+                    "srcWidth": 899.1984375000001,
+                    "visible": true,
+                    "uniqueId": "4f9ccffb-3582-43e4-9579-5d6efbffab0e",
+                    "srcHeight": 123.20000000000002,
+                    "id": "38gb7fg3",
+                    "italic": false,
+                    "palette": [],
+                    "version": 1.1,
+                    "topIncrement": 0,
+                    "leftIncrement": 0,
+                    "columnsMetadata": null,
+                    "rows": null,
+                    "textCase": "none",
+                    "displayValue": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit velit orci, ut commodo lectus volutpat vel. Nulla pretium quis risus pellentesque congud.<br><br>Curabitur blandit velit orci, ut commodo lectus volutpat vel. <span style=\"font-family: Roboto-Bold;\">Nulla pretium quis risus pellentesque congue</span>.&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>",
+                    "elementId": "4f9ccffb-3582-43e4-9579-5d6efbffab0e"
+                }
+            ],
+            "backgroundColor": "transparent",
+            "groups": [
+                {
+                    "id": "814287e3-4a2e-4932-a80a-3de9f2e29399",
+                    "name": "Background",
+                    "elements": [
+                        "9244ae9d-8012-485b-a3d0-66931fb4b0ae",
+                        "2a3227e4-96ae-4b66-bb6c-b136e4fae0ec",
+                        "7b287ad5-1d67-42a4-a6c0-259b6e144838",
+                        "18c7a744-d6a5-479f-a8a2-32a39c9d401a",
+                        "64d1b71b-921c-4805-be50-8b0bd70d8745",
+                        "eeabb6a9-984d-443b-9826-f2700d28c0bc"
+                    ],
+                    "visible": true,
+                    "opacity": 1,
+                    "angle": 0
+                },
+                {
+                    "id": "c6eadc27-5295-471b-9ae4-932f4ed25c0e",
+                    "name": "Text & Profile",
+                    "elements": [
+                        "28ccfd24-3634-4378-85b4-e43f1f9c5968",
+                        "b5f98134-c52c-4f9b-afcd-8b57a58e4930",
+                        "79506579-f762-45c1-a44c-c5af5b539ef9",
+                        "4f9ccffb-3582-43e4-9579-5d6efbffab0e"
+                    ],
+                    "visible": true,
+                    "opacity": 1,
+                    "angle": 0
+                }
+            ],
+            "uniqueId": "e9a78bd5-10b3-4933-b085-ab5f66a075f0",
+            "guides": [],
+            "isDurationManual": false,
+            "animatedElements": {},
+            "quickInputOrder": [
+                "b5f98134-c52c-4f9b-afcd-8b57a58e4930",
+                "79506579-f762-45c1-a44c-c5af5b539ef9",
+                "4f9ccffb-3582-43e4-9579-5d6efbffab0e"
+            ],
+            "openQuickInput": false
+        }
+    ],
+    "bleed": 0,
+    "ordered": false
+}
