@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <>
-    <html lang="en" className="light">
+    <html lang="en">
       <body className="bg-bgPrimary h-auto">
         <AppKitProvider>
           <ReactProvider>
